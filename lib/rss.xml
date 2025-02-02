@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[mh_obsidian]]></title><description><![CDATA[Obsidian digital garden]]></description><link>http://github.com/dylang/node-rss</link><image><url>lib/media/favicon.png</url><title>mh_obsidian</title><link></link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 02 Feb 2025 13:43:57 GMT</lastBuildDate><atom:link href="lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 02 Feb 2025 13:43:56 GMT</pubDate><ttl>60</ttl><dc:creator></dc:creator><item><title><![CDATA[[백준 1004] 어린왕자]]></title><description><![CDATA[ 
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[minhyung's dev log]]></title><description><![CDATA[Obsidian digital garden]]></description><link>https://alsgud8311.github.io/</link><image><url>https://alsgud8311.github.io/lib/media/favicon.png</url><title>minhyung's dev log</title><link>https://alsgud8311.github.io/</link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 02 Feb 2025 14:06:49 GMT</lastBuildDate><atom:link href="https://alsgud8311.github.io/lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 02 Feb 2025 14:06:49 GMT</pubDate><copyright><![CDATA[민형]]></copyright><ttl>60</ttl><dc:creator>민형</dc:creator><item><title><![CDATA[[백준 1004] 어린왕자]]></title><description><![CDATA[ 
  <br>import sys
 
 # 시작점 혹은 도착점이 원 안에 들어있는지 확인
@@ -44,7 +44,7 @@ x^2 + y^2 = r^2 이므로 해당 반지름의 제곱보다 출발점/도착점�
         return True
     else: return False
 <br>해당 함수는 행성의 x,y좌표와 반지름,  출발점/도착점을 받아 만약 행성 안에 있으면 True를 반환한다. 이럴 경우에만 result에 1을 추가해주면 된다.<br><img src="https://i.imgur.com/sL7DX4a.png" referrerpolicy="no-referrer"><br>
-하지만 메모리는 오지게 갉아먹는 모오습]]></description><link>알고리즘/[백준-1004]-어린왕자.html</link><guid isPermaLink="false">알고리즘/[백준 1004] 어린왕자.md</guid><pubDate>Mon, 02 Sep 2024 05:14:18 GMT</pubDate><enclosure url="https://i.imgur.com/vaknXFl.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/vaknXFl.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 1912] 연속합]]></title><description><![CDATA[ 
+하지만 메모리는 오지게 갉아먹는 모오습]]></description><link>알고리즘/[백준-1004]-어린왕자.html</link><guid isPermaLink="false">알고리즘/[백준 1004] 어린왕자.md</guid><pubDate>Mon, 02 Sep 2024 05:14:18 GMT</pubDate><enclosure url="https://i.imgur.com/vaknXFl.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/vaknXFl.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 1912] 연속합]]></title><description><![CDATA[ 
  <br><br>
 n개의 정수로 이루어진 임의의 수열이 주어진다. 우리는 이 중 연속된 몇 개의 수를 선택해서 구할 수 있는 합 중 가장 큰 합을 구하려고 한다. 단, 수는 한 개 이상 선택해야 한다.
 <br>문제에서 나온 예시로 10, -4, 3, 1, 5, 6, -35, 12, 21, -1 이라는 수열이 주어졌을 때, 여기서 정답은 12+21인 33이 정답이 된다.<br>해당 문제에서 주목해야 할 점은 연속된 몇 개의 수와 구할 수 있는 합 중 가장 큰 합이다.<br>
@@ -169,7 +169,7 @@ for (let i = 1; i &lt; inputs.length; i++) {
 }
 
 <br>그래서 그냥 했다<br>
-근데 시간 초과가 떴다]]></description><link>알고리즘/[백준-17123]-배열-놀이.html</link><guid isPermaLink="false">알고리즘/[백준 17123] 배열 놀이.md</guid><pubDate>Fri, 31 Jan 2025 03:14:43 GMT</pubDate><enclosure url="https://i.imgur.com/XDa3R5Q.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/XDa3R5Q.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준11631] ASCII Addition]]></title><description><![CDATA[ 
+근데 시간 초과가 떴다]]></description><link>알고리즘/[백준-17123]-배열-놀이.html</link><guid isPermaLink="false">알고리즘/[백준 17123] 배열 놀이.md</guid><pubDate>Fri, 31 Jan 2025 03:14:43 GMT</pubDate><enclosure url="https://i.imgur.com/XDa3R5Q.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/XDa3R5Q.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준11631] ASCII Addition]]></title><description><![CDATA[ 
  <br>아.. 이거 전에 모 코테에서 본 문제와 비슷한 문제<br>
 그 때 제대로 풀지 못해서 멘붕 왔었는데 이번엔 제대로 풀어본다.<br><img src="https://i.imgur.com/xQr9x8I.png" referrerpolicy="no-referrer"><br>아스키 아트는 칠해지는 부분이 x로 되어 있고, 총 7개의 row와 5개의 column으로 되어 있다.<br>
 a+b의 형태로 아스키 아트가 주어지면 이를 인식하고 이에 대한 두 수의 합을 다시 아스키 코드로 나타내야 한다.<br>const fs = require("fs");
@@ -231,11 +231,11 @@ for (const char of result) {
 console.log(resultAscii.join("\n"));
 
 <br>응 다 노가다로 아스키 맵 만들면 그만이야~<br>
-이딴 문제 만들지좀 마라]]></description><link>알고리즘/[백준11631]-ascii-addition.html</link><guid isPermaLink="false">알고리즘/[백준11631] ASCII Addition.md</guid><pubDate>Tue, 28 Jan 2025 06:56:39 GMT</pubDate><enclosure url="https://i.imgur.com/xQr9x8I.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/xQr9x8I.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준14596] Quilting(smaill)]]></title><description><![CDATA[ 
+이딴 문제 만들지좀 마라]]></description><link>알고리즘/[백준11631]-ascii-addition.html</link><guid isPermaLink="false">알고리즘/[백준11631] ASCII Addition.md</guid><pubDate>Tue, 28 Jan 2025 06:56:39 GMT</pubDate><enclosure url="https://i.imgur.com/xQr9x8I.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/xQr9x8I.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준14596] Quilting(smaill)]]></title><description><![CDATA[ 
  <br>두 패턴의 이미지를 포개면서, 가장 최적의 동선을 통해 부자연스러움의 정도가 가장 낮은 경계를 골라 해당 동선의 부자연스러움의 정도를 출력해야 한다.<br><img src="https://i.imgur.com/aR713da.png" referrerpolicy="no-referrer"><br>
 <img src="https://i.imgur.com/jU8rnI2.png" referrerpolicy="no-referrer"><br>
 문제 드럽게 기네;<br>일단 여기서 주의해야 할 점은<br>
-아래 같은 인덱스거나 +-1 의 경계까지만 움직일 수 있으므로 여기서 가장 주의를 해야한다<br>그렇다면 맨 위에서부터 가장 최적의 동선을 골라야 할텐데, 이게 어디서 시작하느냐에 따라서도 최적의 경계가 바뀔 수도 있다. 그러므로 해당 문제는 가장 위쪽 모든 인덱스에서 출발하면서 최적의 동선을 가지는 쪽으로 움직여야 하기 때문에 dp로 풀어야 함을 알 수 있다.<br>그렇다면 시작점을 기준으로 배열을 만든 다음, 해당 시작점에서 가지는 최소의 부자연스러움을 각각 구한다음에 그 중 최소인 부자연스러움 정도를 가지고 오면 된다.]]></description><link>알고리즘/[백준14596]-quilting(smaill).html</link><guid isPermaLink="false">알고리즘/[백준14596] Quilting(smaill).md</guid><pubDate>Wed, 29 Jan 2025 14:24:49 GMT</pubDate><enclosure url="https://i.imgur.com/aR713da.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/aR713da.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준31784] 포닉스의 문단속]]></title><description><![CDATA[ 
+아래 같은 인덱스거나 +-1 의 경계까지만 움직일 수 있으므로 여기서 가장 주의를 해야한다<br>그렇다면 맨 위에서부터 가장 최적의 동선을 골라야 할텐데, 이게 어디서 시작하느냐에 따라서도 최적의 경계가 바뀔 수도 있다. 그러므로 해당 문제는 가장 위쪽 모든 인덱스에서 출발하면서 최적의 동선을 가지는 쪽으로 움직여야 하기 때문에 dp로 풀어야 함을 알 수 있다.<br>그렇다면 시작점을 기준으로 배열을 만든 다음, 해당 시작점에서 가지는 최소의 부자연스러움을 각각 구한다음에 그 중 최소인 부자연스러움 정도를 가지고 오면 된다.]]></description><link>알고리즘/[백준14596]-quilting(smaill).html</link><guid isPermaLink="false">알고리즘/[백준14596] Quilting(smaill).md</guid><pubDate>Wed, 29 Jan 2025 14:24:49 GMT</pubDate><enclosure url="https://i.imgur.com/aR713da.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/aR713da.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준31784] 포닉스의 문단속]]></title><description><![CDATA[ 
  <br><img src="https://i.imgur.com/p4MrRmQ.png" referrerpolicy="no-referrer"><br>
 N개의 다이얼이 연결된 자물쇠를 돌려서 풀어야 하는데 다이얼 중 하나를 골라 1번 돌리는 작업을 해야 하는데, K번을 돌려서 나올 수 있는 단어 중에 가장 사전순으로 앞인 단어를 찾으면 된다.<br>내가 가진 정보는 자물쇠의 길이 N과 작업의 횟수 K<br>
 그리고 다음 줄에는 문자열 S가 주어진다<br>
@@ -255,7 +255,7 @@ Y -&gt; Z -&gt; A<br>
 <br>없으면 뒤로 돌린다
 <br>마지막에 남은 횟수를 다 돌린다.<br>
 정도로 생각할 수 있다.
-]]></description><link>알고리즘/[백준31784]-포닉스의-문단속.html</link><guid isPermaLink="false">알고리즘/[백준31784] 포닉스의 문단속.md</guid><pubDate>Sat, 01 Feb 2025 02:45:38 GMT</pubDate><enclosure url="https://i.imgur.com/p4MrRmQ.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/p4MrRmQ.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 두 원 사이의 정수 쌍]]></title><description><![CDATA[ 
+]]></description><link>알고리즘/[백준31784]-포닉스의-문단속.html</link><guid isPermaLink="false">알고리즘/[백준31784] 포닉스의 문단속.md</guid><pubDate>Sat, 01 Feb 2025 02:45:38 GMT</pubDate><enclosure url="https://i.imgur.com/p4MrRmQ.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/p4MrRmQ.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 두 원 사이의 정수 쌍]]></title><description><![CDATA[ 
  <br>r1과 r2가 주어지면, r1에 해당하는 원과 r2에 해당하는 원 사이의 공간에 x좌표와 y좌표가 모두 정수인 점의 개수를 리턴하는 문제<br>일단 r1 &lt; r2의 관계이기 떄문에 R1과 r2사이의 정수 좌표는 8개를 디폴트로 하고 시작한다<br>
 상하좌우 x좌표와 y좌표에 걸쳐있는 쪽은 무조건 사이에 있으면서도 반지름이 정수이기 때문에 x좌표와 y좌표 모두 걸쳐져 있는 좌표가 정수로 되어있기 때문이다<br>
 그렇다면 그 사이에 있는 것들이 문제인데..<br><img src="https://i.imgur.com/LZDU4AA.png" referrerpolicy="no-referrer"><br>
@@ -280,7 +280,7 @@ Y -&gt; Z -&gt; A<br>
 
 
 <br>a^2 + b^2 = r^2<br>
-r^2 -a^2 = b^2]]></description><link>알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 두 원 사이의 정수 쌍.md</guid><pubDate>Wed, 18 Sep 2024 11:49:00 GMT</pubDate><enclosure url="https://i.imgur.com/LZDU4AA.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/LZDU4AA.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 방금그곡]]></title><description><![CDATA[ 
+r^2 -a^2 = b^2]]></description><link>알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 두 원 사이의 정수 쌍.md</guid><pubDate>Wed, 18 Sep 2024 11:49:00 GMT</pubDate><enclosure url="https://i.imgur.com/LZDU4AA.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/LZDU4AA.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 방금그곡]]></title><description><![CDATA[ 
  <br>자신이 기억한 멜로디를 가지고 방금그곡을 이용해 음악 찾기<br>반복 재생 -&gt; 끝과 처음이 이어서 재생된 멜로디일 수도 있음<br>
 <br>중간에 음악을 끊을 경우 곡이 다를 수도 있음<br>
 =&gt; 기억한 멜로디를 재생 시간과 제공된 악보를 보면서 비교
@@ -379,7 +379,7 @@ function drilling(oilMap, land, startRow, startCol, road) {
     return oils;
 }
 <br>이번에는 BFS를 활용하여 문제를 풀었을 때 모두 정답이 떴다.<br>
-BFS의 경우에는 재귀를 이용하지 않고 큐를 이용하기 때문에, 런타임 에러가 발생하지 않아 정답이 뜬 것으로 보인다.]]></description><link>알고리즘/[프로그래머스]-석유-시추.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 석유 시추.md</guid><pubDate>Fri, 25 Oct 2024 11:18:02 GMT</pubDate><enclosure url="https://i.imgur.com/OAVtMef.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/OAVtMef.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 요격 시스템]]></title><description><![CDATA[ 
+BFS의 경우에는 재귀를 이용하지 않고 큐를 이용하기 때문에, 런타임 에러가 발생하지 않아 정답이 뜬 것으로 보인다.]]></description><link>알고리즘/[프로그래머스]-석유-시추.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 석유 시추.md</guid><pubDate>Fri, 25 Oct 2024 11:18:02 GMT</pubDate><enclosure url="https://i.imgur.com/OAVtMef.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/OAVtMef.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 요격 시스템]]></title><description><![CDATA[ 
  <br><br><a rel="noopener nofollow" class="external-link" href="https://school.programmers.co.kr/learn/courses/30/lessons/181188" target="_blank">https://school.programmers.co.kr/learn/courses/30/lessons/181188</a><br><br><br>A 나라와 B 나라 간에 전쟁중에 A는 x축에 평행한 미사일을 발사하고, B 나라는 이를 수직으로 요격한다.<br>
 조건은 미사일의 양 끝에서는 요격을 할 수 없다는 조건만 붙어있고, 미사일의 개구간 (s,e) 사이의 값이라면 어느 곳이든 가능하다.<br>아무튼 A 나라에서 미사일을 여러발 쏠 때, 이를 요격할 수 있는 최소한의 미사일 수를 구하는 문제이다.<br>
 <img src="https://i.imgur.com/UzM9He1.png" referrerpolicy="no-referrer"><br>
@@ -404,7 +404,7 @@ BFS의 경우에는 재귀를 이용하지 않고 큐를 이용하기 때문에,
     return missile
 }
 <br>그래서 forEach로 요소들을 돌면서 미사일이 최대한 많이 요격할 수 있도록 미사일이 쏠 수 있는 범위를 start, end 따로 선언하여 미사일을 돌 때마다 조정했으며, 조정할 수 있는 범위를 넘겼을 경우에는 필요한 미사일이 하나 더 추가된다고 판단하여 이 때 미사일의 개수를 올려주었다.<br><img src="https://i.imgur.com/JLxRO1M.png" referrerpolicy="no-referrer"><br>
-요격성공]]></description><link>알고리즘/[프로그래머스]-요격-시스템.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 요격 시스템.md</guid><pubDate>Sat, 26 Oct 2024 10:18:38 GMT</pubDate><enclosure url="https://i.imgur.com/UzM9He1.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src=&quot;https://i.imgur.com/UzM9He1.png&quot;&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 주차 요금 계산]]></title><description><![CDATA[ 
+요격성공]]></description><link>알고리즘/[프로그래머스]-요격-시스템.html</link><guid isPermaLink="false">알고리즘/[프로그래머스] 요격 시스템.md</guid><pubDate>Sat, 26 Oct 2024 10:18:38 GMT</pubDate><enclosure url="https://i.imgur.com/UzM9He1.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/UzM9He1.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[프로그래머스] 주차 요금 계산]]></title><description><![CDATA[ 
  <br>입차와 출차<br>요금표<br><br>입차된 후 출차 x -&gt; 23:59<br>
 00:00 ~ 23:59 입출차 내역을 바탕으로 차량별 누적 주차 시간 계산 및 요금 일괄 정산<br>누적 주차 시간<br>
 <br>기본 시간 이하 -&gt; 기본 요금
