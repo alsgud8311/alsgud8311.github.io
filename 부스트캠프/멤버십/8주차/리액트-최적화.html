@@ -1,0 +1,662 @@
+<!DOCTYPE html> <html><head>
+		<title>리액트 최적화</title>
+		<base href="../../../">
+		<meta id="root-path" root-path="../../../">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, minimum-scale=1.0, maximum-scale=5.0">
+		<meta charset="UTF-8">
+		<meta name="description" content="minhyung's dev log - 리액트 최적화">
+		<meta property="og:title" content="리액트 최적화">
+		<meta property="og:description" content="minhyung's dev log - 리액트 최적화">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://alsgud8311.github.io/부스트캠프/멤버십/8주차/리액트-최적화.html">
+		<meta property="og:image" content="https://lucas-image.codesquad.kr/1716528071180react-server-components.png">
+		<meta property="og:site_name" content="minhyung's dev log">
+		<meta name="author" content="민형"><link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://alsgud8311.github.io/lib/rss.xml"><script async="" id="webpage-script" src="lib/scripts/webpage.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script type="module" async="" id="graph-view-script" src="lib/scripts/graph-view.js"></script><script async="" id="graph-wasm-script" src="lib/scripts/graph-wasm.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="graph-render-worker-script" src="lib/scripts/graph-render-worker.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="tinycolor-script" src="lib/scripts/tinycolor.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="pixi-script" src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/7.4.0/pixi.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><script async="" id="minisearch-script" src="https://cdn.jsdelivr.net/npm/minisearch@6.3.0/dist/umd/index.min.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><link rel="icon" href="lib/media/favicon.png"><script async="" id="graph-data-script" src="lib/scripts/graph-data.js" onload="this.onload=null;this.setAttribute(&quot;loaded&quot;, &quot;true&quot;)"></script><style>body{--line-width:40em;--line-width-adaptive:40em;--file-line-width:40em;--sidebar-width:min(20em, 80vw);--collapse-arrow-size:11px;--tree-horizontal-spacing:0.6em;--tree-vertical-spacing:0.6em;--sidebar-margin:12px}.sidebar{height:100%;min-width:calc(var(--sidebar-width) + var(--divider-width-hover));max-width:calc(var(--sidebar-width) + var(--divider-width-hover));font-size:14px;z-index:10;position:relative;overflow:hidden;transition:min-width ease-in-out,max-width ease-in-out;transition-duration:.2s;contain:size}.sidebar-left{left:0}.sidebar-right{right:0}.sidebar.is-collapsed{min-width:0;max-width:0}body.floating-sidebars .sidebar{position:absolute}.sidebar-content{height:100%;min-width:calc(var(--sidebar-width) - var(--divider-width-hover));top:0;padding:var(--sidebar-margin);padding-top:4em;line-height:var(--line-height-tight);background-color:var(--background-secondary);transition:background-color,border-right,border-left,box-shadow;transition-duration:var(--color-fade-speed);transition-timing-function:ease-in-out;position:absolute;display:flex;flex-direction:column}.sidebar:not(.is-collapsed) .sidebar-content{min-width:calc(max(100%,var(--sidebar-width)) - 3px);max-width:calc(max(100%,var(--sidebar-width)) - 3px)}.sidebar-left .sidebar-content{left:0;border-top-right-radius:var(--radius-l);border-bottom-right-radius:var(--radius-l)}.sidebar-right .sidebar-content{right:0;border-top-left-radius:var(--radius-l);border-bottom-left-radius:var(--radius-l)}.sidebar:has(.sidebar-content:empty):has(.topbar-content:empty){display:none}.sidebar-topbar{height:2em;width:var(--sidebar-width);top:var(--sidebar-margin);padding-inline:var(--sidebar-margin);z-index:1;position:fixed;display:flex;align-items:center;transition:width ease-in-out;transition-duration:inherit}.sidebar.is-collapsed .sidebar-topbar{width:calc(2.3em + var(--sidebar-margin) * 2)}.sidebar .sidebar-topbar.is-collapsed{width:0}.sidebar-left .sidebar-topbar{left:0}.sidebar-right .sidebar-topbar{right:0}.topbar-content{overflow:hidden;overflow:clip;width:100%;height:100%;display:flex;align-items:center;transition:inherit}.sidebar.is-collapsed .topbar-content{width:0;transition:inherit}.clickable-icon.sidebar-collapse-icon{background-color:transparent;color:var(--icon-color-focused);padding:0!important;margin:0!important;height:100%!important;width:2.3em!important;margin-inline:0.14em!important;position:absolute}.sidebar-left .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);right:var(--sidebar-margin)}.sidebar-right .clickable-icon.sidebar-collapse-icon{transform:rotateY(180deg);left:var(--sidebar-margin)}.clickable-icon.sidebar-collapse-icon svg.svg-icon{width:100%;height:100%}.sidebar-section-header{margin:0 0 1em 0;text-transform:uppercase;letter-spacing:.06em;font-weight:600}body{transition:background-color var(--color-fade-speed) ease-in-out}.webpage-container{display:flex;flex-direction:row;height:100%;width:100%;align-items:stretch;justify-content:center}.document-container{opacity:1;flex-basis:100%;max-width:100%;width:100%;height:100%;display:flex;flex-direction:column;align-items:center;transition:opacity .2s ease-in-out;contain:inline-size}.hide{opacity:0;transition:opacity .2s ease-in-out}.document-container>.markdown-preview-view{margin:var(--sidebar-margin);margin-bottom:0;width:100%;width:-webkit-fill-available;width:-moz-available;width:fill-available;background-color:var(--background-primary);transition:background-color var(--color-fade-speed) ease-in-out;border-top-right-radius:var(--window-radius,var(--radius-m));border-top-left-radius:var(--window-radius,var(--radius-m));overflow-x:hidden!important;overflow-y:auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;contain:inline-size}.document-container>.markdown-preview-view>.markdown-preview-sizer{padding-bottom:80vh!important;width:100%!important;max-width:var(--line-width)!important;flex-basis:var(--line-width)!important;transition:background-color var(--color-fade-speed) ease-in-out;contain:inline-size}.markdown-rendered img:not([width]),.view-content img:not([width]){max-width:100%;outline:0}.document-container>.view-content.embed{display:flex;padding:1em;height:100%;width:100%;align-items:center;justify-content:center}.document-container>.view-content.embed>*{max-width:100%;max-height:100%;object-fit:contain}:has(> :is(.math,table)){overflow-x:auto!important}.document-container>.view-content{overflow-x:auto;contain:content;padding:0;margin:0;height:100%}.scroll-highlight{position:absolute;width:100%;height:100%;pointer-events:none;z-index:1000;background-color:hsla(var(--color-accent-hsl),.25);opacity:0;padding:1em;inset:50%;translate:-50% -50%;border-radius:var(--radius-s)}</style><script defer="">async function loadIncludes(){if("file:"!=location.protocol){let e=document.querySelectorAll("include");for(let t=0;t<e.length;t++){let o=e[t],l=o.getAttribute("src");try{const e=await fetch(l);if(!e.ok){console.log("Could not include file: "+l),o?.remove();continue}let t=await e.text(),n=document.createRange().createContextualFragment(t),i=Array.from(n.children);for(let e of i)e.classList.add("hide"),e.style.transition="opacity 0.5s ease-in-out",setTimeout((()=>{e.classList.remove("hide")}),10);o.before(n),o.remove(),console.log("Included file: "+l)}catch(e){o?.remove(),console.log("Could not include file: "+l,e);continue}}}else{if(document.querySelectorAll("include").length>0){var e=document.createElement("div");e.id="error",e.textContent="Web server exports must be hosted on an http / web server to be viewed correctly.",e.style.position="fixed",e.style.top="50%",e.style.left="50%",e.style.transform="translate(-50%, -50%)",e.style.fontSize="1.5em",e.style.fontWeight="bold",e.style.textAlign="center",document.body.appendChild(e),document.querySelector(".document-container")?.classList.remove("hide")}}}document.addEventListener("DOMContentLoaded",(()=>{loadIncludes()}));let isFileProtocol="file:"==location.protocol;function waitLoadScripts(e,t){let o=e.map((e=>document.getElementById(e+"-script"))),l=0;!function e(){let n=o[l];l++,n&&"true"!=n.getAttribute("loaded")||l<o.length&&e(),l<o.length?n.addEventListener("load",e):t()}()}</script><link rel="stylesheet" href="lib/styles/obsidian.css"><link rel="preload" href="lib/styles/other-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/other-plugins.css"></noscript><link rel="stylesheet" href="lib/styles/theme.css"><link rel="preload" href="lib/styles/global-variable-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/global-variable-styles.css"></noscript><link rel="preload" href="lib/styles/supported-plugins.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/supported-plugins.css"></noscript><link rel="preload" href="lib/styles/main-styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/main-styles.css"></noscript><link rel="preload" href="lib/styles/snippets.css" as="style" onload="this.onload=null;this.rel='stylesheet'"><noscript><link rel="stylesheet" href="lib/styles/snippets.css"></noscript></head><body class="publish css-settings-manager theme-dark show-inline-title show-ribbon ctp-latte ctp-mocha-old ctp-accent-blue anuppuccin-accent-toggle anp-callout-block anp-callout-color-toggle anp-custom-checkboxes anp-speech-bubble anp-codeblock-numbers anp-table-toggle anp-table-width anp-table-auto anp-table-th-highlight anp-table-row-alt anp-h1-blue anp-h2-sky anp-h3-lavender anp-h4-teal anp-h5-lavender anp-h6-mauve anp-bold-red anp-italic-green anp-highlight-blue anp-colorful-frame anp-file-icons anp-full-rainbow-color-toggle anp-border-layout anp-bg-fix anp-theme-ext-amoled ctp-notion-light ctp-notion-dark"><script defer="">let theme=localStorage.getItem("theme")||(window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");"dark"==theme?(document.body.classList.add("theme-dark"),document.body.classList.remove("theme-light")):(document.body.classList.add("theme-light"),document.body.classList.remove("theme-dark")),window.innerWidth<480?document.body.classList.add("is-phone"):window.innerWidth<768?document.body.classList.add("is-tablet"):window.innerWidth<1024?document.body.classList.add("is-small-screen"):document.body.classList.add("is-large-screen")</script><div class="webpage-container workspace"><div class="sidebar-left sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"><label class="theme-toggle-container" for="theme_toggle"><input class="theme-toggle-input" type="checkbox" id="theme_toggle"><div class="toggle-background"></div></label></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="search-input-container"><input enterkeyhint="search" type="search" spellcheck="false" placeholder="Search..."><div class="search-input-clear-button" aria-label="Clear search"></div></div><include src="lib/html/file-tree.html"></include></div><script defer="">let ls = document.querySelector(".sidebar-left"); ls.classList.add("is-collapsed"); if (window.innerWidth > 768) ls.classList.remove("is-collapsed"); ls.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-left-width"));</script></div><div class="document-container markdown-reading-view hide"><div class="markdown-preview-view markdown-rendered allow-fold-headings allow-fold-lists is-readable-line-width"><style id="MJX-CHTML-styles">mjx-mtext{display:inline-block;text-align:left}mjx-msqrt{display:inline-block;text-align:left}mjx-root{display:inline-block;white-space:nowrap}mjx-surd{display:inline-block;vertical-align:top}mjx-sqrt{display:inline-block;padding-top:.07em}mjx-sqrt>mjx-box{border-top:.07em solid}mjx-sqrt.mjx-tall>mjx-box{padding-left:.3em;margin-left:-.3em}mjx-msup{display:inline-block;text-align:left}mjx-mfrac{display:inline-block;text-align:left}mjx-frac{display:inline-block;vertical-align:.17em;padding:0 .22em}mjx-frac[type="d"]{vertical-align:.04em}mjx-frac[delims]{padding:0 .1em}mjx-frac[atop]{padding:0 .12em}mjx-frac[atop][delims]{padding:0}mjx-dtable{display:inline-table;width:100%}mjx-dtable>*{font-size:2000%}mjx-dbox{display:block;font-size:5%}mjx-num{display:block;text-align:center}mjx-den{display:block;text-align:center}mjx-mfrac[bevelled]>mjx-num{display:inline-block}mjx-mfrac[bevelled]>mjx-den{display:inline-block}mjx-den[align=right],mjx-num[align=right]{text-align:right}mjx-den[align=left],mjx-num[align=left]{text-align:left}mjx-nstrut{display:inline-block;height:.054em;width:0;vertical-align:-.054em}mjx-nstrut[type="d"]{height:.217em;vertical-align:-.217em}mjx-dstrut{display:inline-block;height:.505em;width:0}mjx-dstrut[type="d"]{height:.726em}mjx-line{display:block;box-sizing:border-box;min-height:1px;height:.06em;border-top:.06em solid;margin:.06em -.1em;overflow:hidden}mjx-line[type="d"]{margin:.18em -.1em}mjx-c.mjx-c1D45D.TEX-I::before{padding:.442em .503em .194em 0;content:"p"}mjx-c.mjx-c1D450.TEX-I::before{padding:.442em .433em .011em 0;content:"c"}mjx-c.mjx-c2B::before{padding:.583em .778em .082em 0;content:"+"}mjx-c.mjx-c20::before{padding:0 .25em 0 0;content:" "}mjx-c.mjx-c221A.TEX-S2::before{padding:1.15em 1.02em .65em 0;content:"√"}mjx-c.mjx-c28.TEX-S3::before{padding:1.45em .736em .949em 0;content:"("}mjx-c.mjx-c29.TEX-S3::before{padding:1.45em .736em .949em 0;content:")"}mjx-c.mjx-c65::before{padding:.448em .444em .011em 0;content:"e"}mjx-c.mjx-c64::before{padding:.694em .556em .011em 0;content:"d"}mjx-c.mjx-c67::before{padding:.453em .5em .206em 0;content:"g"}mjx-c.mjx-c1D45F.TEX-I::before{padding:.442em .451em .011em 0;content:"r"}mjx-c.mjx-cD7::before{padding:.491em .778em 0 0;content:"×"}mjx-container[jax=CHTML]{line-height:0}mjx-container [space="1"]{margin-left:.111em}mjx-container [space="2"]{margin-left:.167em}mjx-container [space="3"]{margin-left:.222em}mjx-container [space="4"]{margin-left:.278em}mjx-container [space="5"]{margin-left:.333em}mjx-container [rspace="1"]{margin-right:.111em}mjx-container [rspace="2"]{margin-right:.167em}mjx-container [rspace="3"]{margin-right:.222em}mjx-container [rspace="4"]{margin-right:.278em}mjx-container [rspace="5"]{margin-right:.333em}mjx-container [size="s"]{font-size:70.7%}mjx-container [size=ss]{font-size:50%}mjx-container [size=Tn]{font-size:60%}mjx-container [size=sm]{font-size:85%}mjx-container [size=lg]{font-size:120%}mjx-container [size=Lg]{font-size:144%}mjx-container [size=LG]{font-size:173%}mjx-container [size=hg]{font-size:207%}mjx-container [size=HG]{font-size:249%}mjx-container [width=full]{width:100%}mjx-box{display:inline-block}mjx-block{display:block}mjx-itable{display:inline-table}mjx-row{display:table-row}mjx-row>*{display:table-cell}mjx-mtext{display:inline-block}mjx-mstyle{display:inline-block}mjx-merror{display:inline-block;color:red;background-color:#ff0}mjx-mphantom{visibility:hidden}mjx-assistive-mml{top:0;left:0;clip:rect(1px,1px,1px,1px);user-select:none;position:absolute!important;padding:1px 0 0!important;border:0!important;display:block!important;width:auto!important;overflow:hidden!important}mjx-assistive-mml[display=block]{width:100%!important}mjx-math{display:inline-block;text-align:left;line-height:0;text-indent:0;font-style:normal;font-weight:400;font-size:100%;letter-spacing:normal;border-collapse:collapse;overflow-wrap:normal;word-spacing:normal;white-space:nowrap;direction:ltr;padding:1px 0}mjx-container[jax=CHTML][display=true]{display:block;text-align:center;margin:1em 0}mjx-container[jax=CHTML][display=true][width=full]{display:flex}mjx-container[jax=CHTML][display=true] mjx-math{padding:0}mjx-container[jax=CHTML][justify=left]{text-align:left}mjx-container[jax=CHTML][justify=right]{text-align:right}mjx-mi{display:inline-block;text-align:left}mjx-c{display:inline-block}mjx-utext{display:inline-block;padding:.75em 0 .2em}mjx-mo{display:inline-block;text-align:left}mjx-stretchy-h{display:inline-table;width:100%}mjx-stretchy-h>*{display:table-cell;width:0}mjx-stretchy-h>*>mjx-c{display:inline-block;transform:scaleX(1)}mjx-stretchy-h>*>mjx-c::before{display:inline-block;width:initial}mjx-stretchy-h>mjx-ext{overflow:clip visible;width:100%}mjx-stretchy-h>mjx-ext>mjx-c::before{transform:scaleX(500)}mjx-stretchy-h>mjx-ext>mjx-c{width:0}mjx-stretchy-h>mjx-beg>mjx-c{margin-right:-.1em}mjx-stretchy-h>mjx-end>mjx-c{margin-left:-.1em}mjx-stretchy-v{display:inline-block}mjx-stretchy-v>*{display:block}mjx-stretchy-v>mjx-beg{height:0}mjx-stretchy-v>mjx-end>mjx-c{display:block}mjx-stretchy-v>*>mjx-c{transform:scaleY(1);transform-origin:left center;overflow:hidden}mjx-stretchy-v>mjx-ext{display:block;height:100%;box-sizing:border-box;border:0 solid transparent;overflow:visible clip}mjx-stretchy-v>mjx-ext>mjx-c::before{width:initial;box-sizing:border-box}mjx-stretchy-v>mjx-ext>mjx-c{transform:scaleY(500) translateY(.075em);overflow:visible}mjx-mark{display:inline-block;height:0}mjx-msub{display:inline-block;text-align:left}mjx-mn{display:inline-block;text-align:left}mjx-texatom{display:inline-block;text-align:left}mjx-mover{display:inline-block;text-align:left}mjx-mover:not([limits=false]){padding-top:.1em}mjx-mover:not([limits=false])>*{display:block;text-align:left}mjx-mrow{display:inline-block;text-align:left}mjx-c::before{display:block;width:0}.MJX-TEX{font-family:MJXZERO,MJXTEX}.TEX-B{font-family:MJXZERO,MJXTEX-B}.TEX-I{font-family:MJXZERO,MJXTEX-I}.TEX-MI{font-family:MJXZERO,MJXTEX-MI}.TEX-BI{font-family:MJXZERO,MJXTEX-BI}.TEX-S1{font-family:MJXZERO,MJXTEX-S1}.TEX-S2{font-family:MJXZERO,MJXTEX-S2}.TEX-S3{font-family:MJXZERO,MJXTEX-S3}.TEX-S4{font-family:MJXZERO,MJXTEX-S4}.TEX-A{font-family:MJXZERO,MJXTEX-A}.TEX-C{font-family:MJXZERO,MJXTEX-C}.TEX-CB{font-family:MJXZERO,MJXTEX-CB}.TEX-FR{font-family:MJXZERO,MJXTEX-FR}.TEX-FRB{font-family:MJXZERO,MJXTEX-FRB}.TEX-SS{font-family:MJXZERO,MJXTEX-SS}.TEX-SSB{font-family:MJXZERO,MJXTEX-SSB}.TEX-SSI{font-family:MJXZERO,MJXTEX-SSI}.TEX-SC{font-family:MJXZERO,MJXTEX-SC}.TEX-T{font-family:MJXZERO,MJXTEX-T}.TEX-V{font-family:MJXZERO,MJXTEX-V}.TEX-VB{font-family:MJXZERO,MJXTEX-VB}mjx-stretchy-h mjx-c,mjx-stretchy-v mjx-c{font-family:MJXZERO,MJXTEX-S1,MJXTEX-S4,MJXTEX,MJXTEX-A!important}@font-face{font-family:MJXZERO;src:url("lib/fonts/mathjax_zero.woff") format("woff")}@font-face{font-family:MJXTEX;src:url("lib/fonts/mathjax_main-regular.woff") format("woff")}@font-face{font-family:MJXTEX-B;src:url("lib/fonts/mathjax_main-bold.woff") format("woff")}@font-face{font-family:MJXTEX-I;src:url("lib/fonts/mathjax_math-italic.woff") format("woff")}@font-face{font-family:MJXTEX-MI;src:url("lib/fonts/mathjax_main-italic.woff") format("woff")}@font-face{font-family:MJXTEX-BI;src:url("lib/fonts/mathjax_math-bolditalic.woff") format("woff")}@font-face{font-family:MJXTEX-S1;src:url("lib/fonts/mathjax_size1-regular.woff") format("woff")}@font-face{font-family:MJXTEX-S2;src:url("lib/fonts/mathjax_size2-regular.woff") format("woff")}@font-face{font-family:MJXTEX-S3;src:url("lib/fonts/mathjax_size3-regular.woff") format("woff")}@font-face{font-family:MJXTEX-S4;src:url("lib/fonts/mathjax_size4-regular.woff") format("woff")}@font-face{font-family:MJXTEX-A;src:url("lib/fonts/mathjax_ams-regular.woff") format("woff")}@font-face{font-family:MJXTEX-C;src:url("lib/fonts/mathjax_calligraphic-regular.woff") format("woff")}@font-face{font-family:MJXTEX-CB;src:url("lib/fonts/mathjax_calligraphic-bold.woff") format("woff")}@font-face{font-family:MJXTEX-FR;src:url("lib/fonts/mathjax_fraktur-regular.woff") format("woff")}@font-face{font-family:MJXTEX-FRB;src:url("lib/fonts/mathjax_fraktur-bold.woff") format("woff")}@font-face{font-family:MJXTEX-SS;src:url("lib/fonts/mathjax_sansserif-regular.woff") format("woff")}@font-face{font-family:MJXTEX-SSB;src:url("lib/fonts/mathjax_sansserif-bold.woff") format("woff")}@font-face{font-family:MJXTEX-SSI;src:url("lib/fonts/mathjax_sansserif-italic.woff") format("woff")}@font-face{font-family:MJXTEX-SC;src:url("lib/fonts/mathjax_script-regular.woff") format("woff")}@font-face{font-family:MJXTEX-T;src:url("lib/fonts/mathjax_typewriter-regular.woff") format("woff")}@font-face{font-family:MJXTEX-V;src:url("lib/fonts/mathjax_vector-regular.woff") format("woff")}@font-face{font-family:MJXTEX-VB;src:url("lib/fonts/mathjax_vector-bold.woff") format("woff")}mjx-c.mjx-c1D434.TEX-I::before{padding:.716em .75em 0 0;content:"A"}mjx-c.mjx-c28::before{padding:.75em .389em .25em 0;content:"("}mjx-c.mjx-c1D465.TEX-I::before{padding:.442em .572em .011em 0;content:"x"}mjx-c.mjx-c31::before{padding:.666em .5em 0 0;content:"1"}mjx-c.mjx-c2C::before{padding:.121em .278em .194em 0;content:","}mjx-c.mjx-c1D466.TEX-I::before{padding:.442em .49em .205em 0;content:"y"}mjx-c.mjx-c29::before{padding:.75em .389em .25em 0;content:")"}mjx-c.mjx-c1D435.TEX-I::before{padding:.683em .759em 0 0;content:"B"}mjx-c.mjx-c32::before{padding:.666em .5em 0 0;content:"2"}mjx-c.mjx-c20D7.TEX-V::before{padding:.714em .5em 0 0;content:"→"}mjx-c.mjx-c3D::before{padding:.583em .778em .082em 0;content:"="}mjx-c.mjx-c2212::before{padding:.583em .778em .082em 0;content:"−"}mjx-c.mjx-c1D449.TEX-I::before{padding:.683em .769em .022em 0;content:"V"}mjx-c.mjx-c22A5::before{padding:.668em .778em 0 0;content:"⊥"}</style><div class="markdown-preview-sizer markdown-preview-section"><h1 class="page-title heading inline-title" id="리액트 최적화"><p dir="auto">리액트 최적화</p></h1><div class="el-h1 heading-wrapper"><div class="heading-children"><div class="el-hr"><hr></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="React 최적화" dir="auto" class="heading" id="React_최적화">React 최적화</h1><div class="heading-children"><div class="el-h2 heading-wrapper"><h2 data-heading="1. 렌더링 최적화" dir="auto" class="heading" id="1._렌더링_최적화"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. 렌더링 최적화</h2><div class="heading-children"><div class="el-h4 heading-wrapper"><h4 data-heading="1. 불필요한 렌더링 막기" dir="auto" class="heading" id="1._불필요한_렌더링_막기"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. 불필요한 렌더링 막기</h4><div class="heading-children"><div class="el-p"><p dir="auto">만약 useState 의 변경으로 상태가 변경된다면, 상태에 관련있는 컴포넌트로 구성/분리한다.</p></div><div class="el-p"><p dir="auto">참고 :&nbsp;<a rel="noopener nofollow" class="external-link" href="https://overreacted.io/before-you-memo/" target="_blank">https://overreacted.io/before-you-memo/</a></p></div><div class="el-p"><p dir="auto"><strong>다음 코드의 문제점은?</strong></p></div><div class="el-pre"><pre><code data-line="0">export default function App() {
+  let [color, setColor] = useState('red');
+  return (
+    &lt;div&gt;
+      &lt;input value={color} onChange={(e) =&gt; setColor(e.target.value)} /&gt;
+      &lt;p style={{ color }}&gt;Hello, world!&lt;/p&gt;
+      &lt;ExpensiveTree /&gt;
+    &lt;/div&gt;
+  );
+}
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">[after]</p></div><div class="el-pre"><pre><code data-line="0">export default function App() {
+  return (
+    &lt;&gt;
+      &lt;Form /&gt;
+      &lt;ExpensiveTree /&gt;
+    &lt;/&gt;
+  );
+}
+
+function Form() {
+  let [color, setColor] = useState('red');
+  return (
+    &lt;&gt;
+      &lt;input value={color} onChange={(e) =&gt; setColor(e.target.value)} /&gt;
+      &lt;p style={{ color }}&gt;Hello, world!&lt;/p&gt;
+    &lt;/&gt;
+  );
+}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="2. 참조타입 render밖에 선언하기" dir="auto" class="heading" id="2._참조타입_render밖에_선언하기"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. 참조타입 render밖에 선언하기</h4><div class="heading-children"><div class="el-p"><p dir="auto">렌더링 역할을 하는 return 안에 참조가 되는 타입(함수, 객체, 배열) 을 직접 선언하지 않는다.</p></div><div class="el-p"><p dir="auto">이렇게 되면 업데이트 될 때 값을 비교하는 코드가 있다면, 그 결과는 매번 다르다고 판단할 것이다. 따라서 다시 렌더링이 된다.</p></div><div class="el-pre"><pre><code data-line="0">return (
+ &lt;&gt;
+  	&lt;Title&gt;{title is..}&lt;/Title&gt;
+	&lt;ShowPost postClick={()=&gt;{console.log('click handler')}} /&gt;
+  &lt;/&gt;
+)
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">위코드의 postClick은 동일한 함수임에도 매번 생성되고 있다.<br>
+postClick의 인자로 들어가는 함수를 jsx 밖에 선언하고, 함수 캐시의 활용 기회를 만들자.</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="3. useCallback : 함수 캐시" dir="auto" class="heading" id="3._useCallback_:_함수_캐시"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>3. useCallback : 함수 캐시</h4><div class="heading-children"><div class="el-p"><p dir="auto">함수를 props로 전달할때 매번 새로운 함수가 전달될 수 있다.<br>
+매번 새로운 함수를 생성할 필요는 없기 때문에 이를 재사용하도록 구현할 수 있음.</p></div><div class="el-p"><p dir="auto">props로 함수를 전달받는 하위 컴포넌트는 새로운 props가 전달됐기 때문에 다시 렌더링 할 수 있다.</p></div><div class="el-p"><p dir="auto">새로운 함수를 계속 생성하지 않고 기존 함수를 기억해서 사용하고, 이를 props로 전달하는 것이 React에서는 권장되는 방법이다.</p></div><div class="el-pre"><pre><code data-line="0">const memoizedCallback = useCallback(
+  () =&gt; {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">여기서도&nbsp;<strong>두번째 인자</strong>([a,b])가 함수 재사용을 할지에 대한 조건역할을 한다.<br>
+의존성배열을 설정하지 않으면 캐시되지 않음.</p></div><div class="el-p"><p dir="auto">참고)<br>
+과연 모든 컴포넌트에 전달되는 함수를 캐시해야 하는가? 🤔<br>
+캐시된 함수를 하위컴포넌트에 전달해도 해당 컴포넌트는 렌더링을 하려고 한다. (리액트 특징)</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="4. useEffect 매번 실행되지 않게 하기" dir="auto" class="heading" id="4._useEffect_매번_실행되지_않게_하기"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>4. useEffect 매번 실행되지 않게 하기</h4><div class="heading-children"><div class="el-pre"><pre><code data-line="0">useEffect(() =&gt; {
+  document.title = `You clicked ${count} times`;
+}, [count]); // Only re-run the effect if count changes
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">두 번째 인자는 아래 다른 Hook에서도 콜백함수의 실행에 대한 조건으로 활용된다.</p></div><div class="el-p"><p dir="auto">=&gt;&nbsp;<strong>useEffect, useMemo, useCallback</strong></p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="5. React.memo : 컴포넌트 렌더링 결과 재사용" dir="auto" class="heading" id="5._React.memo_:_컴포넌트_렌더링_결과_재사용"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>5. React.memo : 컴포넌트 렌더링 결과 재사용</h4><div class="heading-children"><div class="el-p"><p dir="auto">불필요하게 자기 자신을 렌더링 하지 않게 하기.</p></div><div class="el-p"><p dir="auto">아래 코드에서 ShowCountInfoMemo에 전달되는 props값은 대부분 동일하다. ShowCountInfo 컴포넌트는 매번 동일한 렌더링 결과를 만들고 있는 것으로 보인다.</p></div><div class="el-p"><p dir="auto"><strong>[App.jsx]</strong></p></div><div class="el-pre"><pre><code data-line="0">//ShowCountInfo.jsx
+const ShowCountInfo = ({postCount, pickedCount}) =&gt; {
+    return (
+        &lt;div&gt;
+            &lt;span&gt;총 {postCount}의 post 중 {pickedCount}개가 선택됐습니다.&lt;/span&gt;
+        &lt;/div&gt;
+    )
+}
+
+
+//[App.jsx]
+const App = () =&gt; {
+  return (
+          &lt;div&gt;
+              &lt;h1&gt; Main Page ^^ &lt;/h1&gt;
+              &lt;ShowCountInfo postCount={posts.length} pickedCount={pickedCount}/&gt;
+              &lt;div onClick={rerender}&gt;re-render&lt;/div&gt;
+              &lt;div&gt;{reloadCount}&lt;/div&gt;
+          &lt;/div&gt;
+      )
+  }
+}
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">개선이 필요하다.<br>
+React.memo 메서드를 통해서 컴포넌트 렌더링 결과를 캐시하도록 할 수 있다.</p></div><div class="el-p"><p dir="auto"><strong>[ShowCountInfoMemo.jsx]</strong></p></div><div class="el-pre"><pre><code data-line="0">const ShowCountInfo = ({postCount, pickedCount}) =&gt; {
+    return (
+        &lt;div&gt;
+            &lt;span&gt;총 {postCount}의 post 중 {pickedCount}개가 선택됐습니다.&lt;/span&gt;
+        &lt;/div&gt;
+    )
+}
+
+const ShowCountInfoMemo = React.memo(ShowCountInfo);
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto"><strong>참고) 조건상황을 통해서 re-rendering을 결정할 수 있음.</strong></p></div><div class="el-pre"><pre><code data-line="0">const PressItemMemo = React.memo(PressItem, (prev, next) =&gt; {
+   return (prev.newsData === next.newsData)
+})
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="6. React.memo, UseCallback을 활용한 시나리오." dir="auto" class="heading" id="6._React.memo,_UseCallback을_활용한_시나리오."><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>6. React.memo, UseCallback을 활용한 시나리오.</h4><div class="heading-children"><div class="el-p"><p dir="auto">먼저 props로 function을 전달하고 싶은경우에는, useCallack을 통해 한번 감싼 function을 전달한다.<br>
+전달받은 컴포넌트는 React.memo를 통해서 감싼다.<br>
+React.memo는 props가 동일하다면 다시 렌더링되지 않도록 한다.<br>
+따라서 useCallback을 통해서 동일한 props를 전달받았다면 컴포넌트가 다시 렌더링 되지 않고, 렌더링 결과를 재사용하게 된다</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="7. 실습" dir="auto" class="heading" id="7._실습"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>7. 실습</h4><div class="heading-children"><div class="el-p"><p dir="auto"><a rel="noopener nofollow" class="external-link" href="https://codesandbox.io/s/react-react-memo-usecallback-problem-mrrqn" target="_blank">https://codesandbox.io/s/react-react-memo-usecallback-problem-mrrqn</a></p></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">Child 컴포넌트의 불필요한 Re-rendering 확인</li>
+<li data-line="2" dir="auto">Child 컴포넌트에 React.memo 적용</li>
+<li data-line="4" dir="auto">useCallback 을 사용해보기 (의존성 배열 필요, [])</li>
+</ol></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="8. useMemo : 연산 결과 캐시" dir="auto" class="heading" id="8._useMemo_:_연산_결과_캐시"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>8. useMemo : 연산 결과 캐시</h4><div class="heading-children"><div class="el-p"><p dir="auto">아래 코드는 무엇이 문제인가?</p></div><div class="el-pre"><pre><code data-line="0">import React, { useState, useMemo } from 'react';
+
+const Child = ({ items }) =&gt; {
+  const [count, setCount] = useState(0);
+
+  const selectedItem = items.find((item) =&gt; {
+    console.log('finding value');
+    return item === 9;
+  }); 
+
+return (
+    &lt;&gt;
+        &lt;h1&gt;Count: {count} &lt;/h1&gt;
+        &lt;button onClick={() =&gt; setCount(count + 1)}&gt;Increment&lt;/button&gt;
+        &lt;h1&gt;selectedItem : {selectedItem}&lt;/h1&gt;
+    &lt;/&gt;
+    );
+};
+
+const App = () =&gt; {
+    const items = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+    return &lt;Child items={items}&gt;&lt;/Child&gt;;    
+};
+
+export default App;
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">리렌더링시 불필요한 중복계산이 일어나지 않도록 dependency 설정을 해서 캐시를 하도록 할 수 있음.<br>
+즉, 반복적인 리액트 렌더링 과정에서, 동일한 계산이 일어나는 문제를 막을 수가 있음.</p></div><div class="el-pre"><pre><code data-line="0">const selectedItem = useMemo(() =&gt; {
+    return items.find((item) =&gt; {
+        console.log('finding value');
+        return item === 9;
+    });
+}, [items]);
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="9. profiling : 렌더링 최적화 확인" dir="auto" class="heading" id="9._profiling_:_렌더링_최적화_확인"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>9. profiling : 렌더링 최적화 확인</h4><div class="heading-children"><div class="el-p"><p dir="auto">개발자도구-React의 Profiler 패널을 확인한다.</p></div><div class="el-p"><p dir="auto">'profiling버튼'을 눌러서 렌더링과정을 녹화한다.</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">몇번 실제 렌더링(commit)이 발생했는지 살펴본다. 예상과 달리 많은 렌더링이 일어나고 있지 않는지 확인한다.<br>
+</li>
+<li data-line="2" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>매번 렌더링이 발생할때마다 동일한 렌더링이 일어나는 것은 없는지 확인한다.
+<ul>
+<li data-line="4" dir="auto">React.memo를 사용할때 같은 렌더링이 일어나지 않는 것도 확인할 수 있다.<br>
+</li>
+</ul>
+</li>
+<li data-line="6" dir="auto">특별히 오래 걸리는 컴포넌트 렌더링은 없는가? 병목이 되는 지점을 찾고 원인을 찾아본다.<br>
+</li>
+</ul></div><div class="el-p"><p dir="auto">Profiler 중에 불필요한 component tree가 많이 보인다면 설정버튼을 눌러서, 필터링을 할 수 있다. (Context, forwardRef 등을 제거해보자)</p></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="10. 서버컴포넌트" dir="auto" class="heading" id="10._서버컴포넌트"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>10. 서버컴포넌트</h4><div class="heading-children"><div class="el-p"><p dir="auto"><img src="https://lucas-image.codesquad.kr/1716528071180react-server-components.png" referrerpolicy="no-referrer"></p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">서버에서 처리 가능한 부분은 서버에서 처리하되, React 문법을 사용.<br>
+</li>
+<li data-line="2" dir="auto">서버에서 처리한 코드는 클라이언트에 내려줄 필요가 없음 -&gt; 번들링 사이즈 감소<br>
+</li>
+<li data-line="4" dir="auto">비즈니스 로직이 많은 경우 서버컴포넌트 활용이 유리함<br>
+</li>
+</ul></div><div class="el-p"><p dir="auto"><strong>예시코드</strong></p></div><div class="el-pre"><pre><code data-line="0">// Server Component
+import Expandable from './Expandable';
+
+async function Notes() {
+  const notes = await db.notes.getAll();
+  return (
+    &lt;div&gt;
+      {notes.map(note =&gt; (
+        &lt;Expandable key={note.id}&gt;
+          &lt;p note={note} /&gt;
+        &lt;/Expandable&gt;
+      ))}
+    &lt;/div&gt;
+  )
+}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-p"><p dir="auto">서버컴포넌트의 결과(RSC Payload) 는 아래의 형식으로 전송됨</p></div><div class="el-p"><p dir="auto"><img alt="196c2c6dffdb1bad35a70a369c9a05d0e92e316b-1540x578" src="https://lucas-image.codesquad.kr/1716528102225196c2c6dffdb1bad35a70a369c9a05d0e92e316b-1540x578.webp" referrerpolicy="no-referrer"></p></div><div class="el-hr"><hr></div></div></div></div></div><div class="el-h2 heading-wrapper"><h2 data-heading="2. React 기타 최적화" dir="auto" class="heading" id="2._React_기타_최적화"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. React 기타 최적화</h2><div class="heading-children"><div class="el-h4 heading-wrapper"><h4 data-heading="1. Code-splitting" dir="auto" class="heading" id="1._Code-splitting"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. Code-splitting</h4><div class="heading-children"><div class="el-p"><p dir="auto">React.lazy 를 활용한 dynamic import (<a data-tooltip-position="top" aria-label="https://github.com/tc39/proposal-dynamic-import" rel="noopener nofollow" class="external-link" href="https://github.com/tc39/proposal-dynamic-import" target="_blank">ES Modules 스펙</a>)</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">TC39 stage 4( Finished )<br>
+</li>
+</ul></div><div class="el-p"><p dir="auto">React.lazy로 선언된 컴포넌트는 production build에서 별도 파일로 분리됨(code - splitting).</p></div></div></div></div></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="참고. React.suspense 와 함께 사용해야 함" dir="auto" class="heading" id="참고._React.suspense_와_함께_사용해야_함">참고. React.suspense 와 함께 사용해야 함</h1><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">비동기 요청이 오기 전 pending상태에서 효과적으로 fallback UI(loading~~)를 효과적으로 노출 할 수 있음.<br>
+</li>
+<li data-line="2" dir="auto">렌더링 이후 fetch가 아닌, fetch와 동시에 렌더링이 가능한 기술<br>
+</li>
+<li data-line="4" dir="auto">참고:&nbsp;<a rel="noopener nofollow" class="external-link" href="https://react.dev/reference/react/Suspense" target="_blank">https://react.dev/reference/react/Suspense</a><br>
+</li>
+</ul></div><div class="el-p"><p dir="auto"><strong>오리지날 코드</strong></p></div><div class="el-pre"><pre><code data-line="0">import './App.css';
+import { NewsListCount } from './NewsList';
+import { PressNameList } from './PressNameList';
+import React, { Suspense } from 'react';
+import { TestComponent } from './TestComponent.jsx';
+import PressDetail from './PressDetail';
+
+function App() {
+    return (
+        &lt;div className="App"&gt;
+            &lt;TestComponent /&gt;
+            &lt;Suspense fallback="loading..."&gt;
+                &lt;h1&gt; hello world &lt;/h1&gt;
+                &lt;NewsListCount /&gt;
+                &lt;PressNameList /&gt;
+                &lt;PressDetail /&gt;
+            &lt;/Suspense&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default App;
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div><div class="el-h5 heading-wrapper"><h5 data-heading="code splitting 작업결과" dir="auto" class="heading" id="code_splitting_작업결과"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>code splitting 작업결과</h5><div class="heading-children"><div class="el-pre"><pre><code data-line="0">import './App.css';
+import { NewsListCount } from './NewsList';
+import { PressNameList } from './PressNameList';
+import React, { Suspense } from 'react';
+import { TestComponent } from './TestComponent.jsx';
+
+//lazy로 감싸주기
+const PressDetailLazy = React.lazy(() =&gt; import('./PressDetail'));
+
+function App() {
+    return (
+        &lt;div className="App"&gt;
+        &lt;TestComponent /&gt;
+        &lt;Suspense fallback="loading..."&gt;
+            &lt;h1&gt; hello world &lt;/h1&gt;
+            &lt;NewsListCount /&gt;
+            &lt;PressNameList /&gt;
+            &lt;Suspense fallback="loading..."&gt;
+            	&lt;PressDetailLazy /&gt;
+            &lt;/Suspense&gt;
+        &lt;/Suspense&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default App;
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h5 heading-wrapper"><h5 data-heading="code-splitting &amp; on-demand lazy loading" dir="auto" class="heading" id="code-splitting_&amp;_on-demand_lazy_loading"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>code-splitting &amp; on-demand lazy loading</h5><div class="heading-children"><div class="el-pre"><pre><code data-line="0">import './App.css';
+import { NewsListCount } from './NewsList';
+import { PressNameList } from './PressNameList';
+import React, { Suspense } from 'react';
+import { useRecoilValue } from 'recoil';
+import { currentDetailPressIDAtom } from './Store';
+import {TestComponent} from './TestComponent.jsx';
+const PressDetailLazy = React.lazy(() =&gt; import('./PressDetail'));
+
+function App() {
+    const currentPressId = useRecoilValue(currentDetailPressIDAtom);
+
+    return (
+        &lt;div className="App"&gt;
+            &lt;TestComponent /&gt;
+            &lt;Suspense fallback="loading..."&gt;
+                &lt;h1&gt;recoil fetch test&lt;/h1&gt;
+                &lt;NewsListCount /&gt;
+                &lt;PressNameList /&gt;
+                {currentPressId &amp;&amp; (
+            	    &lt;Suspense fallback="loading..."&gt;
+            	        &lt;PressDetailLazy /&gt;
+            	    &lt;/Suspense&gt;
+                )}
+            &lt;/Suspense&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default App;
+
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h5 heading-wrapper"><h5 data-heading="react-router 에서의 lazy-loading" dir="auto" class="heading" id="react-router_에서의_lazy-loading"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>react-router 에서의 lazy-loading</h5><div class="heading-children"><div class="el-pre"><pre><code data-line="0">function App() {
+    const [bNewFormView, toggleNewFormView] = useState(false);
+
+    const MileStoneViewLazy = React.lazy(() =&gt; import('./views/MileStoneView/MileStoneView'));
+    const GNBLazy = React.lazy(() =&gt; import('./views/GNB.js'));
+
+    return (
+        &lt;Router&gt;
+            &lt;Main&gt;
+                &lt;GlobalStyle /&gt;
+                &lt;Suspense fallback={&lt;div&gt;Loading...GNB&lt;/div&gt;}&gt;
+                    &lt;GNBLazy {...{ toggleNewFormView }} /&gt;
+                &lt;/Suspense&gt;
+              
+                &lt;Route path="/labels"&gt;
+                    &lt;Content
+                        bNewFormView={bNewFormView}
+                        toggleNewFormView={toggleNewFormView}
+                    &gt;&lt;/Content&gt;
+                &lt;/Route&gt;
+
+                &lt;Route path="/milestone"&gt;
+                    &lt;Suspense fallback={&lt;div&gt;Loading...GNB&lt;/div&gt;}&gt;
+                        &lt;MileStoneViewLazy&gt;&lt;/MileStoneViewLazy&gt;
+                    &lt;/Suspense&gt;
+                &lt;/Route&gt;
+            &lt;/Main&gt;
+        &lt;/Router&gt;
+    );
+}
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="useTransition" dir="auto" class="heading" id="useTransition"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>useTransition</h4><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">상태 업데이트를 "transition"으로 처리하여, 우선순위가 낮은 업데이트로 처리되도록 함<br>
+</li>
+<li data-line="2" dir="auto">끊김없는 UX가능(Interruptible )<br>
+</li>
+<li data-line="4" dir="auto">사용자 인터페이스가 즉각적인 응답성을 유지하면서도, 배경에서 상태 업데이트가 처리.<br>
+</li>
+<li data-line="6" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>언제 사용하지?
+<ul>
+<li data-line="8" dir="auto">다른 UX에게 양보하고 싶을때.<br>
+</li>
+<li data-line="10" dir="auto">불필요한 loading indicator 를 노출하지 않고 싶을때<br>
+</li>
+</ul>
+</li>
+</ul></div></div></div><div class="el-h4 heading-wrapper"><h4 data-heading="useDeferredValue:" dir="auto" class="heading" id="useDeferredValue:"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>useDeferredValue:</h4><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">특정 상태의 업데이트를 지연시켜서 자식 컴포넌트에 전달.<br>
+</li>
+<li data-line="2" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>이로 인해 고빈도 상태 업데이트가 UI 렌더링에 미치는 영향을 줄임.
+<ul>
+<li data-line="4" dir="auto">반복적인 상태 업데이트시 최종상태만 반영.<br>
+</li>
+</ul>
+</li>
+<li data-line="6" dir="auto">예를 들어, 입력창의 반복적인 빠른 업데이트가 다른 복잡한 컴포넌트의 렌더링을 방해하지 않도록 할 때 유용.<br>
+</li>
+<li data-line="8" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>언제 사용하지?
+<ul>
+<li data-line="10" dir="auto">빈번한 업데이트가 많아서 UX에 방해가 될때. 렌더링을 아예 지연시켜 버린다.<br>
+</li>
+<li data-line="12" dir="auto">이런점에서 transition 보다 더 성능상 유리하게 동작할 수 있음.</li>
+</ul>
+</li>
+</ul></div></div></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="웹프론트엔드 최적화" dir="auto" class="heading" id="웹프론트엔드_최적화">웹프론트엔드 최적화</h1><div class="heading-children"></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="최적화란?" dir="auto" class="heading" id="최적화란?">최적화란?</h1><div class="heading-children"><div class="el-h3 heading-wrapper"><h3 data-heading="1. 웹 사이트 최적화 방법" dir="auto" class="heading" id="1._웹_사이트_최적화_방법"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. 웹 사이트 최적화 방법</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">베스트 : 아무것도 하지 않는다.<br>
+</li>
+<li data-line="2" dir="auto"><strong>현실적인 선택 : 덜 일한다.</strong><br>
+</li>
+</ul></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="2. 웹 사이트 체감 속도" dir="auto" class="heading" id="2._웹_사이트_체감_속도"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. 웹 사이트 체감 속도</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>첫 페이지 왜 이렇게 느림?
+<ul>
+<li data-line="2" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Core Web Vitals
+<ul>
+<li data-line="4" dir="auto">First Contentful Paint<br>
+</li>
+<li data-line="6" dir="auto">Lagest Contentful Paint<br>
+</li>
+<li data-line="8" dir="auto"><a data-tooltip-position="top" aria-label="https://web.dev/static/articles/cls/video/web-dev-assets/layout-instability-api/layout-instability2.webm?hl=ko" rel="noopener nofollow" class="external-link" href="https://web.dev/static/articles/cls/video/web-dev-assets/layout-instability-api/layout-instability2.webm?hl=ko" target="_blank">Cumulative Layout Shift</a><br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="10" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>왜 이렇게 늦게 반응함?
+<ul>
+<li data-line="12" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Core Web Vitals
+<ul>
+<li data-line="14" dir="auto"><a data-tooltip-position="top" aria-label="https://web.dev/static/articles/inp/video/jL3OLOhcWUQDnR4XjewLBx4e3PC3/WSmcjiQC4lyLxGoES4dd.mp4?hl=ko" rel="noopener nofollow" class="external-link" href="https://web.dev/static/articles/inp/video/jL3OLOhcWUQDnR4XjewLBx4e3PC3/WSmcjiQC4lyLxGoES4dd.mp4?hl=ko" target="_blank">Interaction to Next Paint</a><br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="16" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>왜 이렇게 끊김?
+<ul>
+<li data-line="18" dir="auto">애니메이션<br>
+</li>
+</ul>
+</li>
+</ul></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="3. 결국, 개선해야 할 항목은 ?" dir="auto" class="heading" id="3._결국,_개선해야_할_항목은_?"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>3. 결국, 개선해야 할 항목은 ?</h3><div class="heading-children"><div class="el-p"><p dir="auto">**- 첫 페이지 로딩을 빠르게 하기</p></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">훌륭한 반응<br>
+</li>
+<li data-line="2" dir="auto">부드럽게 이어져보이기 **<br>
+</li>
+</ul></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="4. 최적화 작업 진행 방법" dir="auto" class="heading" id="4._최적화_작업_진행_방법"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>4. 최적화 작업 진행 방법</h3><div class="heading-children"><div class="el-p"><p dir="auto"><strong>진단 &gt; 개선 &gt; 테스트 &gt; 진단</strong></p></div><div class="el-ol"><ol>
+<li data-line="0" dir="auto">진단</li>
+</ol></div><div class="el-ul"><ul>
+<li data-line="0" dir="auto">어디가 왜 얼마큼 느린가?<br>
+</li>
+<li data-line="2" dir="auto">어느 인터랙션이 사용자에게 중요한 가치를 주는가?<br>
+</li>
+<li data-line="4" dir="auto">정량적인 지표는 얼마인가?<br>
+</li>
+<li data-line="6" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>어떻게 진단하는가?
+<ul>
+<li data-line="8" dir="auto"><strong>크롬 개발자도구 - lighthouse</strong><br>
+</li>
+<li data-line="10" dir="auto">크롬 개발자도구 - performance, memory(누수는 없나?)<br>
+</li>
+<li data-line="12" dir="auto">pagespeed insights<br>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-ol"><ol start="2">
+<li data-line="0" dir="auto">
+<p>개선</p>
+</li>
+<li data-line="2" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<p>테스트</p>
+<ul>
+<li data-line="4" dir="auto">side effect는 없는가?<br>
+</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>
+<p>진단</p>
+<ul>
+<li data-line="8" dir="auto">어디가 얼마큼 빨라졌는가?<br>
+</li>
+</ul>
+</li>
+</ol></div><div class="el-hr"><hr></div></div></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="모던 웹 개발에서의 최적화 요약" dir="auto" class="heading" id="모던_웹_개발에서의_최적화_요약">모던 웹 개발에서의 최적화 요약</h1><div class="heading-children"><div class="el-h3 heading-wrapper"><h3 data-heading="1. 공통 원리" dir="auto" class="heading" id="1._공통_원리"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. 공통 원리</h3><div class="heading-children"><div class="el-p"><p dir="auto">바닐라 JavaScript나 Framework 기반 프로젝트에서 성능 개선의 원리는 유사함<br>
+SPA에서는 로딩 지연, 반응 지연, 애니메이션 문제는 Framework와 관계없이 발생 가능</p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="2. Framework의 장단점" dir="auto" class="heading" id="2._Framework의_장단점"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. Framework의 장단점</h3><div class="heading-children"><div class="el-p"><p dir="auto">Framework는 개발 생산성을 높이는 데 초점이 맞춰져 있으므로 내부 최적화 로직이 포함되어 있음<br>
+그러나 최적화에 대한 구체적인 책임은 여전히 개발자에게 있음</p></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="3. 개발자가 고려해야 할 점" dir="auto" class="heading" id="3._개발자가_고려해야_할_점"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>3. 개발자가 고려해야 할 점</h3><div class="heading-children"><div class="el-p"><p dir="auto">불필요한 코드와 의존성을 줄이는 것이 기본<br>
+성능 병목 구간을 지속적으로 모니터링하고, 적절한 도구와 전략을 활용하여 개선</p></div><div class="el-hr"><hr></div></div></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="실제 문제 해결방법" dir="auto" class="heading" id="실제_문제_해결방법">실제 문제 해결방법</h1><div class="heading-children"><div class="el-h3 heading-wrapper"><h3 data-heading="1. 첫 페이지 로딩 지연문제 해결" dir="auto" class="heading" id="1._첫_페이지_로딩_지연문제_해결"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. 첫 페이지 로딩 지연문제 해결</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>HTML Parsing 방해하지 않기</strong>
+<ul>
+<li data-line="2" dir="auto"><code>script</code>&nbsp;위치 조정 (body 끝으로 이동)<br>
+</li>
+<li data-line="4" dir="auto"><code>defer</code>/<code>async</code>&nbsp;속성 활용<br>
+</li>
+</ul>
+</li>
+<li data-line="6" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Build를 통한 코드 최적화</strong>
+<ul>
+<li data-line="8" dir="auto">코드 압축 (minification) 및 번들링<br>
+</li>
+<li data-line="10" dir="auto">코드 스플리팅 (Code Splitting)<br>
+</li>
+<li data-line="12" dir="auto"><strong>Vite</strong>,&nbsp;<strong>ESBuild</strong>와 같은 최신 빌드 도구 활용<br>
+</li>
+</ul>
+</li>
+<li data-line="14" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>클라이언트 동적 렌더링 피하기</strong>
+<ul>
+<li data-line="16" dir="auto">Server-Side Rendering (SSR)<br>
+</li>
+<li data-line="18" dir="auto">Pre-Rendering (예:&nbsp;<a data-tooltip-position="top" aria-label="https://www.npmjs.com/package/prerender-loader" rel="noopener nofollow" class="external-link" href="https://www.npmjs.com/package/prerender-loader" target="_blank">prerender-loader</a>)<br>
+</li>
+<li data-line="20" dir="auto"><strong>Static Site Generation (SSG)</strong>&nbsp;활용 가능 여부 확인<br>
+</li>
+</ul>
+</li>
+<li data-line="22" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Lazy Loading</strong>
+<ul>
+<li data-line="24" dir="auto">Lazy Component Loading (Dynamic JS Loading)<br>
+</li>
+<li data-line="26" dir="auto">Image Lazy Loading (<code>loading="lazy"</code>)<br>
+</li>
+<li data-line="28" dir="auto"><strong>IntersectionObserver API</strong>&nbsp;활용<br>
+</li>
+</ul>
+</li>
+<li data-line="30" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>HTTP Header의 속성 활용</strong>
+<ul>
+<li data-line="32" dir="auto">Cache-Control (<code>max-age</code>,&nbsp;<code>no-cache</code>,&nbsp;<code>no-store</code>)<br>
+</li>
+<li data-line="34" dir="auto">Expires (캐시 만료 시간)<br>
+</li>
+<li data-line="36" dir="auto">Last-Modified / If-Modified-Since (마지막 갱신 시간)<br>
+</li>
+<li data-line="38" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>ETag</strong>&nbsp;활용: 리소스 변경 여부를 서버에서 판단
+<ul>
+<li data-line="40" dir="auto">서버가 리소스를 제공할 때 ETag 값을 생성해 응답 헤더에 포함 (ETag: "abc123")<br>
+</li>
+<li data-line="42" dir="auto">브라우저는 이후 요청에서 If-None-Match 헤더에 ETag 값을 포함 (If-None-Match: "abc123")<br>
+</li>
+<li data-line="44" dir="auto">서버는 ETag를 비교 (값이 같으면 리소스가 변경되지 않았으므로 304 Not Modified를 반환)<br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="46" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>이미지 최적화</strong>
+<ul>
+<li data-line="48" dir="auto">WebP, AVIF 포맷으로 이미지 변환<br>
+</li>
+<li data-line="50" dir="auto">WOFF2 폰트 활용: WOFF보다 더 작은 크기로 압축 가능<br>
+</li>
+<li data-line="52" dir="auto">기존 폰트 파일을 WOFF2로 변환하여 로딩 속도 개선<br>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-hr"><hr></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="2. 반응 지연, 애니메이션 지연 해결" dir="auto" class="heading" id="2._반응_지연,_애니메이션_지연_해결"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. 반응 지연, 애니메이션 지연 해결</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>메인 스레드 Blocking 방지</strong>
+<ul>
+<li data-line="2" dir="auto">DOM 수정 최소화 (Reflow와 Repaint 단계 제거 노력)<br>
+</li>
+<li data-line="4" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Reflow 줄이기</strong>
+<ul>
+<li data-line="6" dir="auto">Composite 단계에서 동작하도록 GPU 가속 속성 사용<br>
+</li>
+<li data-line="8" dir="auto">3D Transform (<code>translate3d</code>)<br>
+</li>
+<li data-line="10" dir="auto">Video/Canvas 요소 활용<br>
+</li>
+<li data-line="12" dir="auto"><code>transform</code>/<code>opacity</code>&nbsp;기반 CSS 애니메이션 (Keyframes, Transition)<br>
+</li>
+<li data-line="14" dir="auto"><code>will-change</code>&nbsp;속성 적용<br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="16" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>중복 계산 줄이기</strong>
+<ul>
+<li data-line="18" dir="auto">Memoization (<code>useMemo</code>)<br>
+</li>
+</ul>
+</li>
+<li data-line="20" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>네트워크 요청 캐시 전략</strong>
+<ul>
+<li data-line="22" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>Service Worker 및 PWA를 활용한 캐싱
+<ul>
+<li data-line="24" dir="auto"><a data-tooltip-position="top" aria-label="https://developers.google.com/web/fundamentals/primers/service-workers#%EC%9A%94%EC%B2%AD_%EC%BA%90%EC%8B%9C_%EB%B0%8F_%EB%B0%98%ED%99%98" rel="noopener nofollow" class="external-link" href="https://developers.google.com/web/fundamentals/primers/service-workers#%EC%9A%94%EC%B2%AD_%EC%BA%90%EC%8B%9C_%EB%B0%8F_%EB%B0%98%ED%99%98" target="_blank">참고</a><br>
+</li>
+</ul>
+</li>
+<li data-line="26" dir="auto">Cache Header 전략<br>
+</li>
+</ul>
+</li>
+<li data-line="28" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>Prefetch 및 Preload 활용</strong>
+<ul>
+<li data-line="30" dir="auto"><strong>Preload 사용</strong>&nbsp;:<br>
+</li>
+<li data-line="32" dir="auto">특정 리소스가 사용될 것을 확실히 알고 있을 때, 브라우저가 이를 우선적으로 다운로드<br>
+</li>
+</ul>
+<pre><code data-line="35">&lt;link rel="preload" href="/styles/main.css" as="style"&gt;
+&lt;link rel="preload" href="/scripts/main.js" as="script"&gt;
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
+<ul>
+<li data-line="40" dir="auto"><strong>Prefetch 사용</strong>&nbsp;:<br>
+</li>
+<li data-line="42" dir="auto">예측 로딩이나 사용자가 다음에 필요할 리소스를 미리 로드할 때 사용.<br>
+</li>
+</ul>
+<pre><code data-line="45">&lt;link rel="prefetch" href="/images/background.jpg"&gt;
+</code><button class="copy-code-button"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon lucide-copy"><rect x="8" y="8" width="14" height="14" rx="2" ry="2"></rect><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path></svg></button></pre>
+</li>
+</ul></div><div class="el-hr"><hr></div></div></div></div></div><div class="el-h1 heading-wrapper"><h1 data-heading="성능 관점으로 보는 HTTP의 발전" dir="auto" class="heading" id="성능_관점으로_보는_HTTP의_발전">성능 관점으로 보는 HTTP의 발전</h1><div class="heading-children"><div class="el-h3 heading-wrapper"><h3 data-heading="1. HTTP/1.1 (1997년)" dir="auto" class="heading" id="1._HTTP/1.1_(1997년)"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>1. HTTP/1.1 (1997년)</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">TLS 암호화 통신<br>
+</li>
+<li data-line="2" dir="auto">Keep-Alive 기본 제공 (TCP 연결 재사용)<br>
+</li>
+<li data-line="4" dir="auto">XMLHttpRequest<br>
+</li>
+</ul></div><div class="el-hr"><hr></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="2. HTTP/1.1의 한계" dir="auto" class="heading" id="2._HTTP/1.1의_한계"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>2. HTTP/1.1의 한계</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto">리소스 우선순위 없이 다운로드<br>
+</li>
+<li data-line="2" dir="auto">헤더 크기 증가<br>
+</li>
+<li data-line="4" dir="auto">동시성을 위해 여러 개의 연결(connection) 필요<br>
+</li>
+</ul></div><div class="el-hr"><hr></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="3. HTTP/2.0 (2015년)" dir="auto" class="heading" id="3._HTTP/2.0_(2015년)"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>3. HTTP/2.0 (2015년)</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>HTTP/2.0의 스트림-프레임 관계</strong>
+<ul>
+<li data-line="2" dir="auto">여러 개의 스트림을 동시에 전송 가능<br>
+</li>
+<li data-line="4" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>각 스트림은 다수의 프레임으로 구성
+<ul>
+<li data-line="6" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>예:
+<ul>
+<li data-line="8" dir="auto">스트림 1 → 프레임 A, B, C<br>
+</li>
+<li data-line="10" dir="auto">스트림 2 → 프레임 X, Y, Z<br>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li data-line="12" dir="auto">프레임은 독립적으로 전송되며 고유 ID를 가짐<br>
+</li>
+<li data-line="14" dir="auto">스트림과 프레임의 독립적 처리를 통해 병렬 데이터 전송 가능<br>
+</li>
+</ul>
+</li>
+<li data-line="16" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>기능 개선</strong>
+<ul>
+<li data-line="18" dir="auto">다중 요청/응답 처리 (Multiplexing)<br>
+</li>
+<li data-line="20" dir="auto">헤더 필드 압축 (HPACK)<br>
+</li>
+<li data-line="22" dir="auto">Server Push 지원<br>
+</li>
+</ul>
+</li>
+</ul></div><div class="el-hr"><hr></div></div></div><div class="el-h3 heading-wrapper"><h3 data-heading="4. HTTP/3 (2020년)" dir="auto" class="heading" id="4._HTTP/3_(2020년)"><div class="heading-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div>4. HTTP/3 (2020년)</h3><div class="heading-children"><div class="el-ul"><ul>
+<li data-line="0" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>QUIC 프로토콜 기반</strong>
+<ul>
+<li data-line="2" dir="auto">UDP 위에서 동작하며 TCP의 오버헤드를 제거<br>
+</li>
+<li data-line="4" dir="auto">3-way Handshake 생략<br>
+</li>
+<li data-line="6" dir="auto">패킷 손실 복구를 위해&nbsp;<strong>패킷 재전송 및 일련번호 지정</strong><br>
+</li>
+</ul>
+</li>
+<li data-line="8" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>병렬 처리 강화</strong>
+<ul>
+<li data-line="10" dir="auto">여러 개의 요청과 응답이 하나의 연결에서 동시에 처리<br>
+</li>
+<li data-line="12" dir="auto">프레임 단위로 분리된 UDP 패킷 사용<br>
+</li>
+</ul>
+</li>
+<li data-line="14" dir="auto"><div class="list-collapse-indicator collapse-indicator collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><strong>HTTP/3 적용 사례</strong>
+<ul>
+<li data-line="16" dir="auto">주요 CDN 제공자들이 HTTP/3 지원 (Cloudflare, AWS CloudFront 등)</li>
+</ul>
+</li>
+</ul></div><div class="mod-footer mod-ui"></div></div></div></div></div></div></div></div><div class="sidebar-right sidebar"><div class="sidebar-handle"></div><div class="sidebar-topbar"><div class="topbar-content"></div><div class="clickable-icon sidebar-collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><path d="M21 3H3C1.89543 3 1 3.89543 1 5V19C1 20.1046 1.89543 21 3 21H21C22.1046 21 23 20.1046 23 19V5C23 3.89543 22.1046 3 21 3Z"></path><path d="M10 4V20"></path><path d="M4 7H7"></path><path d="M4 10H7"></path><path d="M4 13H7"></path></svg></div></div><div class="sidebar-content"><div class="graph-view-wrapper"><div class="sidebar-section-header">Interactive Graph</div><div class="graph-view-placeholder">
+		<div class="graph-view-container">
+			<div class="graph-icon graph-expand" role="button" aria-label="Expand" data-tooltip-position="top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></div>
+			<canvas id="graph-canvas" class="hide" width="512px" height="512px"></canvas>
+		</div>
+		</div></div><div class="tree-container mod-root nav-folder tree-item outline-tree" data-depth="0"><div class="tree-header"><span class="sidebar-section-header">Table Of Contents</span><button class="clickable-icon collapse-tree-button" aria-label="Collapse All"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></svg></button></div><div class="tree-scroll-area tree-item-children nav-folder-children"><div class="tree-item mod-tree-folder nav-folder mod-collapsible is-collapsed" style="display: none;"></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#리액트 최적화"><div class="tree-item-contents heading-link" heading-name="리액트 최적화"><span class="tree-item-title">리액트 최적화</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#React_최적화"><div class="tree-item-contents heading-link" heading-name="React 최적화"><span class="tree-item-title">React 최적화</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._렌더링_최적화"><div class="tree-item-contents heading-link" heading-name="1. 렌더링 최적화"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">1. 
+렌더링 최적화
+</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._불필요한_렌더링_막기"><div class="tree-item-contents heading-link" heading-name="1. 불필요한 렌더링 막기"><span class="tree-item-title">1. 
+불필요한 렌더링 막기
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._참조타입_render밖에_선언하기"><div class="tree-item-contents heading-link" heading-name="2. 참조타입 render밖에 선언하기"><span class="tree-item-title">2. 
+참조타입 render밖에 선언하기
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#3._useCallback_:_함수_캐시"><div class="tree-item-contents heading-link" heading-name="3. useCallback : 함수 캐시"><span class="tree-item-title">3. 
+useCallback : 함수 캐시
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#4._useEffect_매번_실행되지_않게_하기"><div class="tree-item-contents heading-link" heading-name="4. useEffect 매번 실행되지 않게 하기"><span class="tree-item-title">4. 
+useEffect 매번 실행되지 않게 하기
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#5._React.memo_:_컴포넌트_렌더링_결과_재사용"><div class="tree-item-contents heading-link" heading-name="5. React.memo : 컴포넌트 렌더링 결과 재사용"><span class="tree-item-title">5. 
+React.memo : 컴포넌트 렌더링 결과 재사용
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#6._React.memo,_UseCallback을_활용한_시나리오."><div class="tree-item-contents heading-link" heading-name="6. React.memo, UseCallback을 활용한 시나리오."><span class="tree-item-title">6. 
+React.memo, UseCallback을 활용한 시나리오.
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#7._실습"><div class="tree-item-contents heading-link" heading-name="7. 실습"><span class="tree-item-title">7. 
+실습
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#8._useMemo_:_연산_결과_캐시"><div class="tree-item-contents heading-link" heading-name="8. useMemo : 연산 결과 캐시"><span class="tree-item-title">8. 
+useMemo : 연산 결과 캐시
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#9._profiling_:_렌더링_최적화_확인"><div class="tree-item-contents heading-link" heading-name="9. profiling : 렌더링 최적화 확인"><span class="tree-item-title">9. 
+profiling : 렌더링 최적화 확인
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#10._서버컴포넌트"><div class="tree-item-contents heading-link" heading-name="10. 서버컴포넌트"><span class="tree-item-title">10. 
+서버컴포넌트
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item mod-collapsible" data-depth="2"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._React_기타_최적화"><div class="tree-item-contents heading-link" heading-name="2. React 기타 최적화"><div class="collapse-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="svg-icon right-triangle"><path d="M3 8L12 17L21 8"></path></svg></div><span class="tree-item-title">2. 
+React 기타 최적화
+</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._Code-splitting"><div class="tree-item-contents heading-link" heading-name="1. Code-splitting"><span class="tree-item-title">1. 
+Code-splitting
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#참고._React.suspense_와_함께_사용해야_함"><div class="tree-item-contents heading-link" heading-name="참고. React.suspense 와 함께 사용해야 함"><span class="tree-item-title">참고. React.suspense 와 함께 사용해야 함</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="5"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#code_splitting_작업결과"><div class="tree-item-contents heading-link" heading-name="code splitting 작업결과"><span class="tree-item-title">code splitting 작업결과</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="5"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#code-splitting_&amp;_on-demand_lazy_loading"><div class="tree-item-contents heading-link" heading-name="code-splitting &amp; on-demand lazy loading"><span class="tree-item-title">code-splitting &amp; on-demand lazy loading</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="5"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#react-router_에서의_lazy-loading"><div class="tree-item-contents heading-link" heading-name="react-router 에서의 lazy-loading"><span class="tree-item-title">react-router 에서의 lazy-loading</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#useTransition"><div class="tree-item-contents heading-link" heading-name="useTransition"><span class="tree-item-title">useTransition</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="4"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#useDeferredValue:"><div class="tree-item-contents heading-link" heading-name="useDeferredValue:"><span class="tree-item-title">useDeferredValue:</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#웹프론트엔드_최적화"><div class="tree-item-contents heading-link" heading-name="웹프론트엔드 최적화"><span class="tree-item-title">웹프론트엔드 최적화</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#최적화란?"><div class="tree-item-contents heading-link" heading-name="최적화란?"><span class="tree-item-title">최적화란?</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._웹_사이트_최적화_방법"><div class="tree-item-contents heading-link" heading-name="1. 웹 사이트 최적화 방법"><span class="tree-item-title">1. 
+웹 사이트 최적화 방법
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._웹_사이트_체감_속도"><div class="tree-item-contents heading-link" heading-name="2. 웹 사이트 체감 속도"><span class="tree-item-title">2. 
+웹 사이트 체감 속도
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#3._결국,_개선해야_할_항목은_?"><div class="tree-item-contents heading-link" heading-name="3. 결국, 개선해야 할 항목은 ?"><span class="tree-item-title">3. 
+결국, 개선해야 할 항목은 ?
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#4._최적화_작업_진행_방법"><div class="tree-item-contents heading-link" heading-name="4. 최적화 작업 진행 방법"><span class="tree-item-title">4. 
+최적화 작업 진행 방법
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#모던_웹_개발에서의_최적화_요약"><div class="tree-item-contents heading-link" heading-name="모던 웹 개발에서의 최적화 요약"><span class="tree-item-title">모던 웹 개발에서의 최적화 요약</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._공통_원리"><div class="tree-item-contents heading-link" heading-name="1. 공통 원리"><span class="tree-item-title">1. 
+공통 원리
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._Framework의_장단점"><div class="tree-item-contents heading-link" heading-name="2. Framework의 장단점"><span class="tree-item-title">2. 
+Framework의 장단점
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#3._개발자가_고려해야_할_점"><div class="tree-item-contents heading-link" heading-name="3. 개발자가 고려해야 할 점"><span class="tree-item-title">3. 
+개발자가 고려해야 할 점
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#실제_문제_해결방법"><div class="tree-item-contents heading-link" heading-name="실제 문제 해결방법"><span class="tree-item-title">실제 문제 해결방법</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._첫_페이지_로딩_지연문제_해결"><div class="tree-item-contents heading-link" heading-name="1. 첫 페이지 로딩 지연문제 해결"><span class="tree-item-title">1. 
+첫 페이지 로딩 지연문제 해결
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._반응_지연,_애니메이션_지연_해결"><div class="tree-item-contents heading-link" heading-name="2. 반응 지연, 애니메이션 지연 해결"><span class="tree-item-title">2. 
+반응 지연, 애니메이션 지연 해결
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div><div class="tree-item" data-depth="1"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#성능_관점으로_보는_HTTP의_발전"><div class="tree-item-contents heading-link" heading-name="성능 관점으로 보는 HTTP의 발전"><span class="tree-item-title">성능 관점으로 보는 HTTP의 발전</span></div></a><div class="tree-item-children nav-folder-children"><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#1._HTTP/1.1_(1997년)"><div class="tree-item-contents heading-link" heading-name="1. HTTP/1.1 (1997년)"><span class="tree-item-title">1. 
+HTTP/1.1 (1997년)
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#2._HTTP/1.1의_한계"><div class="tree-item-contents heading-link" heading-name="2. HTTP/1.1의 한계"><span class="tree-item-title">2. 
+HTTP/1.1의 한계
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#3._HTTP/2.0_(2015년)"><div class="tree-item-contents heading-link" heading-name="3. HTTP/2.0 (2015년)"><span class="tree-item-title">3. 
+HTTP/2.0 (2015년)
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div><div class="tree-item" data-depth="3"><a class="tree-link" href="부스트캠프/멤버십/8주차/리액트-최적화.html#4._HTTP/3_(2020년)"><div class="tree-item-contents heading-link" heading-name="4. HTTP/3 (2020년)"><span class="tree-item-title">4. 
+HTTP/3 (2020년)
+</span></div></a><div class="tree-item-children nav-folder-children"></div></div></div></div></div></div></div><script defer="">let rs = document.querySelector(".sidebar-right"); rs.classList.add("is-collapsed"); if (window.innerWidth > 768) rs.classList.remove("is-collapsed"); rs.style.setProperty("--sidebar-width", localStorage.getItem("sidebar-right-width"));</script></div></div></body></html>
