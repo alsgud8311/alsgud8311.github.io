@@ -1,10 +1,157 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><parsererror xmlns="http://www.w3.org/1999/xhtml" style="display: block; white-space: pre; border: 2px solid #c77; padding: 0 1em 0 1em; margin: 1em; background-color: #fdd; color: black"><h3>This page contains the following errors:</h3><div style="font-family:monospace;font-size:12px">error on line 496 at column 749: Input is not proper UTF-8, indicate encoding !
-Bytes: 0x1E 0x20 0xEC 0x9D
-</div><h3>Below is a rendering of the page up to the first error.</h3></parsererror><channel><title><![CDATA[Minhyung's Dev Log]]></title><description><![CDATA[Obsidian digital garden]]></description><link>https://alsgud8311.github.io/</link><image><url>https://alsgud8311.github.io/site-lib/media/favicon.png</url><title>Minhyung's Dev Log</title><link>https://alsgud8311.github.io/</link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 02 Feb 2025 16:49:44 GMT</lastBuildDate><atom:link href="https://alsgud8311.github.io/site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 02 Feb 2025 16:49:01 GMT</pubDate><copyright><![CDATA[Cho Minhyung]]></copyright><ttl>60</ttl><dc:creator>Cho Minhyung</dc:creator><item><title><![CDATA[index]]></title><description><![CDATA[개발 관련한 모든 것들을 기록하는 저장소입니다.
-adhd인을 위한 서비스 - <a data-href="forA" href="https://alsgud8311.github.io/프로젝트/fora/fora.html#_0" class="internal-link" target="_self" rel="noopener nofollow">forA</a>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Minhyung's Dev Log]]></title><description><![CDATA[Obsidian digital garden]]></description><link>https://alsgud8311.github.io/</link><image><url>https://alsgud8311.github.io/site-lib/media/favicon.png</url><title>Minhyung's Dev Log</title><link>https://alsgud8311.github.io/</link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Thu, 06 Feb 2025 15:24:37 GMT</lastBuildDate><atom:link href="https://alsgud8311.github.io/site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 06 Feb 2025 15:24:26 GMT</pubDate><copyright><![CDATA[Cho Minhyung]]></copyright><ttl>60</ttl><dc:creator>Cho Minhyung</dc:creator><item><title><![CDATA[알고리즘]]></title><description><![CDATA[<a data-href="[백준 1004] 어린왕자" href="https://alsgud8311.github.io/알고리즘/[백준-1004]-어린왕자.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1004] 어린왕자</a><br>
+<a data-href="[프로그래머스] 방금그곡" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-방금그곡.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 방금그곡</a><br>
+<a data-href="[프로그래머스] 두 원 사이의 정수 쌍" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 두 원 사이의 정수 쌍</a><br>
+<a data-href="[프로그래머스] 행렬 테두리 회전하기" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-행렬-테두리-회전하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 행렬 테두리 회전하기</a><br>
+<a data-href="[프로그래머스] 주차 요금 계산" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-주차-요금-계산.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 주차 요금 계산</a><br>
+<a data-href="[백준 12865] 평범한 배낭" href="https://alsgud8311.github.io/알고리즘/[백준-12865]-평범한-배낭.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 12865] 평범한 배낭</a><br>
+<a data-href="[백준 7576] 토마토" href="https://alsgud8311.github.io/알고리즘/[백준-7576]-토마토.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 7576] 토마토</a><br>
+<a data-href="[프로그래머스] 석유 시추" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-석유-시추.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 석유 시추</a><br>
+<a data-href="[프로그래머스] 요격 시스템" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-요격-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 요격 시스템</a><br>
+<a data-href="[백준 9251] LCS" href="https://alsgud8311.github.io/알고리즘/[백준-9251]-lcs.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 9251] LCS</a><br>
+<a data-href="[백준 1912] 연속합" href="https://alsgud8311.github.io/알고리즘/[백준-1912]-연속합.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1912] 연속합</a><br>
+<a data-href="[백준11631] ASCII Addition" href="https://alsgud8311.github.io/알고리즘/[백준11631]-ascii-addition.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준11631] ASCII Addition</a><br>
+<a data-href="[백준14596] Quilting(smaill)" href="https://alsgud8311.github.io/알고리즘/[백준14596]-quilting(smaill).html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준14596] Quilting(smaill)</a><br>
+<a data-href="[백준 17123] 배열 놀이" href="https://alsgud8311.github.io/알고리즘/[백준-17123]-배열-놀이.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 17123] 배열 놀이</a><br>
+<a data-href="[백준31784] 포닉스의 문단속" href="https://alsgud8311.github.io/알고리즘/[백준31784]-포닉스의-문단속.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준31784] 포닉스의 문단속</a><br>
+<a data-href="[백준 6064] 카잉 달력" href="https://alsgud8311.github.io/알고리즘/[백준-6064]-카잉-달력.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 6064] 카잉 달력</a><br>
+<a data-href="[백준 10597] 순열장난" href="https://alsgud8311.github.io/알고리즘/[백준-10597]-순열장난.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 10597] 순열장난</a><br>
+<a data-href="[백준 31836] 피보나치 기념품" href="https://alsgud8311.github.io/알고리즘/[백준-31836]-피보나치-기념품.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 31836] 피보나치 기념품</a> - 미완성<br>
+<a data-href="[백준26091] 현대모비스 소프트웨어 아카데미" href="https://alsgud8311.github.io/알고리즘/[백준26091]-현대모비스-소프트웨어-아카데미.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준26091] 현대모비스 소프트웨어 아카데미</a><br>
+<a data-href="[백준 23307] 드디어 시작한 화석 발굴 이벤트" href="https://alsgud8311.github.io/[백준-23307]-드디어-시작한-화석-발굴-이벤트.html" class="internal-link" target="_self" rel="noopener nofollow">[백준 23307] 드디어 시작한 화석 발굴 이벤트</a>]]></description><link>https://alsgud8311.github.io/알고리즘/알고리즘.html</link><guid isPermaLink="false">알고리즘/알고리즘.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Thu, 06 Feb 2025 01:20:12 GMT</pubDate></item><item><title><![CDATA[[백준26091] 현대모비스 소프트웨어 아카데미]]></title><description><![CDATA[<img src="https://i.imgur.com/EokJAxy.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+PPL문제는 참신하네요..두 조건을 만족하는 팀만 견학 할 수 있는데, 최대 몇 팀이나 견학을 보낼 수 있는지 구하면 된다.
+팀원은 무조건 두명인 걸 보니 생각해볼 수 있는 알고리즘의 폭이 많이 줄어들 수 있다고 생각한다.<br><img src="https://i.imgur.com/LzcehEB.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+예제를 보자.
+예제 1의 경우 6명이 있고 최소 능력치는 두명이 합쳐서 10이 넘어야 한다.
+여기서 나오는 조합들 중 10이 넘는 조합들을 구하고, 최대로 보낼 수 있는 팀 수를 출력하면 된다.const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const inputs = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n"); const [n, m] = inputs[0].split(" ").map(Number);
+const students = inputs[1] .split(" ") .map(Number) .sort((a, b) =&gt; a - b); let left = 0;
+let right = n - 1;
+let team = 0;
+while (left &lt; right) { if (students[left] + students[right] &gt;= m) { team++; left++; right--; } else { left++; continue; }
+}
+console.log(team);
+어차피 한 번 참가한 팀원은 다시 참여할 수 없고, 무조건 두 명씩 팀을 해야 한다는 전제가 있기 때문에 간단하게 투포인터를 활용해서 풀 수 있었다.]]></description><link>https://alsgud8311.github.io/알고리즘/[백준26091]-현대모비스-소프트웨어-아카데미.html</link><guid isPermaLink="false">알고리즘/[백준26091] 현대모비스 소프트웨어 아카데미.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 05 Feb 2025 05:18:19 GMT</pubDate><enclosure url="https://i.imgur.com/EokJAxy.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/EokJAxy.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 31836] 피보나치 기념품]]></title><description><![CDATA[<img src="https://i.imgur.com/KSslIhp.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">세림이랑 성주는 왜 대체 피보나치 수열을 좋아하는 걸까...?
+아무튼 두 사람이 받게 될 기념품에 적힌 피보나치 수의 합이 같아야 하면서 최대한 많은 개수의 기념품을 나눠줄 수 있도록 해야한다.<br><img src="https://i.imgur.com/rJt8KiI.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+입출력을 보자.
+예제 1의 경우 2개의 기념품이 있다.
+이 때, 세림이는 1이 적혀있는 기념품 한개를 받았고, 성주는 2가 적혀있는 기념품 한 개를 받았다.
+여기서 1과 2 모두 피보나치 수로 1이기 때문에 두 사람이 받은 기념품들의 합은 1로 같다.예제2의 경우 4개의 기념품을 받았다.
+세림이는 1, 3 두 개의 기념품을 받았고, 성주는 4로 된 기념품 하나를 받았다.
+세림이의 기념품들의 피보나치 수 합은 F1+F3 = 1+2 = 3
+성주의 기념품들의 피보나치 수 합은 F4 = 3 이므로 두 사람이 받은 기념품의 피보나치 수 합은 같다.이 문제는 어떻게 풀어야 할까?
+N이 주어지면 거기에서 공통의 합의 나오도록 해야 하는데, 이는 한 사람의 기념품을 받은 수를 가지고 계속 쪼갤 수 있다.
+예제 2처럼 N이 4라고 한다면 F4부터 시작해서 계속해서 피보나치 수로 쪼갤 수 있도록 하는 것이다.
+예제 2의 경우도 4로 시작해서 F4 = F2 + F3이므로 한도를 넘지 않는 선에서 2개의 기념품을 가지도록 한 것이다.
+또한 여기서 최대의 값을 가져야 하므로 기존에 나온 값들 중에서 가장 큰 값을 고르는 것이기 때문에 분할정복 혹은 dp로 풀어야 할 것 같다.
+흠 일단 피보나치로 나올 수 있는 수들에 대해서 미리 메모이제이션 한 다음에, 여기에서 가장 크게 나눠가질 수 있는 경우를 찾아보면 될 것 같다.
+샀던 N개의 기념품은 모두 N보다 작은 x의 수가 적혀있는 피보나치 수이다.
+가장 큰 수부터 시작해서 계속 피보나치를 나눠가면서 개수를 더하면?]]></description><link>https://alsgud8311.github.io/알고리즘/[백준-31836]-피보나치-기념품.html</link><guid isPermaLink="false">알고리즘/[백준 31836] 피보나치 기념품.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 05 Feb 2025 02:51:19 GMT</pubDate><enclosure url="https://i.imgur.com/KSslIhp.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/KSslIhp.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 10597] 순열장난]]></title><description><![CDATA[<img src="https://i.imgur.com/lK7ssOY.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">하나의 문자열로 합쳐진 순열을 다시 복구하는 문제이다.
+일단 순열의 정의부터 아는 것이 좋다.
+순열은 서로 다른 n개의 원소를 가지는 어떤 집합에서 중복 없이 순서에 상관 있게 r개의 원소를 선택하거나 혹은 나열하는 것이다.kriii는 이러한 순열을 생각해서 중복되는 수가 없도록 수열을 다시 복구하면 된다.
+중복되는 수가 없도록 하기 위해서는 루프를 돌면서 이전에도 중복된 수가 있는지 검사를 해야한다.따라서 해당 문제는 각 수를 분할하여 계산
+메모이제이션이 필요
+하기 때문에, dp로 풀어야 할 것 같다고 생각했다.
+const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const inputs = require("fs").readFileSync(INPUT_FILE).toString().trim();
+const dpArr = new Array(); let pstring = "";
+for (let i = 0; i &lt; inputs.length; i++) { pstring += inputs[i]; if (!dpArr.includes(pstring)) { dpArr.push(pstring); pstring = ""; continue; } for (let j = i + 1; j &lt; inputs.length; j++) { pstring += inputs[j]; if (!dpArr.includes(pstring)) { dpArr.push(pstring); pstring = ""; i = j; break; } }
+}
+console.log(dpArr.join(" ")); 그렇게 처음 만들어진 코드
+제출하자마자 바로 컷당했다..결국 알고리즘 분류를 보았는데 백트래킹으로 풀어야 한다고 한다.
+kriii의 순열은 최소 1개 최대 50개의 수로 이루어져 있다.
+조건 중 하나를 제대로 보지 않았다. 순열에 들어가는 수는 제한이 있었다.
+이 말의 뜻은 곧 순열은 1부터 50까지의 수 중에 N개의 수를 고르면 해당 N개의 수는 1부터 N까지 숫자가 무조건 한 번씩은 사용이 되어야 하고, 중복이 없어야 한다.그렇다면 매 수가 가면서 해당 수를 넣었을 때와 넣지 않았을 때로 나누어 계산한 후, 중간에 조건이 맞지 않는다면 빠꾸 시키는 백트래킹 형식으로 가면 되지 않을까?결국 ai의 도움을 통해 풀었다... 백트래킹이 익숙치 않다보니 로직은 조금 더 보면서 익혀야 할 것 같다.// 백트래킹 함수
+function backtrack(index, path, used) { // 문자열 끝에 도달했을 때 if (index === inputs.length) { return path.length &gt; 0 ? path : null; } for (let length = 1; length &lt;= 2; length++) { if (index + length &gt; inputs.length) continue; // 현재 위치에서 length만큼의 숫자 추출 const num = parseInt(inputs.slice(index, index + length)); // 유효한 숫자인지 확인 if (isValid(num, used)) { // 현재 숫자를 사용했다고 표시 const newUsed = new Set(used); newUsed.add(num); // 다음 단계로 진행 const result = backtrack(index + length, [...path, num], newUsed); if (result) { return result; } } }
+}
+순열의 숫자의 경우 1~50까지의 수여야만 하기 때문에 수는 1자리 수가 될 수도 있고, 2자리 수가 될 수도 있다. 하지만 그 이상은 가지 못한다.
+따라서 1자리 수와 2자리 수를 구분하여 백트래킹을 진행했다.function isValid(num, used) { return num &gt;= 1 &amp;&amp; num &lt;= Math.min(inputs.length, 50) &amp;&amp; !used.has(num);
+}
+해당 수가 유효한지 검사하는 함수의 경우 맨 처음엔 고정적으로 50까지의 수라 했으니 50을 해야겠다!라고만 생각했다. 하지만 이렇게 될 경우 나중에 더 큰 수가 나오면서 순열의 조건을 해치는 경우가 있을 수 있으므로 받은 문자열의 길이를 통해 최대한 가질 수 있는 순열의 수를 유추했다. 하지만 이렇게 유추했을 때 50을 넘어버리는 경우가 있기 때문에 Math.min을 통해 조건부로 조건을 넘겨줄 수 있도록 하였다.const result = backtrack(0, [], new Set()); // 결과가 있고, 유효한 순열인지 확인
+if (result) { const maxNum = Math.max(...result); const expectedSet = new Set(Array.from({ length: maxNum }, (_, i) =&gt; i + 1)); const resultSet = new Set(result); // 1부터 maxNum까지의 모든 숫자가 정확히 한 번씩 사용되었는지 확인 if ( result.length === maxNum &amp;&amp; JSON.stringify([...expectedSet].sort()) === JSON.stringify([...resultSet].sort()) ) { console.log(result.join(" ")); }
+} 백트래킹을 진행한 후에는 result에 순열이 담기게 되는데, 조건을 만족하는 것들이 여러개라면 하나만 받으면 되므로 조건이 맞았을 때 바로 return하도록 해서 그 후에 가져온 결과를 검사했다.
+유효한 수인지를 검사하고 이에 따라 1~최대 순열의 길이까지의 수들이 모두 사용되었는지를 검사하여 결과를 내보냈다.백트래킹,,,,어렵군,,,,]]></description><link>https://alsgud8311.github.io/알고리즘/[백준-10597]-순열장난.html</link><guid isPermaLink="false">알고리즘/[백준 10597] 순열장난.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Tue, 04 Feb 2025 03:14:41 GMT</pubDate><enclosure url="https://i.imgur.com/lK7ssOY.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/lK7ssOY.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[index]]></title><description><![CDATA[개발 관련한 모든 것들을 기록하는 저장소입니다.
+<a data-href="알고리즘" href="https://alsgud8311.github.io/알고리즘/알고리즘.html#_0" class="internal-link" target="_self" rel="noopener nofollow">알고리즘</a>
+<br><a data-href="학습 정리" href="https://alsgud8311.github.io/학습-정리/학습-정리.html#_0" class="internal-link" target="_self" rel="noopener nofollow">학습 정리</a> <br>adhd인을 위한 서비스 - <a data-href="forA" href="https://alsgud8311.github.io/프로젝트/fora/fora.html#_0" class="internal-link" target="_self" rel="noopener nofollow">forA</a>
 <br>생성형 ai로 나만의 웹소설 만들기 - <a data-href="Neo" href="https://alsgud8311.github.io/프로젝트/neo/neo.html#_0" class="internal-link" target="_self" rel="noopener nofollow">Neo</a>
 <br>ai가 도와주는 마인드맵 저작도구 - <a data-href="Boomap" href="https://alsgud8311.github.io/프로젝트/boomap/boomap.html#_0" class="internal-link" target="_self" rel="noopener nofollow">Boomap</a>
-]]></description><link>https://alsgud8311.github.io/index.html</link><guid isPermaLink="false">index.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 02 Feb 2025 16:48:00 GMT</pubDate></item><item><title><![CDATA[Backend]]></title><description><![CDATA[
+]]></description><link>https://alsgud8311.github.io/index.html</link><guid isPermaLink="false">index.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 16:06:51 GMT</pubDate></item><item><title><![CDATA[구현의 상세 추상화]]></title><description><![CDATA[한 사람이 코드를 읽을 때 동시에 고려할 수 있는 총 맥락의 숫자는 제한되어 있다고 한다.
+그렇기 때문에 우리는 추상화를 통해서 불필요한 맥락을 줄여 코드를 읽기 쉽게 만듦으로써 좋은 코드를 만들 수 있다. 근데 이 프로그래밍에서 빠질 수 없는 추상화는 대체 무엇일까?추상화는 객체 지향 프로그래밍의 개념 중 하나이다.
+"추상" 이라는 용어의 사전적 의미는 "사물이나 표상을 어떤 성질, 공통성, 본질에 착안하여 그것을 추출하여 파악하는 것" 이라 정의한다.소프트웨어적으로 말하자면 복잡한 시스템의 세부 구현을 숨기고, 필요한 핵심적인 개념만을 드러내어 다룰 수 있도록 하는 개념이라고 말할 수 있다. 즉, 불필요한 세부사항을 감추고 중요한 정보만을 제공하는 방식인 것이다.그렇다면 추상화를 통해 우리가 얻는 것은 무엇일까?
+복잡성 감소 불필요한 내부 동작을 숨기고 중요한 부분만 노출하여 코드의 가독성을 높이고 유지보수를 용이하게 함 모듈화와 재사용성 향상 여러 기능을 추상화하여 모듈화하면 코드가 독립적으로 동작할 수 있어 재사용성이 증가 유지보수성 향상 세부 구현을 감추고 인터페이스만 제공하면 내부 구현이 변경되어도 외부 코드에 미치는 영향을 최소화 아래 예시를 보자.function fetchUserData(userId: string) { return fetch(`https://api.example.com/users/${userId}`) .then((res) =&gt; res.json());
+} // 사용자는 내부 요청 방식(Fetch API 등)을 몰라도 데이터를 가져올 수 있음
+fetchUserData("123").then((data) =&gt; console.log(data)); fetchUserData()는 유저의 정보를 가져오는 api라는 것을 우리는 함수의 명을 통해 알 수 있다.
+하지만 이 api는 그냥 부른다고 띡 되는게 아니다.이 안에는 Fetch문을 통해 Promise 기반의 http 요청을 보내야 하고, 이렇게 받은 요청에 대해서 체이닝을 통해 json 데이터로 변환하는 작업까지 담겨 있다.위에서 말하는 불필요한 세부사항은 바로 위에서 말한 것들이다. 우리는 요청을 보내는 과정에서 일어나는 것들을 굳이 그대로 쓰지 않고 한 단계 fetchUserData라는 함수로 추상화 함으로써 위와 같은 단계들을 하나의 함수명(중요한 정보) 을 통해서 알 수 있도록 하였다.이를 통해서 아 우리가 인식하지 않고 하고 있던 것들이 다 추상화였구나!를 깨달을 수 있었다. 함수를 나눠서 쓰는 것도 해당 함수에 꼭 필요한 내부 기능을 담게 코드를 작성하고 있었기 때문에 이 또한 추상화이기 때문이다.이번 Neo 프로젝트를 하면서 운이 좋게도 지인에게 코드 리뷰를 받을 수 있게 되었다.
+나는 이 코드 리뷰에서 집중적으로 봐줬으면 좋을 것 같은 부분 중 '추상화'를 꼽았다.추상화는 물론 많은 작업들을 보다 간단하게 이해할 수 있게끔 해주는 좋은 역할을 가지고 있지만, 그렇다고 무조건 해야만 좋은 것도 아니다.
+내가 쓰는 하나하나의 로직들을 전부 추상화하게 된다면, 프론트엔드에서는 컴포넌트를 계속 링크를 파고파고 들어가는 형태가 되어버린다. 결국 우리가 추상화를 하게 된 근본적인 이유는 보다 코드를 쉽게 이해하고 잘 재사용하기 위해서인데, 코드를 쉽게 이해하지도 못하고 재사용도 애매해지는 결과를 낳기도 한다. 이번에 직접 '섣부른 추상화'를 행하면서 깨달은 점이기도 하다.원래 코드는 아래와 같았다.// app/login/page.tsx
+export default function Page() { const loginFormSchema = z.object({ email: z.string().email({ message: "유효한 이메일 주소가 아닙니다." }), password: z .string() .regex( /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&amp;])[A-Za-z\d@$!%*#?&amp;]{8,}$/, { message: "비밀번호는 영문 대/소문자, 숫자, 특수문자를 포함하여 8자 이상이어야 합니다.", } ), }); const form = useForm&lt;z.infer&lt;typeof loginFormSchema&gt;&gt;({ resolver: zodResolver(loginFormSchema), defaultValues: { email: "", password: "", }, }); function onSubmit(values: z.infer&lt;typeof loginFormSchema&gt;) { console.log(values); } return ( &lt;div className="h-screen grid px-8"&gt; &lt;div className="flex flex-col items-center justify-center"&gt; &lt;Image src="/neo_emblem.svg" alt="logo" width={100} height={100} /&gt; &lt;span className="text-xl font-bold"&gt;NEO&lt;/span&gt; &lt;/div&gt; &lt;Form {...form}&gt; &lt;form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-6" &gt; &lt;div className="flex flex-col gap-4"&gt; &lt;FormField control={form.control} name="email" render={({ field }) =&gt; ( &lt;FormItem&gt; &lt;FormLabel className="flex justify-between"&gt; &lt;span className="text-sm font-medium"&gt;이메일 주소&lt;/span&gt; &lt;/FormLabel&gt; &lt;FormControl&gt; &lt;Input placeholder="example@gmail.com" className="p-6 bg-gray-100 rounded-lg" {...field} /&gt; &lt;/FormControl&gt; &lt;/FormItem&gt; )} /&gt; &lt;FormField control={form.control} name="password" render={({ field }) =&gt; ( &lt;FormItem&gt; &lt;FormLabel className="flex justify-between"&gt; &lt;span className="text-sm font-medium"&gt;비밀번호&lt;/span&gt; &lt;/FormLabel&gt; &lt;FormControl&gt; &lt;Input className="p-6 bg-gray-100 rounded-lg" {...field} /&gt; &lt;/FormControl&gt; &lt;div className="flex justify-between"&gt; &lt;div className="flex items-center space-x-2"&gt; &lt;Checkbox id="remember" className="data-[state=checked]:bg-primary border-muted-foreground" /&gt; &lt;Label htmlFor="remember" className="text-sm font-medium text-muted-foreground leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70" &gt; 비밀번호 기억하기 &lt;/Label&gt; &lt;/div&gt; &lt;Button variant="link" className="text-sm text-primary" asChild &gt; &lt;Link href="/forgot-password"&gt; 계정을 잃어버리셨나요? &lt;/Link&gt; &lt;/Button&gt; &lt;/div&gt; &lt;/FormItem&gt; )} /&gt; &lt;/div&gt; &lt;div className="flex flex-col gap-2"&gt; &lt;Button type="submit" variant="default" className="w-full flex items-center justify-center gap-2 p-6 rounded-lg hover:opacity-90 hover:bg-primary" &gt; &lt;span className="text-lg font-base"&gt;다음&lt;/span&gt; &lt;ChevronRight className="w-6 h-6" /&gt; &lt;/Button&gt; &lt;div className="flex justify-center items-center gap-2"&gt; &lt;span className="text-sm text-muted-foreground"&gt; 아직 회원이 아니신가요? &lt;/span&gt; &lt;Button variant="link" className="text-sm text-primary" asChild&gt; &lt;Link href="/signup"&gt;회원가입하기&lt;/Link&gt; &lt;/Button&gt; &lt;/div&gt; &lt;/div&gt; &lt;/form&gt; &lt;/Form&gt; &lt;div className="flex flex-col gap-8"&gt; &lt;div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"&gt; &lt;span className="relative z-10 bg-background px-2 text-muted-foreground"&gt; 또는 10초만에 로그인 · 회원가입 하기 &lt;/span&gt; &lt;/div&gt; &lt;Button variant="outline" className="w-full p-6 rounded-lg"&gt; &lt;Image src="/auth/google_emblem.svg" alt="google" width={20} height={20} /&gt; &lt;span className="text-base font-light"&gt;구글 로그인&lt;/span&gt; &lt;/Button&gt; &lt;/div&gt; &lt;/div&gt; );
+}
+나는 처음에 거의 150줄이 넘어가는 코드의 개수를 보자마자 '아 이건 추상화를 해야겠다'라고 생각했다.
+일단 나는 100줄이 넘어가는 하나의 페이지는 무조건 지양해야 한다고 생각했기 때문이다.
+그래서 내가 생각했던 추상화는
+자체 로그인 부분만 loginForm으로 추상화 loginForm에서 공통으로 쓰이는 FormField내의 컴포넌트 구성을 loginFormField로 추상화 소셜 로그인 버튼을 socialLoginButton으로 추상화
+로그인에 필요한 스키마를 해당 파일에서 선언하는 것이 아닌 다른 곳으로 분리
+login에 필요한 server action을 추상화
+react-hook-form에서 쓰이는 훅을 추상화
+정도로 나눠지게 되었다.
+import { LoginForm } from "@/app/(auth)/login/loginForm";
+import SocialLoginButton from "@/components/ui/socialLoginButton";
+import Image from "next/image"; export default function Page() { return ( &lt;div className="h-screen grid px-8 relative"&gt; &lt;div className="flex flex-col items-center justify-center"&gt; &lt;Image src="/neo_emblem.svg" alt="logo" width={100} height={100} /&gt; &lt;span className="text-xl font-bold"&gt;NEO&lt;/span&gt; &lt;/div&gt; &lt;LoginForm /&gt; &lt;div className="flex flex-col gap-8"&gt; &lt;div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border"&gt; &lt;span className="relative z-10 bg-background px-2 text-muted-foreground"&gt; 또는 10초만에 로그인 · 회원가입 하기 &lt;/span&gt; &lt;/div&gt; &lt;div className="w-full flex flex-col justify-center items-center gap-5"&gt; &lt;SocialLoginButton type="kakao" /&gt; &lt;SocialLoginButton type="google" /&gt; &lt;/div&gt; &lt;/div&gt; &lt;/div&gt; );
+}
+그렇게 추상화한 결과 page는 이렇게 확실히 코드가 줄어지게 되었다.
+하지만 해당 추상화가 정말 잘된 추상화일까?이번에 내가 했던 코드 리뷰에서 이런 이야기가 나왔다.
+<img src="https://i.imgur.com/NyroIXU.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">나는 요게 맞는 말이라고 생각한다.
+url은 비단 링크 정도의 기능만을 하는 것이 아니다. 각각의 페이지 모두 html 문서, js, css를 불러오는 get api를 불러오기 때문에 routing 또한 RESTFUL하게 이루어져야 한다.Next.js에서 app 라우터는 page라는 파일에 라우팅된다. 그러므로 app/login은 로그인이라는 자원을 불러온다는 의미기도 한데, 이미 route를 통해서 login이라는 추상화를 이루어냈음에도 불구하고 여기서 form을 따로 나누는 것은 불필요한 추상화가 아니었나 생각한다.
+또한 loginForm을 나누고, 이 form에서 가지고 있는 hook까지 커스텀 훅으로 빼게 되니 코드의 수가 더 늘어났다.물론 이게 나와 협업하는 다른 개발자들이 보기에 조금 더 편할 수 있다면 LOC가 늘어나는 것은 괜찮다고 생각하지만 문제는 평탄하게 뿌려진 폴더 구조였다.
+나는 어찌보면 route 하나하나가 각 도메인을 의미한다고 생각했기에 여기에 필요한 훅, 컴포넌트, 스키마 등을 나누었다.<br><img src="https://i.imgur.com/9xqqng5.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">원래대로라면 page.tsx가 하나만 있어야 할텐데 너무 늘어나 이에 대한 배경지식이 없다면 코드의 가독성이 더 떨어져 보이는 듯한 효과를 주는 것을 느끼게 되었다.또한 Login쪽에서 관리하는 Hook을 보자export function useLogin() { const { supabase } = useAuth(); const router = useRouter(); const { open: openErrorModal, switchModal, setMessage: setErrorMessage, message: errorMessage, } = useModal(); const form = useForm&lt;loginFormSchemaType&gt;({ resolver: zodResolver(loginFormSchema), defaultValues: { email: "", password: "", }, }); const { mutate, isPending } = useMutation({ mutationFn: handleEmailLogin, onSuccess: () =&gt; router.push("/"), onError: (error) =&gt; { if (error instanceof Error) { setErrorMessage(error.message); switchModal(); } else { setErrorMessage( "서버 상의 이유로 실패하였습니다.\n 잠시 후 다시 시도해 주세요." ); switchModal(); } }, }); function submit(values: loginFormSchemaType) { const { email, password } = values; mutate({ email, password, supabase }); } return { form, submit, openErrorModal, switchModal, setErrorMessage, isPending, errorMessage, };
+} useLoginForm이라는 비즈니스 로직을 추상화한 하나의 커스텀 훅에 너무 많은 역할들이 혼재하고 있다.
+서버 상태 관리, 에러 상태 관리, 폼 관리를 하나의 훅으로 추상화하면서 어찌보면 이렇게 많은 역할들을 한번에 이해하기란 쉽지 않을 것 같다고 다시 코드를 봤을 때 느끼게 되었다.이번 코드 리뷰를 통해 '추상화' 라는 것이 무조건 내 코드의 품질을 높여주는 silver bullet이 아닌, '잘' 추상화 해야지만 추상화의 이점을 가질 수 있음을 깨달았다. 따라서 이번에 조금 더 추상화를 어떻게 더 '좋은 코드' 로 만들 수 있을까에 대해서 계속해서 고민하고 시도해가면서 감을 익혀나가야겠다. ]]></description><link>https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html</link><guid isPermaLink="false">프로젝트/Neo/구현의 상세 추상화.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 16:06:04 GMT</pubDate><enclosure url="https://i.imgur.com/NyroIXU.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/NyroIXU.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Neo]]></title><description><![CDATA[Neo는 생성형 ai를 활용한 개인별 웹소설 창작 서비스입니다.
+Neo를 통해서는
+개인별 생성형 ai를 통한 맞춤 소설 제작
+Neo에 존재하는 웹소설을 내 마음대로 다시쓰기
+등의 서비스를 제공합니다.
+<a data-href="axios를 떠나보내기" href="https://alsgud8311.github.io/프로젝트/neo/axios를-떠나보내기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">axios를 떠나보내기</a><br>
+<a data-href="반응형을 자바스크립트로 해보기" href="https://alsgud8311.github.io/프로젝트/neo/반응형을-자바스크립트로-해보기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">반응형을 자바스크립트로 해보기</a><br>
+<a data-href="구현의 상세 추상화" href="https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html#_0" class="internal-link" target="_self" rel="noopener nofollow">구현의 상세 추상화</a>]]></description><link>https://alsgud8311.github.io/프로젝트/neo/neo.html</link><guid isPermaLink="false">프로젝트/Neo/Neo.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 15:24:33 GMT</pubDate></item><item><title><![CDATA[[백준 6064] 카잉 달력]]></title><description><![CDATA[<img src="https://i.imgur.com/HAeNjXs.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">카잉 제국의 달력은 각 년도를 &lt;x:y&gt;와 같은 형식으로 표현한다
+시초에 해당하는 첫번째 해를 &lt;1:1&gt;로 표현하고
+두번째 해를 &lt;2:2&gt;로 표현한다.&lt;x:y&gt;의 다음 해는 &lt;x':y'&gt;로, x&lt;M이면 x' = x+1, x=M이면 x'=1이다. 이는 y도 N과 비교했을 때 똑같이 작용한다.
+M=10, N=12일 때
+첫번째 해 &lt;1:1&gt; 11번째 해의 경우 &lt;11:11&gt;이지만 10번째 해로 넘어갈 때 x쪽의 값은 10까지 갔지만 열한번째 해로 넘어가면서 x는 M과 같은 상태이기 때문에 다시 1로 변했다. y의 경우는 N이 12이므로 11이 그대로 넘어가 &lt;1:11&gt; 이 되었다. 13번째 해의 경우
+- &lt;13:13&gt;이지만 11번째 해로 넘어갈 때 이미 x는 1로 변했다. 그렇기 때문에 2가 더해져 3이 되고, y의 경우는 N이 12이기 때문에 13이 되는 순간 1이 되었다.
+따라서 여기에서 알 수 있는 내용은 각 M, N에 따라서 x는 x%M, y는 y%N이 된다는 점이다.
+이런 식으로 달력은 넘어간다.
+우리가 풀어야 할 것은 각 줄마다 M, N, x, y가 주어지는데, 여기서 &lt;x:y&gt;를 보고 몇번째 해인지 맞춰야 한다.하지만 여기서 고려해야 할 사항이 있다.<br>
+<img src="https://i.imgur.com/mqbQsxR.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+위 예제처럼 카잉 달력이 유효하지 않은 경우, -1을 출력하도록 하였다. 그러므로 선형으로 브루트포스하게 푸는 것은 되지 않는다.
+그러므로 제대로 계산이 되지 않을 수도 있다는 것이다. 이 예외까지 고려할 수 있는 로직을 생각해보아야 한다.가장 먼저 생각난 것은 재귀 방식으로 푸는 것이다.
+어디서 시작했든 현재 가지고 있는 카잉 달력에서 계속 계산을 해나가다보면 유효한 달력일 경우 언젠가 1 1의 형태가 나올 것이다.
+또한 유효하지 않은 카잉 달력일 경우, 계속 재귀적으로 달력을 구해 나가다가 x에서 가장 큰 수인 M이고, N이 가장 큰 수가 된다면 이건 영원히 끝나지 않을 것이라 생각할 수 있다.다시금 x는 x%M, y는 y%N이 된다는 사실을 떠올리자.
+그렇다면 한 년도에 각각 M,N으로 나누었을 때 나머지가 x,y처럼 나와야 한다는 뜻이기도 하다.
+그럼 그 년도를 어떻게 찾을까?
+x,y의 나머지가 남는 년도에서 교집합을 찾으면 될 것 같다
+첫번째 입력의 경우
+10의 배수 + 3 해서 나오는 수들과 12의 배수 + 9 해서 나오는 수들 중에 교집합이 있는지 보면 x의 경우 -&gt; 3, 13, 23, 33, 43, 53..(3 + 10n)
+y의 경우 -&gt; 9, 21, 33, 45, 57, 69...(9 + 12n)
+이렇게 첫 수를 각각 x, y로 둔 M, N의 등차수열임을 알 수 있다.
+그렇다면 이 두 공차의 최소공배수를 기준으로 이 달력이 반복된다는 것이기 때문에 해당 최대공배수 전까지 루프를 돌면서 x,y가 조건에 만족하는 해가 있는지 찾아보면 된다.
+유클리드 호제법은 x를 y로 나눈 나머지는 r일 때, x, y의 최대공약수는 y, r의 최대공약수와 같다는 원리이다.
+이 원리를 사용해 x값에 y를 대입하고, y값에 r을 대입하면 r이 0이 될 때 둘의 최대공약수인 것이다.
+그리고 최소공배수는 두 수의 곱에 최대공약수로 나누면 나온다.function gcd(a, b) { if (a &lt; b) { const temp = a; a = b; b = temp; } while (b != 0) { const temp = a % b; a = b; b = temp; }
+} function lcm(a, b) { (a * b) / gcd(a, b);
+} 10과 12의 최대공약수를 구해보면 2가 나온다.
+최소공배수는 두 수의 곱 / 최대공약수 이므로10 * 12 / 2 = 60이다.
+따라서 우리는 최소공배수인 60을 주기로 달력이 반복된다는 사실을 알 수 있고, 이전까지만 루프를 돌아서 공통되는 년도를 찾으면 된다.function findYear(M, N, x, y) { const maxYear = lcm(M, N); let year = x; while (year &lt;= maxYear) { if (year === 0) { if (y === x) return maxYear; } else if (year % N === y || (year % N === 0 &amp;&amp; y === N)) { return year; } year += M; } return -1;
+}
+x를 기준으로 3, 13, 23, 33...이렇게 올라가지만서도 최소공배수인 120까지만 루프를 돌면서 y가 조건에 맞을 때가 있는지 확인한다.
+조건에 맞는 경우는
+x가 가지는 연도 중에 N으로 나눴을 때 y의 나머지가 나오는 경우
+x가 가지는 연도 중에 N으로 나눴을 때 나머지가 없고 최대년도에 딱 맞춘 숫자일 때
+이기 때문에 루프를 돌면서 검사하고, 만약 return문으로 빠져나가지 못했다면 서로 공통이 되는 숫자가 없다는 뜻이므로 -1을 출력한다.
+const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const [t, ...rest] = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n"); function gcd(a, b) { while (b !== 0) { const r = a % b; a = b; b = r; } return a;
+} function lcm(a, b) { return (a * b) / gcd(a, b);
+} function findYear(M, N, x, y) { const maxYear = lcm(M, N); let year = x; while (year &lt;= maxYear) { if (year === 0) { if (y === x) return maxYear; } else if (year % N === y || (year % N === 0 &amp;&amp; y === N)) { return year; } year += M; } return -1;
+} rest.forEach((input) =&gt; { const [M, N, x, y] = input.split(" ").map(Number); console.log(findYear(M, N, x, y));
+}); ]]></description><link>https://alsgud8311.github.io/알고리즘/[백준-6064]-카잉-달력.html</link><guid isPermaLink="false">알고리즘/[백준 6064] 카잉 달력.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 07:58:57 GMT</pubDate><enclosure url="https://i.imgur.com/HAeNjXs.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/HAeNjXs.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Backend]]></title><description><![CDATA[
 <a data-href="트랜잭션과 비즈니스 로직" href="https://alsgud8311.github.io/학습-정리/backend/트랜잭션과-비즈니스-로직.html#_0" class="internal-link" target="_self" rel="noopener nofollow">트랜잭션과 비즈니스 로직</a>
 <br><a data-href="express+pug로 templating해서 SSR + CSR 구현하기" href="https://alsgud8311.github.io/학습-정리/backend/express+pug로-templating해서-ssr-+-csr-구현하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">express+pug로 templating해서 SSR + CSR 구현하기</a>
 <br><a data-href="mysql Join" href="https://alsgud8311.github.io/학습-정리/backend/mysql-join.html#_0" class="internal-link" target="_self" rel="noopener nofollow">mysql Join</a>
@@ -122,13 +269,7 @@ adhd인을 위한 서비스 - <a data-href="forA" href="https://alsgud8311.githu
 <a data-href="운영체제_파일관리_파일 공유와 레코드 블로킹" href="https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제_파일관리_파일-공유와-레코드-블로킹.html#_0" class="internal-link" target="_self" rel="noopener nofollow">운영체제_파일관리_파일 공유와 레코드 블로킹</a><br>
 <a data-href="운영체제_파일관리_보조 저장공간 관리" href="https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제_파일관리_보조-저장공간-관리.html#_0" class="internal-link" target="_self" rel="noopener nofollow">운영체제_파일관리_보조 저장공간 관리</a><br>
 <a data-href="운영체제_파일 관리_UNIX의 파일 관리" href="https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제_파일-관리_unix의-파일-관리.html#_0" class="internal-link" target="_self" rel="noopener nofollow">운영체제_파일 관리_UNIX의 파일 관리</a><br>
-<a data-href="운영체제_파일 관리_Linux의 가상파일시스템과 windows 파일 시스템" href="https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제_파일-관리_linux의-가상파일시스템과-windows-파일-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">운영체제_파일 관리_Linux의 가상파일시스템과 windows 파일 시스템</a>]]></description><link>https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제.html</link><guid isPermaLink="false">학습 정리/Computer Science/운영체제/운영체제.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 02 Feb 2025 16:36:43 GMT</pubDate></item><item><title><![CDATA[Neo]]></title><description><![CDATA[Neo는 생성형 ai를 활용한 개인별 웹소설 창작 서비스입니다.
-Neo를 통해서는
-개인별 생성형 ai를 통한 맞춤 소설 제작
-Neo에 존재하는 웹소설을 내 마음대로 다시쓰기
-등의 서비스를 제공합니다.
-<a data-href="axios를 떠나보내기" href="https://alsgud8311.github.io/프로젝트/neo/axios를-떠나보내기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">axios를 떠나보내기</a><br>
-<a data-href="반응형을 자바스크립트로 해보기" href="https://alsgud8311.github.io/프로젝트/neo/반응형을-자바스크립트로-해보기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">반응형을 자바스크립트로 해보기</a>]]></description><link>https://alsgud8311.github.io/프로젝트/neo/neo.html</link><guid isPermaLink="false">프로젝트/Neo/Neo.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 02 Feb 2025 16:01:23 GMT</pubDate></item><item><title><![CDATA[반응형을 자바스크립트로 해보기]]></title><description><![CDATA[이제는 어느 사이트를 가든 반응형 페이지가 디폴트로 되어 있다. 항상 고정적인 레이아웃을 가지게 되면 모바일 디바이스부터 데스크톱까지 다양한 환경이 있음에도 불구하고 같은 화면을 보게 되는 거니 사용자 경험상으로 좋지 않다. 그렇기에 서비스를 디자인 할 때는 반응형으로 많이 신경쓰는 편이다.웹 페이지의 디자인과 레이아웃이 모든 화면 크기에 자동으로 맞춰지는 디자인이다. 데스크탑에서 페이지를 늘렸다 줄였다 하면 이에 맞춰서 화면의 디자인이 바뀌는게 반응형 디자인이다.다른 방식의 유연한 웹 디자인 기술로는 적응형 디자인이 있다.
+<a data-href="운영체제_파일 관리_Linux의 가상파일시스템과 windows 파일 시스템" href="https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제_파일-관리_linux의-가상파일시스템과-windows-파일-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">운영체제_파일 관리_Linux의 가상파일시스템과 windows 파일 시스템</a>]]></description><link>https://alsgud8311.github.io/학습-정리/computer-science/운영체제/운영체제.html</link><guid isPermaLink="false">학습 정리/Computer Science/운영체제/운영체제.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 02 Feb 2025 16:36:43 GMT</pubDate></item><item><title><![CDATA[반응형을 자바스크립트로 해보기]]></title><description><![CDATA[이제는 어느 사이트를 가든 반응형 페이지가 디폴트로 되어 있다. 항상 고정적인 레이아웃을 가지게 되면 모바일 디바이스부터 데스크톱까지 다양한 환경이 있음에도 불구하고 같은 화면을 보게 되는 거니 사용자 경험상으로 좋지 않다. 그렇기에 서비스를 디자인 할 때는 반응형으로 많이 신경쓰는 편이다.웹 페이지의 디자인과 레이아웃이 모든 화면 크기에 자동으로 맞춰지는 디자인이다. 데스크탑에서 페이지를 늘렸다 줄였다 하면 이에 맞춰서 화면의 디자인이 바뀌는게 반응형 디자인이다.다른 방식의 유연한 웹 디자인 기술로는 적응형 디자인이 있다.
 적응형 디자인의 경우 웹 페이지에서 감지된 기기를 기반으로 미리 만드레어진 정적인 레이아웃을 불러오는 것으로 각 화면 크기마다 이에 맞는 레이아웃을 따로 디자인을 해야 한다. 이 방식은 각각 저마다의 장단점을 지닌다.import * as React from "react" const MOBILE_BREAKPOINT = 768 export function useIsMobile() { const [isMobile, setIsMobile] = React.useState&lt;boolean | undefined&gt;(undefined) React.useEffect(() =&gt; { const mql = window.matchMedia(`(max-width: ${MOBILE_BREAKPOINT - 1}px)`) const onChange = () =&gt; { setIsMobile(window.innerWidth &lt; MOBILE_BREAKPOINT) } mql.addEventListener("change", onChange) setIsMobile(window.innerWidth &lt; MOBILE_BREAKPOINT) return () =&gt; mql.removeEventListener("change", onChange) }, []) return !!isMobile
 } 나는 여기서 모바일과 데스크톱 환경 정도만 구분한 뒤에, 데스크톱의 경우에는 따로 미디어 쿼리를 추가하는 방식으로 ]]></description><link>https://alsgud8311.github.io/프로젝트/neo/반응형을-자바스크립트로-해보기.html</link><guid isPermaLink="false">프로젝트/Neo/반응형을 자바스크립트로 해보기.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 31 Jan 2025 11:25:02 GMT</pubDate></item><item><title><![CDATA[axios를 떠나보내기]]></title><description><![CDATA[이제까지 리액트 프로젝트를 하면서 가장 고정적으로 쓰였던 리액트 외의 라이브러리라고 한다면 단언컨데 axios일 것이다.axios는 &nbsp;XMLHttpRequest를 기반으로 만들어진 라이브러리로, 우리가 이제까지 귀찮게 http요청을 보내면서 하던 인터셉터, timeout 등의 설정을 간단하게 구현할 수 있기 때문에 확실히 개발비용을 줄여주던 라이브러리이다.하지만 이번에 Nextjs 프로젝트를 시작하면서 예상치 못하게 axios의 필요성에 대해서 다시금 생각해보았다.
 XMLHttpRequest의 경우 매우 오래된 http 요청이기 때문에 상대적으로 최근에 나온 fetch api의 성능이 좋아 굳이 XMLHttpRequest를 써야 하나?에 대한 의문을 가지는 사람이 많아졌다.
@@ -514,21 +655,7 @@ Y -&gt; Z -&gt; A
 없으면 뒤로 돌린다
 마지막에 남은 횟수를 다 돌린다.
 정도로 생각할 수 있다.
-]]></description><link>https://alsgud8311.github.io/알고리즘/[백준31784]-포닉스의-문단속.html</link><guid isPermaLink="false">알고리즘/[백준31784] 포닉스의 문단속.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sat, 01 Feb 2025 02:45:38 GMT</pubDate><enclosure url="https://i.imgur.com/p4MrRmQ.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/p4MrRmQ.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[알고리즘]]></title><description><![CDATA[<a data-href="[백준 1004] 어린왕자" href="https://alsgud8311.github.io/알고리즘/[백준-1004]-어린왕자.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1004] 어린왕자</a><br>
-<a data-href="[프로그래머스] 방금그곡" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-방금그곡.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 방금그곡</a><br>
-<a data-href="[프로그래머스] 두 원 사이의 정수 쌍" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 두 원 사이의 정수 쌍</a><br>
-<a data-href="[프로그래머스] 행렬 테두리 회전하기" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-행렬-테두리-회전하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 행렬 테두리 회전하기</a><br>
-<a data-href="[프로그래머스] 주차 요금 계산" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-주차-요금-계산.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 주차 요금 계산</a><br>
-<a data-href="[백준 12865] 평범한 배낭" href="https://alsgud8311.github.io/알고리즘/[백준-12865]-평범한-배낭.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 12865] 평범한 배낭</a><br>
-<a data-href="[백준 7576] 토마토" href="https://alsgud8311.github.io/알고리즘/[백준-7576]-토마토.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 7576] 토마토</a><br>
-<a data-href="[프로그래머스] 석유 시추" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-석유-시추.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 석유 시추</a><br>
-<a data-href="[프로그래머스] 요격 시스템" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-요격-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 요격 시스템</a><br>
-<a data-href="[백준 9251] LCS" href="https://alsgud8311.github.io/알고리즘/[백준-9251]-lcs.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 9251] LCS</a><br>
-<a data-href="[백준 1912] 연속합" href="https://alsgud8311.github.io/알고리즘/[백준-1912]-연속합.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1912] 연속합</a><br>
-<a data-href="[백준11631] ASCII Addition" href="https://alsgud8311.github.io/알고리즘/[백준11631]-ascii-addition.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준11631] ASCII Addition</a><br>
-<a data-href="[백준14596] Quilting(smaill)" href="https://alsgud8311.github.io/알고리즘/[백준14596]-quilting(smaill).html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준14596] Quilting(smaill)</a><br>
-<a data-href="[백준 17123] 배열 놀이" href="https://alsgud8311.github.io/알고리즘/[백준-17123]-배열-놀이.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 17123] 배열 놀이</a><br>
-<a data-href="[백준31784] 포닉스의 문단속" href="https://alsgud8311.github.io/알고리즘/[백준31784]-포닉스의-문단속.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준31784] 포닉스의 문단속</a>]]></description><link>https://alsgud8311.github.io/알고리즘/알고리즘.html</link><guid isPermaLink="false">알고리즘/알고리즘.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sat, 01 Feb 2025 02:34:19 GMT</pubDate></item><item><title><![CDATA[[백준 17123] 배열 놀이]]></title><description><![CDATA[<img src="https://i.imgur.com/XDa3R5Q.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">N x N의 행렬에서 [r1,c1] - [r2,c2]로 이루어진 사각형에 v를 더하면 된다
+]]></description><link>https://alsgud8311.github.io/알고리즘/[백준31784]-포닉스의-문단속.html</link><guid isPermaLink="false">알고리즘/[백준31784] 포닉스의 문단속.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sat, 01 Feb 2025 02:45:38 GMT</pubDate><enclosure url="https://i.imgur.com/p4MrRmQ.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/p4MrRmQ.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 17123] 배열 놀이]]></title><description><![CDATA[<img src="https://i.imgur.com/XDa3R5Q.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">N x N의 행렬에서 [r1,c1] - [r2,c2]로 이루어진 사각형에 v를 더하면 된다
 각 대각선으로 된 꼭짓점의 좌표이므로
 [r1,c1] - [r1,c2] - [r2,c1] - [r2,c2] 가 각 꼭짓점인 사각형의 값들에 대해서 전부 v씩 더하면 된다.특정한 알고리즘이 딱히 필요한 것 같지는 않다const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
 const inputs = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n"); const t = +inputs[0]; for (let i = 1; i &lt; inputs.length; i++) { const [n, m] = inputs[i].split(" ").map(Number); const map = inputs .slice(i + 1, i + n + 1) .map((row) =&gt; row.split(" ").map(Number)); const tests = inputs .slice(i + n + 1, i + n + m + 1) .map((test) =&gt; test.split(" ").map(Number)); for (const [r1, c1, r2, c2, v] of tests) { for (let k = r1 - 1; k &lt;= r2 - 1; k++) { for (let j = c1 - 1; j &lt;= c2 - 1; j++) { map[k][j] += v; } } } const resultRow = map.map((row) =&gt; row.reduce((acc, curr) =&gt; acc + curr, 0)); const resultCol = Array(n).fill(0); //열 for (let l = 0; l &lt; n; l++) { let acc = 0; for (let h = 0; h &lt; n; h++) { acc += map[h][l]; } resultCol[l] = acc; } console.log(resultRow.join(" ")); console.log(resultCol.join(" ")); i += n + m;
