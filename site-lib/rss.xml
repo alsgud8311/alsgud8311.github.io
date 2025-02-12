@@ -1,4 +1,211 @@
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Minhyung's Dev Log]]></title><description><![CDATA[Obsidian digital garden]]></description><link>https://alsgud8311.github.io/</link><image><url>https://alsgud8311.github.io/site-lib/media/favicon.png</url><title>Minhyung's Dev Log</title><link>https://alsgud8311.github.io/</link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Sun, 09 Feb 2025 15:48:30 GMT</lastBuildDate><atom:link href="https://alsgud8311.github.io/site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Sun, 09 Feb 2025 15:48:26 GMT</pubDate><copyright><![CDATA[Cho Minhyung]]></copyright><ttl>60</ttl><dc:creator>Cho Minhyung</dc:creator><item><title><![CDATA[forA_리팩토링_Navigation 추상화하기]]></title><description><![CDATA[포에이를 맡게 되면서 처음으로 시뮬레이터를 켰을 때는 회원가입조차 제대로 되어있지 않은 상태였기 때문에 제대로 뭔가를 볼 수가 없었다.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Minhyung's Dev Log]]></title><description><![CDATA[Obsidian digital garden]]></description><link>https://alsgud8311.github.io/</link><image><url>https://alsgud8311.github.io/site-lib/media/favicon.png</url><title>Minhyung's Dev Log</title><link>https://alsgud8311.github.io/</link></image><generator>Webpage HTML Export plugin for Obsidian</generator><lastBuildDate>Wed, 12 Feb 2025 11:27:38 GMT</lastBuildDate><atom:link href="https://alsgud8311.github.io/site-lib/rss.xml" rel="self" type="application/rss+xml"/><pubDate>Wed, 12 Feb 2025 11:27:34 GMT</pubDate><copyright><![CDATA[Cho Minhyung]]></copyright><ttl>60</ttl><dc:creator>Cho Minhyung</dc:creator><item><title><![CDATA[forA]]></title><description><![CDATA[<img src="https://i.imgur.com/EI9UluX.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+ADHD로 혼자 고민하지 말고, 'ForA'와 함께하세요!
+여러분의 일상과 고민을 나누고,
+ADHD를 잘 이해하고 치료하는 병원을 찾아보고,
+약탭을 통해 복용 중인 약의 정보를 확인하고, 나에게 맞는 약을 찾아봐요! 'ForA'는 ADHD를 이해하고, 여러분과 함께 성장하고 싶은 서비스입니다. :)<br><a data-href="forA_리팩토링_Navigation 구조 개선하기" href="https://alsgud8311.github.io/프로젝트/fora/fora_리팩토링_navigation-구조-개선하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">forA_리팩토링_Navigation 구조 개선하기</a><br>
+<a data-href="forA_OCR 도입과 커스텀 에러를 통한 에러 처리" href="https://alsgud8311.github.io/프로젝트/fora/fora_ocr-도입과-커스텀-에러를-통한-에러-처리.html#_0" class="internal-link" target="_self" rel="noopener nofollow">forA_OCR 도입과 커스텀 에러를 통한 에러 처리</a><br>
+<a data-href="forA_모달을 더 효율적으로 쓸 수는 없을까?" href="https://alsgud8311.github.io/.html" class="internal-link" target="_self" rel="noopener nofollow">forA_모달을 더 효율적으로 쓸 수는 없을까?</a>]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora.html</link><guid isPermaLink="false">프로젝트/forA/forA.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 11:25:59 GMT</pubDate><enclosure url="https://i.imgur.com/EI9UluX.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/EI9UluX.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[forA_리팩토링_Navigation 추상화하기]]></title><description><![CDATA[포에이를 맡게 되면서 처음으로 시뮬레이터를 켰을 때는 회원가입조차 제대로 되어있지 않은 상태였기 때문에 제대로 뭔가를 볼 수가 없었다.
+그렇기 때문에 정작 뭐가 문제인지를 실제로 구동해보면서 알 수 없었는데도 불구하고 코드만 보고 여기는 안봐도 사용자경험이 매우 나쁘다고 생각했던 부분이 있었는데, 바로 네비게이션 부분이었다.
+이전 개발자분이 왜그러셨는지는 모르겠지만 모든 스크린들을 전부 하나의 stack navigator에 담은 코드를 보았다.
+<img src="https://i.imgur.com/e6XE73C.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+현재는 로그인쪽 스택 네비게이터와 홈 부분 스택 네비게이터를 따로 나눴음에도 불구하고 아직까지도 네비게이션의 구조를 제대로 알 수 없었다.그 뿐만 아니라 더 심각하다고 느꼈던 부분은 하단 탭 또한 스택 네비게이터로 관리하고 있었기 때문에 우리가 흔히 아는 하단 탭의 작동방식이 아닌, 스택의 작동방식으로 작동하였다. 사용자는 정상적이라고 생각했다면 하단 탭이 마치 안쪽 화면만 바뀌는 느낌이라고 생각했을 텐데 갑자기 화면 내의 컨텐츠를 눌렀을 때처럼 화면이 좌우로 움직여버리니 당황스러웠을 것이다. 게다가 안쪽 영역만 바뀌는 것이 아닌, 하단 탭까지 움직이는 듯한 사용자 경험은 보다 익숙치 않을 것이라 생각한다.문제는 이 뿐만이 아니다. React Navigation의 Navigation lifecycle에 나온 설명을 보면 이보다 훨씬 큰 스노우볼이 굴러가고 있다는 것을 알 수 있다.
+Consider a stack navigator with 2 screens:&nbsp;Home&nbsp;and&nbsp;Profile. When we first render the navigator, the&nbsp;Home&nbsp;screen is mounted, i.e. its&nbsp;useEffect&nbsp;or&nbsp;componentDidMount&nbsp;is called. When we navigate to&nbsp;Profile, now&nbsp;Profile&nbsp;is mounted and its&nbsp;useEffect&nbsp;or&nbsp;componentDidMount&nbsp;is called. But nothing happens to&nbsp;Home&nbsp;- it remains mounted in the stack. The cleanup function returned by&nbsp;useEffect&nbsp;or&nbsp;componentWillUnmount&nbsp;is not called.
+요약하자면 두 개의 스크린을 네비게이터에 등록해놓고 navigate를 시킨다면, stack navigator에는 그대로 스택이 쌓인다는 이야기다. 따라서 이러한 컴포넌트들이 언마운트 되는 것이 아니라 계속 위로 차곡차곡 쌓이고 있다는 소리이다.
+이게 문제가 뭐냐면, 한 유저가 오랫동안 앱에 머물게 된다면 그만큼 화면 이동을 많이 하게 될텐데, 이 과정에서 계속 화면이 쌓이고, 결국 디바이스 내의 메모리를 계속해서 잡아먹고 있다는 소리기도 하다.<br>
+<img alt="화면 기록 2025-02-07 오후 11.20.09.gif" src="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif" target="_self">
+위 사진을 보면 기존의 탭들을 '이동' 한다는 개념이 아니라 스택처럼 '더 들어간다'는 개념으로 화면을 작동시키고 있는 것을 알 수 있다. 이러한 부분은 기존 데이터를 그대로 가지고 있는 스크린이기 때문에 쓸모 없는 화면이 메모리를 잡아먹고 있으며, 하단 탭의 이동 방식 또한 사용자가 예상하는 방식이 아니기 때문에 당황스러울 수 있다고 생각했다.그렇기 때문에 리팩토링의 우선순위에서 네비게이션 구조를 먼저 분리해봐야겠다는 생각이 들었고, 이참에 스택과 하단 탭을 세부적으로 나눠 추상화를 시켜 보다 가독성을 좋게 만들어 봐야 겠다는 생각이 들었다.예전에 프로젝트를 할 때는 항상 Navigation을 깊숙하게 Nesting하는 방식으로 처리를 했었지만, 당시에는 제대로 Docs를 보지 않고 했었는데, 이제서야 docs의 중요성을 깨닫고 조금씩 읽어보면서 알게 되었다.React Navigation에서는 navigation의 nesting을 가능하면 최대한 얕게 잡을 것을 추천한다. 그 이유는 navigation을 nesting하는 것은 잠재적 위험 요소들이 몇 가지 있기 때문이다.
+계층 구조가 깊어질수록 메모리 소모가 커지고, 보급형 폰같은 경우는 성능 저하 이슈로 이어질 수도 있음
+여러 타입의 navigation을 계속 겹치다 보면 사용자 경험에 좋지 않음
+deep link와 같은 기능을 사용할 때, 코드의 작성이 어려워짐. 즉 유지보수 및 확장성이 떨어짐
+따라서 Nesting되는 구조의 깊이를 최대한 깊게 가져가는 것을 지양하면서 적당히 스택과 탭의 navigation을 나눠야 한다.&lt;Stack.Navigator&gt; {isLoggedIn ? ( // Screens for logged in users &lt;Stack.Group&gt; &lt;Stack.Screen name="Home" component={Home} /&gt; &lt;Stack.Screen name="Profile" component={Profile} /&gt; &lt;/Stack.Group&gt; ) : ( // Auth screens &lt;Stack.Group screenOptions={{ headerShown: false }}&gt; &lt;Stack.Screen name="SignIn" component={SignIn} /&gt; &lt;Stack.Screen name="SignUp" component={SignUp} /&gt; &lt;/Stack.Group&gt; )} {/* Common modal screens */} &lt;Stack.Group screenOptions={{ presentation: 'modal' }}&gt; &lt;Stack.Screen name="Help" component={Help} /&gt; &lt;Stack.Screen name="Invite" component={Invite} /&gt; &lt;/Stack.Group&gt;
+&lt;/Stack.Navigator&gt;
+이를 위해서는 Group과 같은 Stack의 컴포넌트를 이용할 수 있다.그렇게 네비게이션 구조에 대해 보다 이해하고 다시금 코드를 보면서 가장 먼저 나눴던 것은 로그인한 유저와 로그인하지 않은 유저의 스택을 나누는 일이었다.
+왜냐면 로그인의 경우 한번 로그인 하면 굳이 로그인 스택을 그대로 가지고 있는 것이 불필요하다고 생각했기 때문이다.const MainNavigation = () =&gt; { const Stack = createStackNavigator() const isLoggedIn = useAuthStore((state) =&gt; state.accessToken) const firstLaunch = useLaunch() const initialHomeScreen = firstLaunch ? 'OnBoard' : 'Home' const screenOptions: StackNavigationOptions = { headerShown: false, } return ( &lt;NavigationContainer&gt; &lt;Stack.Navigator initialRouteName="launch" screenOptions={screenOptions} &gt; {isLoggedIn ? ( &lt;Stack.Screen name="HomeStack" component={() =&gt; ( &lt;HomeStack initialRoute={initialHomeScreen} /&gt; )} /&gt; ) : ( &lt;Stack.Screen name="LoginStack" component={LoginStack} /&gt; )} &lt;/Stack.Navigator&gt; &lt;/NavigationContainer&gt; )
+}
+export default MainNavigation 가장 먼저 앱의 엔트리 포인트에서 Navigation을 로그인 상태와 비로그인 상태에 따라 다른 로그인 스택을 관리할 수 있도록 하였다.
+여기서 위에처럼 Group 컴포넌트를 사용하면 해당 파일 안에서도 보다 잘 할 수 있지 않을까? 생각했지만 Home에서 관리하는 스택의 구조가 탭 하나당 화면 한 단위를 가진다고 생각하면 생각보다 Home이 가지는 구조가 많을 것 같아 따로 로그인과 일반 홈 상태의 스크린을 추상화하여 파일로 분리하였다.로그인 한 후의 상태는 홈 탭으로 분류하였다.
+그리고 이 홈 탭에는 전에 해놓았던 것처럼 네 개의 탭이 있다.<br><img src="https://i.imgur.com/wLAwtOi.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+그리고 이 각 스택에는 해당 탭에서 사용하는 모든 스크린들을 담아놓았다
+이 스택들을 굳이 추상화 시킨 이유는 앞에서도 말했듯이 각 스택이 가지는 스크린이 너무 많아 나중에 유지보수할 때 다시 구조를 잘 보기 위해서는 각 스택을 추상화하면 좋겠다고 생각했기 때문이다.<br><img src="https://i.imgur.com/EaHtNvH.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+그렇게 만들어진 구조는 위와 같다. 인덱스에서는 로그인 상태와 비로그인 상태를 구별하여 각각 HomeTab과 LoginStack이 들어가도록 했다.
+이렇게 보니 각 navigation 구조를 확실히 잘 볼 수 있기도 하고, 내가 필요한 부분에 대해서 정확히 파일을 찾아 들어갈 수 있게 되었다고 생각한다.기존의 TabBar는 아래와 같은 형태였다.<br><img src="https://i.imgur.com/JMwN3J1.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+왜 그랬는지는 모르겠지만 굳이 클릭 상태를 전역으로 관리하려는 시도가 보인다.
+Tab navigation을 따로 모르셨나..
+전역으로 현재 보고 있는 탭을 골라서 활성 상태 탭의 색상을 바꿔주기 위한 의도로 보인다.<br><img src="https://i.imgur.com/0HIbAw6.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+굳이 필요없는 기능을 빼고 BottomTabBar에서 가져올 수 있는 속성을 이용할 수 있도록 기존의 TabBar를 조금 더 가볍게 만들어 보았다.
+여기에서는 BottomTabBar에서 주는 Props를 받아 navigate 기능을 넣어 주었고, 추가적으로 각 탭의 초기 스크린에서만 탭 바가 보여야 하므로 visible 속성을 통해 제어해 주었다.
+원래는 TabBarStyle에 display: "none" 속성을 주는 경우가 많은데, 그냥 TabBar property로 넣게 되면 먹질 않아 이런 식으로 우회했다. const navigationState = useNavigationState((state) =&gt; state); const getNestedRouteName = (state: any): string | null =&gt; { if (!state) return null; const route = state.routes[state.index]; if (route.state) { return getNestedRouteName(route.state); } return route.name; }; const currentRouteName = getNestedRouteName(navigationState); return ( &lt;Tab.Navigator initialRouteName="오늘" tabBar={(props) =&gt; ( &lt;TabBar {...props} visible={tabBarVisibleScreens.includes( currentRouteName as string, )} /&gt; )} screenOptions={{ headerShown: false, }} ...
+그리고 getNestedRoutedName이라는 함수를 통해 현재의 navigation 상태에서 내가 설정한 RouteName을 가져올 수 있도록 했고, 탭 바가 필요한 스크린만 입력해놓은 배열에 포함되는지 여부를 visible에 넣어주었다.<br><img src="https://i.imgur.com/KqLu77b.gif" referrerpolicy="no-referrer" target="_self" class="is-unresolved"><br><img src="https://i.imgur.com/PAgOlkE.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+이전 개발자가 작업한걸 보면 옛날의 나를 보는 것만 같다.
+해결을 하기 위해서 근본적인 문제를 해결하기 위한 것이 아닌, 임시방편적인 조치를 하는 경우를 코드에서 많이 볼 수 있었다.
+특히 계속 눈에 띄는 부분은 navigate에 제네릭 타입을 넣지 않으면, 스크린 명을 입력했을 때 type error가 뜨게 된다.//이런 식으로 하면 타입스크립트에서는 타입에러가 뜬다.
+navigation.navigate("CameraScreen") //임시방편으로 이렇게 할 수 있다.
+navigation.navigate("CameraScreen") as never
+하지만 이렇게 쓰면 휴먼 에러의 가능성도 있을 뿐만 아니라, 자동완성도 해줄 수 있는데 굳이 이런 메리트를 버리는 꼴이 되며, 나중에 유지보수도 어려워질 수 있다.type HospitalDetailNavigationProp = StackNavigationProp&lt; HospitalStackParams, 'HospitalDetail'
+&gt;;
+const navigation = useNavigation&lt;HospitalDetailNavigationProp&gt;();
+따라서 이렇게 Navigation 훅에 타입을 제네릭으로 넣어주면서 해결할 수 있다. 자동완성도 되고 navigate 과정에서 필요한 인자 또한 타입체크를 해주므로 타입스크립트의 장점을 살리레 수 있다.export default function CameraScreen({ navigation, route,
+}: StackScreenProps&lt;HospitalStackParams, 'CameraScreen'&gt;
+내가 생각하는 가장 베스트 방식은 이렇게 StackScreenProps로 주는 것이다. 기존의 StackParams를 import해와 쓰면 되며, navigate를 하면서 navigation 객체 또한 넘겨주게 되므로 굳이 스택 구조에서 useNavigation훅을 쓰지 않아도 된다는 장점이 있다. 물론 navigation 객체의 navigate와 같은 메서드에서도 타입을 주입해주어 자동완성도 된다.모르는 사람이 만들던 코드를 읽게 되면 왜 이렇게 했을까?라고 생각하는 경우가 많아지는 것 같다.
+물론 이번 경우에는 부정적인 의문으로 들긴 했다
+하지만 이전 개발자를 봤을 때 마치 이전의 나를 보는 것만 같아서 나도 보고 많은 반성을 했다.
+임시방편적 조치, 원리를 이해하지 못한 코드, 더 알아볼 생각을 하지 않았다는게 보이는 코드... 모두 이전의 내가 가졌던 안티패턴이기도 했다. 내가 정확히 일년 전에 시작했던 리액트 네이티브 프로젝트가 이렇게 만들어져 있었다.사용자를 받고 계속 서비스 운영을 하면서 유지보수가 필요하다는 생각을 하게 되었지만 스케일이 너무 커져 결국 리팩토링을 얼마 하지 못한채로 서비스 종료하게 되어 아쉬움이 참 많이 남게 되었는데, 이번 프로젝트를 통해 보다 리팩토링의 중요성을 깨닫고, 이전의 내가 가졌던 안티패턴들을 해당 코드에서 발견하면서 보다 나의 안좋은 과거 습관들을 보다 확실히 인지할 수 있던 시간이었다.네비게이션 구조의 경우 확실히 이제는 각각의 탭이 서로 연관되지 않고 독립적으로 작용하는 느낌이 들어 사용자경험이 보다 자연스러워졌다고 생각한다!
+또한 이제는 stack 구조처럼 기존의 스크린들이 계속 쌓이는 구조가 아니다 보니 메모리 차지와 같은 문제를 해결하여 만족스럽다.]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora_리팩토링_navigation-구조-개선하기.html</link><guid isPermaLink="false">프로젝트/forA/forA_리팩토링_Navigation 구조 개선하기.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 09:13:00 GMT</pubDate><enclosure url="https://i.imgur.com/e6XE73C.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/e6XE73C.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[forA_OCR 알고쓰자!]]></title><description><![CDATA[기존에 다른 사람이 하던 프로젝트를 맡게 되었지만 많은 기능들이 제대로 구현되지 않은 채로 방치되어 있었다. 그 중 이번에 해볼 주제는 OCR이다. OCR은 Optical Character Recognition의 약자로, 광학 문자 인식의 약자이다.
+OCR은 이미지에서 문자(텍스트)를 추출하는 기술로, 스캔된 문서, 사진, 손글씨 등의 이미지를 분석하여 기계가 읽을 수 있는 문자 데이터로 변환하는 기술이다.OCR은 크게 전처리 → 문자 인식 → 후처리 과정으로 나뉜다.이미지를 OCR로 분석하기 전에 최적화하는 과정이다.
+해당 과정에서는
+이진화(Binary Thresholding): 컬러 또는 그레이스케일 이미지를 흑백으로 변환하여 명확한 윤곽을 생성
+노이즈 제거(Denoising): 배경 제거, 흐린 이미지 개선, 문자의 명확도 증가
+기울기 보정(Deskewing): 문서가 기울어진 경우 올바르게 정렬
+영역 분할(Segmentation): 문서에서 텍스트가 포함된 영역을 찾아 개별 문자 또는 단어로 분할
+등을 수행한다.전처리가 끝난 이미지에서 문자를 인식하는 단계로, 패턴 매칭 방식과 기계 학습 방식이 있다.
+패턴 매칭 (Template Matching) 미리 저장된 글자 패턴과 비교하여 문자 식별
+폰트가 일정하고 규칙적인 문서에서 효과적
+다양한 폰트나 손글씨 인식에는 약함 기계 학습 (Machine Learning &amp; Deep Learning) 이미지 데이터를 학습한 모델이 문자를 판별
+딥러닝 기반의 CNN(Convolutional Neural Network)과 RNN(Recurrent Neural Network)을 활용하여 문맥까지 분석 가능
+다양한 폰트 및 손글씨 인식에 강함 인식된 텍스트를 더 정제하고 정확도를 높이는 과정이다.
+문맥 분석(Context Analysis): 문장 구조를 고려하여 오류 수정
+사전 기반 보정(Dictionary Correction): 문법적으로 이상한 단어를 사전에 맞춰 수정
+글자 연결 및 띄어쓰기 보정
+등의 과정을 통해 텍스트의 품질을 보다 높이는 과정을 거치며 결과물이 나오게 된다.OCR 모델에도 여러 가지가 있지만, 이번에 사용해볼 것은 NCP(Naver Cloud Platform)의 OCR 모델이다.CLOVA OCR은 전세계적으로 가장 권위 있는 글로벌 챌린지인 ICDAR 2019 4개 분야에서 1위, CVPR 및 ICCV 국제 학회 논문으로 선정되는 등 독보적인 기술력을 자랑합니다. 특히 읽는 순서와 방향을 추정해 이미지 속 문자를 인식하며, 곡선으로 배열되거나 기울어진 문자, 필기체까지 인식할 수 있어 더욱 정확하게 데이터를 추출할 수 있습니다.
+라고 서비스의 정확한 데이터 추출 능력을 강조한다.사실 쓰게 된 이유는 내가 NCP 크레딧이 많이 남아서이기도 하지만.. 추가적으로 Document OCR이라는 기능을 지원하는데, 해당 기능은 대량의 학습 데이터를 기반으로 CLOVA AI 기술을 적용하여 특화 문서의 주요 정보를 추출해내는 능력을 가지고 있다.
+Document OCR에는 영수증, 신용카드, 사업자등록증 등등 표준화된 문서 양식에 대해서 미리 document를 지정하고, 해당 document에 특화된 모델을 사용하여 문서를 처리하기 때문에 보다 신뢰성이 높을 것 같아서 선택한 이유도 있다.<img src="https://i.imgur.com/5jhUyz9.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+물론 돈은 내야한다
+기본 요금이 있다는게 살짝 킹받지만, 그만큼의 값어치를 한다면야 크레딧 사용해도 상관은 없을 것 같다.
+Clova OCR의 Document OCR을 사용하려면 민감 정보가 많은 document들을 처리하다 보니 사전 승인이 필요하다. 미리 신청해놓는 것을 추천한다.
+<br><img src="https://i.imgur.com/iIdehha.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">신청을 한 뒤 API Gateway도 하나 열어 클라이언트 측에서 사용할 수 있도록 해주었다.<br><img src="https://i.imgur.com/f3qpmwp.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">다른 클라우드 서비스도 마찬가지겠지만, 클라우드 서비스의 API를 사용할 때는 먼저 요청 바디와 응답 코드 등에 대해서 미리 숙지하고 있는 것이 좋다.
+타입을 제공하지 않기 때문에 보면서 휴먼 에러가 나지 않도록 해야한다.
+또한 먼저 postman 등으로 API를 테스트한 후에 제대로 작동하는지 확인하고 사용할 것을 추천한다. 클라이언트에서 에러 체크하는 것보다 postman에서 보는게 훨 보기 편하다.<br><img src="https://i.imgur.com/AiY75kl.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">근데 이상한게 requestId에 UUID 넣으라 해서 postman에서 지원하는 randomUUID를 넣었는데 0011 코드로 된 에러가 떴다<br>
+<img src="https://i.imgur.com/I6397G1.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+계속 사진 오류인가 하고 찾아봤지만 결국 requestId를 위와 같이 UUID가 아닌 임의의 값으로 해주니 되었다(?)
+UUID라고 하지를 말던가..
+그러니 최대한 API 요청 예시를 보고 따라할 수 있는 부분은 따라하는 것을 추천한다.Postman으로 테스트까지 되었다면 응답 객체가 어떻게 되어있는지 clova api 문서와 비교하면서 확인까지 되었을 것이다.
+그렇다면 이제 이 api를 어떻게 호출하고, 어떻게 영수증 인증을 야무지게 할 수 있을까를 생각해봐야 한다.원래대로 api 호출이라 함은function receiptValidation() { const {data} = axios.post(API_URL, BODY); return data
+}
+이런 식으로 요청을 보내거나function receiptValidation() { try{ const {data} = axios.post(API_URL, BODY); return data }catch(error){ throw error; }
+}
+이런 식으로 api 호출 함수에도 try-catch문을 사용할 것이다.하지만 http 요청을 하는 함수에서 try-catch문을 걸고 다시 던지는 코드는 그렇게 좋은 코드가 아니라고 생각한다.
+왜냐면 대부분 해당 함수를 import한 뒤에 해당 함수를 실행시키는 부분에서도 try-catch를 통해 에러 전파를 잡아줘야 할텐데 그렇게 되면 http 요청부에서 실행된 함수의 catch문은 그저 받아서 다시 던지는 역할밖에 되지 않는다.
+공던지기 놀이를 두명이서 하고 있다가 한명이 사이에 끼어 들어가서 공을 그저 받았다가 다시 주는..느낌이랄까..물론 저기에서 그저 던지는게 아니라 각각 에러 로깅을 해서 callstack을 확인하기 위해서라는 용도로도 쓰이는 것 같지만 나는 굳이 그렇게 해야하나 싶었다. <br><img src="https://i.imgur.com/1sn5J6f.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">추가적으로 여기에서는 http 요청을 날렸을 때, Bad Request라던가 400번대 에러에 해당하는 것들은 에러로 돌아오지만 clova ocr이 사진을 인식하고 응답을 보내는 과정에서 사진이 제대로 인식되지 않은 에러와 같은 부분은 정상적인 응답의 이미지 객체의 inferResult로 오게 된다.<br><img src="https://i.imgur.com/qOS7YzB.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">따라서 이렇게 제대로 인식이 된 경우와 되지 않은 경우를 나누어 각각 에러처리를 해줘야 했다.내가 선택한 에러 핸들링은 axiosError와 커스텀 에러를 혼합한 방식이다.
+gateway api로 보낸 요청에서 400번대 에러가 오게 되면, 400번대 에러가 온다. 이는 자연스럽게 axiosError로 catch에서 잡히게 된다.하지만 위에서 말한 것처럼 응답은 정상적으로 오지만 이미지 인식에 실패한 경우라면?
+이 경우에 그냥 Error로 보내게 된다면 이 에러가 이미지 인식에 실패해서 나는 에러인지, 코드단에서 뭐가 잘못돼서 나오는 에러인지 제대로 구분하기 쉽지 않다. 그렇기 때문에 에러를 보다 명확히 하기 위해서 나는 커스텀 에러를 추가하는 방식을 선택했다.class Error { constructor(message) { this.message = message; this.name = "Error"; // (name은 내장 에러 클래스마다 다릅니다.) this.stack = &lt;call stack&gt;; // stack은 표준은 아니지만, 대다수 환경이 지원합니다. }
+}
+기존 에러는 이런 식으로 구성되어 있다.나는 해당 에러를 상속받아 새로운 커스텀 에러를 만들면 된다. 물론 에러를 굳이 상속받지 않아도 던지기만 하면 catch에서 잡히긴 하지만, 해당하는 부분이 에러라는 것을 명확히 할 수 있으며 가지고 있는 Error의 stack과 같은 속성들도 모두 에러를 추적하는데 필요한 요소이기 때문에 상속해주었다.export class ValidationError extends Error { constructor(message: string) { super(message); this.name = 'ValidationError'; }
+}
+그럼 이제 이걸 가지고 어떻게 사용할 수 있을까?
+먼저 ocr 함수의 검증부를 보자.const REQUEST_ID = 'hospitalReceiptValidation';
+const MIN_HOSPITAL_PRICE = 1000;
+export const receiptValidationCheck = async ( base64EncodedImage: string, hospitalName: string,
+) =&gt; { const config = { headers: { 'Content-Type': 'application/json', 'X-OCR-SECRET': NAVER_CLOUD_PLATFORM_OCR_SECRET, }, }; const { data } = await axios.post( NAVER_CLOUD_PLATFORM_OCR_URL, { version: 'V2', requestId: REQUEST_ID, timestamp: Date.now(), images: [ { format: 'jpg', name: 'ocrImage', data: base64EncodedImage, }, ], enableTableDetection: false, }, config, ); if ( data.images[0].inferResult === 'FAILURE' || data.images[0].inferResult === 'ERROR' ) throw new ValidationError( '이미지 확인이 제대로 되지 않았습니다. 다시 찍어주세요.', ); if ( data.images[0].receipt.result.storeInfo.name === hospitalName &amp;&amp; +data.images[0].receipt.result.totalPrice.price.formatted &gt;= MIN_HOSPITAL_PRICE ) return +data.images[0].receipt.result.totalPrice.price.formatted; throw new ValidationError('영수증 검증에 실패했습니다. 다시 찍어주세요.');
+};
+여기서 base64Encoded 이미지에 대한 유효성 검사는 해당 함수를 Promise Chaining을 통해 넘겨주는 과정에서 진행되며, hospitalName에 대한 유효값 또한 미리 검증하기 때문에 따로 검증을 해당 함수에서는 시켜주지 않았다.header에 필요한 값을 넣어주고 post에 필요한 값들을 넣어주었다.
+그리고 axios를 통해 post 요청을 보내게 되면 data가 올 것이라 가정한다. data가 오지 않아 data is undefined와 같은 오류가 뜨게 된다면 해당 오류는 비정상적인 오류로 간주했다. gateway api쪽에서 보내는 오류는 axiosError로 던져질 것이고 그게 아니라면 객체가 무조건 오게 되어있는데 만약에 오지 않는 오류는 비정상적인 오류이기 때문이다. 따라서 이런 오류는 그냥 원인을 알 수 없는 오류로 보고 catch단에서 알 수 없는 오류라고 내보내게끔 했다.내가 ValidationError를 건 경우는 두 가지 경우이다.
+image의 InferResult 로 오는 값이 ERROR이거나 FAILURE일 때 인식이 실패했을 때 오는 오류를 잡아서 던진다
+이 경우에는 인식이 제대로 되지 않았다는 것이 명확하기 때문에 다시금 사진을 찍도록 유도하면 된다. 병원 이름과 가격에 대한 유효성 검사가 끝나고도 아직 return되지 않았을 경우 해당 경우는 뭐 어떻게 되든 인식 후에 제대로 유효성 검사가 되지 않은 경우라고 판단했다. 병원에서 1000원 이하 나왔을 때
+병원 이름이 일치하지 않을 때 의 경우가 아래의 throw문으로 갈 것이다. 여기까지 오고도 아래로 가게 되면 검증이 제대로 되지 않았다는 의미이기 때문에 마지막에 ValidationError를 throw시켜주었다. 해당 오류들은 내가 인지했던 예외상황이기 때문에 메세지를 직접 넣어줌으로써 해당 에러의 메세지를 그대로 모달로 띄워 보내도 되도록 하였다.
+하지만 이외의 경우는 내가 예상하지 못했던 예외 상황이기 때문에 이런 부분의 오류 메세지를 그대로 모달에 띄워주게 된다면 사용자는 이게 무슨 말이지? 싶을 것이다.
+그러므로 다른 에러에 대해서는 통일된 예상치 못한 오류 안내 모달을 띄워주면 된다.try { ...
+} catch (error) { if (error instanceof ValidationError) { pushError(error.message); } else if (axios.isAxiosError(error)){ pushError( '서버와의 오류가 발생했습니다. 다시 시도해 주세요.', ); } else{ pushError( '예상치 못한 오류가 발생했습니다. 지속된다면 고객센터에 문의해주세요.', ); }
+}
+이런 식으로 에러 처리를 하게 되면 보다 세부적으로 에러를 관리할 수 있게 되고, 이를 통해 보다 나은 사용자 경험을 제공할 수 있다!사실 이건 리팩토링이 아니라 처음부터 다시 짠 코드가 좀 더 맞는 표현같기도..
+OCR을 도입하고, 검증 과정을 다시 리팩토링 하면서 코드를 봤을 때 옛날에는 아무생각없이 그저 보기만 했었는데 이제는 그래도 코드의 뭐가 부족할까를 많이 생각하면서 보는 것 같다.특히 실제로 운영될 서비스인 만큼, 예외 처리는 예전처럼 무지성으로 catch문에 콘솔만 찍는 행위를 하지 않게 되었다. 사용자에게 또한 예외에 대해 안내를 할 수 있어야 좋은 사용자경험을 제공할 수 있으며 다른 사람들 또한 해당 코드를 유지보수 할 수도 있다고 생각하다보니 여러가지 방식을 생각하게 되고, 이렇게 고민하는 과정을 통해 보다 코드의 품질이 향상된다고 생각한다. 항상 UX와 DX를 모두 고려하면서 코드를 짜도록 습관화하자!]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora_ocr-도입과-커스텀-에러를-통한-에러-처리.html</link><guid isPermaLink="false">프로젝트/forA/forA_OCR 도입과 커스텀 에러를 통한 에러 처리.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 08:45:46 GMT</pubDate><enclosure url="https://i.imgur.com/5jhUyz9.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/5jhUyz9.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Neo]]></title><description><![CDATA[Neo는 생성형 ai를 활용한 개인별 웹소설 창작 서비스입니다.
+Neo를 통해서는
+개인별 생성형 ai를 통한 맞춤 소설 제작
+Neo에 존재하는 웹소설을 내 마음대로 다시쓰기
+등의 서비스를 제공합니다.
+<a data-href="axios를 떠나보내기" href="https://alsgud8311.github.io/프로젝트/neo/axios를-떠나보내기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">axios를 떠나보내기</a><br>
+<a data-href="반응형을 자바스크립트로 해보기" href="https://alsgud8311.github.io/프로젝트/neo/반응형을-자바스크립트로-해보기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">반응형을 자바스크립트로 해보기</a><br>
+<a data-href="구현의 상세 추상화" href="https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html#_0" class="internal-link" target="_self" rel="noopener nofollow">구현의 상세 추상화</a>]]></description><link>https://alsgud8311.github.io/프로젝트/neo/neo.html</link><guid isPermaLink="false">프로젝트/Neo/Neo.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 07:38:39 GMT</pubDate></item><item><title><![CDATA[백준 2667 단지번호 붙이기]]></title><description><![CDATA[<img src="https://i.imgur.com/KHl457b.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+단지를 정의하고 각 단지에 속하는 집의 수를 오름차순으로 정렬하여 출력하는 그래프 탐색 문제이다.
+나는 먼저 dfs가 익숙하므로 dfs로 풀어보았다.const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const [n, ...m] = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n");
+const N = +n;
+const houseMap = m.map((h) =&gt; Array.from(h).map(Number));
+const dLoc = [ [-1, 0], [0, -1], [1, 0], [0, 1],
+];
+let houses = 0;
+const result = [];
+for (let i = 0; i &lt; N; i++) { for (let j = 0; j &lt; N; j++) { if (houseMap[i][j]) { dfs(i, j); result.push(houses); houses = 0; } }
+}
+console.log(result.length);
+console.log(result.sort((a, b) =&gt; a - b).join("\n")); function dfs(x, y, count = 0) { houseMap[x][y] = 0; houses++; for (const [dx, dy] of dLoc) { if ( x + dx &gt;= 0 &amp;&amp; x + dx &lt; N &amp;&amp; y + dy &gt;= 0 &amp;&amp; y + dy &lt; N &amp;&amp; houseMap[x + dx][y + dy] ) { dfs(x + dx, y + dy, count + 1); } }
+} 지나간 집의 경우는 0으로 바꾸면서 dfs 탐색을 실행했다.
+특이한 점으로는 houses를 전역으로 두고 한번 dfs 탐색이 끝날 때마다 초기화해주는 방식으로 갔는데, 이것보다는 함수 내에서 관리해서 리턴받고 결과에 push하는 방식이 더 나을 것 같다.function dfs(x, y) { houseMap[x][y] = 0; let count = 1; for (const [dx, dy] of dLoc) { if ( x + dx &gt;= 0 &amp;&amp; x + dx &lt; N &amp;&amp; y + dy &gt;= 0 &amp;&amp; y + dy &lt; N &amp;&amp; houseMap[x + dx][y + dy] ) { count += dfs(x + dx, y + dy); } } return count;
+}
+dfs 함수를 이런 식으로 따로 count를 넘기는게 아니라 각 함수에서 클로저로 관리하면서 dfs 탐색 과정에서 count값을 계속 더한 다음 반환하도록 했다.
+이런 식으로 하면 가장 처음 실행된 dfs 함수에서 모든 dfs 탐색이 끝난 뒤의 count를 받아올 수 있게 된다. 이 결과를 그냥 결과 배열에 넣으면 된다.function bfs(x, y) { let count = 1; const queue = [[x, y]]; houseMap[x][y] = 0; while (queue.length) { const [cx, cy] = queue.shift(); for (const [dx, dy] of dLoc) { const nx = cx + dx, ny = cy + dy; if (nx &gt;= 0 &amp;&amp; nx &lt; N &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; N &amp;&amp; houseMap[nx][ny]) { houseMap[nx][ny] = 0; queue.push([nx, ny]); count++; } } } return count;
+}
+bfs 방식으로도 시도해 보았다.
+bfs 방식은 처음 실행된 쪽에서 방향을 찾아 계속 들어가는 dfs 방식이 아닌, 가능한 방향을 먼저 모두 받고 하나씩 큐에서 빼내가면서 모든 방향에 대해 먼저 탐색하는 과정을 거친다.해당 문제는 계속 한쪽으로 깊게 들어가는 구조보다는 여러 방향으로 단지가 구성되어있는 경우가 많다고 생각하기 때문에 dfs보다는 bfs가 더 적절할 것 같다.<br><img src="https://i.imgur.com/4qSfVBI.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">위에가 bfs로 실행했을 때이고, 아래가 dfs로 실행했을 때이다.
+시간적으로 bfs가 빠른 속도를 보여준다.]]></description><link>https://alsgud8311.github.io/알고리즘/백준-2667-단지번호-붙이기.html</link><guid isPermaLink="false">알고리즘/백준 2667 단지번호 붙이기.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 05:48:21 GMT</pubDate><enclosure url="https://i.imgur.com/KHl457b.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/KHl457b.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[백준 1697 숨바꼭질]]></title><description><![CDATA[<img src="https://i.imgur.com/4D8XnMo.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">수빈이가 순간이동을 하거나 걸어서 동생을 찾을 수 있는 최소한의 시간을 구하는 문제이다.
+수빈이는 x+1, x-1, 2x의 위치로 이동이 가능하다.처음에는 이 문제를 완전 탐색으로 풀려고 했다. 각 노드를 가면서 갈 수 있는 모든 경로에 대해 재귀적으로 탐색을 시키면서 최솟값을 계속 갱신하는 방식을 생각했는데, 그렇게 되면 기하급수적으로 함수 호출이 많아지고 콜스택이 수용가능한 정도를 넘어서게 되어 에러가 났다.결국 알고리즘 분류를 보고 말았는데, bfs를 통해서 문제를 풀어야 한다.bfs가 가장 이상적인 풀이법인 이유는 모든 이동이 가중치가 같기 때문에 탐색하는 경로인 x+1, x-1, 2x에 대해서 기존 가중치에 1만 더해주면 된다.또한, bfs는 현재 횟수를 한 단계씩 확장하면서 탐색하는 방식이고, 해당 단계에서 가능한 모든 경로들을 탐색한 후에 다음 단계로 이동하기 때문에 최단 경로를 보장할 수 있다. 그러므로 여러번 같은 경로를 방문하지 않아도 이전까지 갔다온 시간, 즉 누적 가중치가 최단경로인 셈이다.const fs = require("fs"); const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const [n, k] = fs .readFileSync(INPUT_FILE) .toString() .trim() .split(" ") .map(Number); const MAX = Math.max(n, k) * 2 + 1;
+const visited = new Array(MAX).fill(false);
+const queue = [[n, 0]]; visited[n] = true; while (queue.length) { const [to, cnt] = queue.shift(); if (to === k) { console.log(cnt); break; } for (const next of [to + 1, to - 1, to * 2]) { if (next &gt;= 0 &amp;&amp; next &lt; MAX &amp;&amp; !visited[next]) { visited[next] = true; queue.push([next, cnt + 1]); } }
+} 배열의 경우는 2x로 순간이동하는 경로까지 생각해야 하므로 넉넉하게 n과 k중 더 큰 값에 2를 곱하고 1을 더해주었다.
+또한 다시금 갔던 경로를 재탐색할 필요가 없으므로 방문한 곳을 배열로 관리하여 방문했던 곳의 경우 탐색을 하지 못하도록 했다.이렇게 bfs 방식으로 x+1, x-1, 2x의 경로에 대해서 탐색을 하고, 목적지인 k에 도달하게 된다면 배열을 나가도록 하였다.<br><img src="https://i.imgur.com/UzBaRPl.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">]]></description><link>https://alsgud8311.github.io/알고리즘/백준-1697-숨바꼭질.html</link><guid isPermaLink="false">알고리즘/백준 1697 숨바꼭질.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 02:57:23 GMT</pubDate><enclosure url="https://i.imgur.com/4D8XnMo.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/4D8XnMo.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[알고리즘]]></title><description><![CDATA[<a data-href="[백준 1004] 어린왕자" href="https://alsgud8311.github.io/알고리즘/[백준-1004]-어린왕자.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1004] 어린왕자</a><br>
+<a data-href="[프로그래머스] 방금그곡" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-방금그곡.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 방금그곡</a><br>
+<a data-href="[프로그래머스] 두 원 사이의 정수 쌍" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 두 원 사이의 정수 쌍</a><br>
+<a data-href="[프로그래머스] 행렬 테두리 회전하기" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-행렬-테두리-회전하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 행렬 테두리 회전하기</a><br>
+<a data-href="[프로그래머스] 주차 요금 계산" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-주차-요금-계산.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 주차 요금 계산</a><br>
+<a data-href="[백준 12865] 평범한 배낭" href="https://alsgud8311.github.io/알고리즘/[백준-12865]-평범한-배낭.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 12865] 평범한 배낭</a><br>
+<a data-href="[백준 7576] 토마토" href="https://alsgud8311.github.io/알고리즘/[백준-7576]-토마토.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 7576] 토마토</a><br>
+<a data-href="[프로그래머스] 석유 시추" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-석유-시추.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 석유 시추</a><br>
+<a data-href="[프로그래머스] 요격 시스템" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-요격-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 요격 시스템</a><br>
+<a data-href="[백준 9251] LCS" href="https://alsgud8311.github.io/알고리즘/[백준-9251]-lcs.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 9251] LCS</a><br>
+<a data-href="백준 1912 연속합" href="https://alsgud8311.github.io/알고리즘/백준-1912-연속합.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 1912 연속합</a><br>
+<a data-href="백준11631 ASCII Addition" href="https://alsgud8311.github.io/알고리즘/백준11631-ascii-addition.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준11631 ASCII Addition</a><br>
+<a data-href="백준 14596 Quilting(smaill)" href="https://alsgud8311.github.io/알고리즘/백준-14596-quilting(smaill).html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 14596 Quilting(smaill)</a><br>
+<a data-href="백준 17123 배열 놀이" href="https://alsgud8311.github.io/알고리즘/백준-17123-배열-놀이.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 17123 배열 놀이</a><br>
+<a data-href="백준 31784 포닉스의 문단속" href="https://alsgud8311.github.io/알고리즘/백준-31784-포닉스의-문단속.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 31784 포닉스의 문단속</a><br>
+<a data-href="백준 6064 카잉 달력" href="https://alsgud8311.github.io/알고리즘/백준-6064-카잉-달력.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 6064 카잉 달력</a><br>
+<a data-href="백준 10597 순열장난" href="https://alsgud8311.github.io/알고리즘/백준-10597-순열장난.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 10597 순열장난</a><br>
+<a data-href="백준 31836 피보나치 기념품" href="https://alsgud8311.github.io/알고리즘/백준-31836-피보나치-기념품.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 31836 피보나치 기념품</a> - 미완성<br>
+<a data-href="백준 26091 현대모비스 소프트웨어 아카데미" href="https://alsgud8311.github.io/알고리즘/백준-26091-현대모비스-소프트웨어-아카데미.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 26091 현대모비스 소프트웨어 아카데미</a><br>
+<a data-href="[백준 23307] 드디어 시작한 화석 발굴 이벤트" href="https://alsgud8311.github.io/알고리즘/[백준-23307]-드디어-시작한-화석-발굴-이벤트.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 23307] 드디어 시작한 화석 발굴 이벤트</a><br>
+<a data-href="백준 12891 DNA 비밀번호" href="https://alsgud8311.github.io/알고리즘/백준-12891-dna-비밀번호.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 12891 DNA 비밀번호</a><br>
+<a data-href="백준 18113 그르다 김가놈" href="https://alsgud8311.github.io/알고리즘/백준-18113-그르다-김가놈.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 18113 그르다 김가놈</a><br>
+<a data-href="백준 9466 텀 프로젝트" href="https://alsgud8311.github.io/알고리즘/백준-9466-텀-프로젝트.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 9466 텀 프로젝트</a><br>
+<a data-href="백준 2667 단지번호 붙이기" href="https://alsgud8311.github.io/알고리즘/백준-2667-단지번호-붙이기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 2667 단지번호 붙이기</a><br>
+<a data-href="백준 2178 미로 탐색" href="https://alsgud8311.github.io/알고리즘/백준-2178-미로-탐색.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 2178 미로 탐색</a><br>
+<a data-href="백준 1697 숨바꼭질" href="https://alsgud8311.github.io/알고리즘/백준-1697-숨바꼭질.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 1697 숨바꼭질</a>]]></description><link>https://alsgud8311.github.io/알고리즘/알고리즘.html</link><guid isPermaLink="false">알고리즘/알고리즘.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Wed, 12 Feb 2025 01:57:58 GMT</pubDate></item><item><title><![CDATA[백준 31836 피보나치 기념품]]></title><description><![CDATA[<img src="https://i.imgur.com/KSslIhp.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">세림이랑 성주는 왜 대체 피보나치 수열을 좋아하는 걸까...?
+아무튼 두 사람이 받게 될 기념품에 적힌 피보나치 수의 합이 같아야 하면서 최대한 많은 개수의 기념품을 나눠줄 수 있도록 해야한다.<br><img src="https://i.imgur.com/rJt8KiI.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+입출력을 보자.
+예제 1의 경우 2개의 기념품이 있다.
+이 때, 세림이는 1이 적혀있는 기념품 한개를 받았고, 성주는 2가 적혀있는 기념품 한 개를 받았다.
+여기서 1과 2 모두 피보나치 수로 1이기 때문에 두 사람이 받은 기념품들의 합은 1로 같다.예제2의 경우 4개의 기념품을 받았다.
+세림이는 1, 3 두 개의 기념품을 받았고, 성주는 4로 된 기념품 하나를 받았다.
+세림이의 기념품들의 피보나치 수 합은 F1+F3 = 1+2 = 3
+성주의 기념품들의 피보나치 수 합은 F4 = 3 이므로 두 사람이 받은 기념품의 피보나치 수 합은 같다.이 문제는 어떻게 풀어야 할까?
+N이 주어지면 거기에서 공통의 합의 나오도록 해야 하는데, 이는 한 사람의 기념품을 받은 수를 가지고 계속 쪼갤 수 있다.
+예제 2처럼 N이 4라고 한다면 F4부터 시작해서 계속해서 피보나치 수로 쪼갤 수 있도록 하는 것이다.
+예제 2의 경우도 4로 시작해서 F4 = F2 + F3이므로 한도를 넘지 않는 선에서 2개의 기념품을 가지도록 한 것이다.
+또한 여기서 최대의 값을 가져야 하므로 기존에 나온 값들 중에서 가장 큰 값을 고르는 것이기 때문에 분할정복 혹은 dp로 풀어야 할 것 같다.
+흠 일단 피보나치로 나올 수 있는 수들에 대해서 미리 메모이제이션 한 다음에, 여기에서 가장 크게 나눠가질 수 있는 경우를 찾아보면 될 것 같다.
+샀던 N개의 기념품은 모두 N보다 작은 x의 수가 적혀있는 피보나치 수이다.
+가장 큰 수부터 시작해서 계속 피보나치를 나눠가면서 개수를 더하면?]]></description><link>https://alsgud8311.github.io/알고리즘/백준-31836-피보나치-기념품.html</link><guid isPermaLink="false">알고리즘/백준 31836 피보나치 기념품.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Tue, 11 Feb 2025 02:18:29 GMT</pubDate><enclosure url="https://i.imgur.com/KSslIhp.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/KSslIhp.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[백준 2178 미로 탐색]]></title><description><![CDATA[<img src="https://i.imgur.com/O5oVLAN.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+1,1부터 출발해서 마지막 칸까지 가는데 필요한 최소 칸 수를 구하는 문제이다.
+전형적인 그래프 탐색 문제이다.
+dfs로 풀게 되면 자기가 들어갈 수 있는 만큼 계속 안쪽으로 먼저 파고들면서 탐색하는게 선행되기 때문에 최소거리는 구하기 힘들다. 그러므로 bfs로 탐색하는게 더 효과적이다.const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const [f, ...maps] = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n"); const [n, m] = f.split(" ").map(Number);
+const maze = maps.map((m) =&gt; Array.from(m));
+const visited = Array.from({ length: n }, () =&gt; new Array(m).fill(false));
+const dLoc = [ [-1, 0], [1, 0], [0, 1], [0, -1],
+]; function bfs() { const queue = [[0, 0, 1]]; while (queue.length) { const [x, y, cnt] = queue.shift(); if (x === n - 1 &amp;&amp; y === m - 1) { console.log(cnt); return; } visited[x][y] = true; for (const [dx, dy] of dLoc) { const nx = x + dx; const ny = y + dy; if ( nx &gt;= 0 &amp;&amp; nx &lt; n &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; m &amp;&amp; !visited[nx][ny] &amp;&amp; maze[nx][ny] === "1" ) { queue.push([nx, ny, cnt + 1]); } } }
+} bfs();
+처음에는 이렇게 했었다.
+하지만 이상하게도 시간 초과가 났다.
+방문 처리도 잘 했고, 큐에 배열을 넣는 것까지 문제 없다고 생각했다.
+하지만 여기에서 문제는 방문처리에 있었다.
+while문을 돌면서 queue에서 빼낼 때 방문 처리를 하게 되면 dLoc을 돌면서 새로운 경로를 추가할 때는 visited 배열이 갱신되기 전이기 때문에 방문할 예정인 노드 또한 다시 추가되는 문제가 생긴다.const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
+const [f, ...maps] = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .split("\n"); const [n, m] = f.split(" ").map(Number);
+const maze = maps.map((m) =&gt; Array.from(m));
+const visited = Array.from({ length: n }, () =&gt; new Array(m).fill(false));
+const dLoc = [ [-1, 0], [1, 0], [0, 1], [0, -1],
+]; function bfs() { const queue = [[0, 0, 1]]; visited[0][0] = true; while (queue.length) { const [x, y, cnt] = queue.shift(); if (x === n - 1 &amp;&amp; y === m - 1) { console.log(cnt); return; } for (const [dx, dy] of dLoc) { const nx = x + dx; const ny = y + dy; if ( nx &gt;= 0 &amp;&amp; nx &lt; n &amp;&amp; ny &gt;= 0 &amp;&amp; ny &lt; m &amp;&amp; !visited[nx][ny] &amp;&amp; maze[nx][ny] === "1" ) { visited[nx][ny] = true; queue.push([nx, ny, cnt + 1]); } } }
+} bfs();
+이를 해결하기 위해서 새로운 경로를 추가할 때 미리 visited 배열을 갱신해주었다.<br><img src="https://i.imgur.com/hvg16SN.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
+경로의 방문 처리는 항상 신경 써서 풀자 !
+]]></description><link>https://alsgud8311.github.io/알고리즘/백준-2178-미로-탐색.html</link><guid isPermaLink="false">알고리즘/백준 2178 미로 탐색.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Tue, 11 Feb 2025 02:18:06 GMT</pubDate><enclosure url="https://i.imgur.com/O5oVLAN.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/O5oVLAN.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[forA_리팩토링_Navigation 추상화하기]]></title><description><![CDATA[포에이를 맡게 되면서 처음으로 시뮬레이터를 켰을 때는 회원가입조차 제대로 되어있지 않은 상태였기 때문에 제대로 뭔가를 볼 수가 없었다.
 그렇기 때문에 정작 뭐가 문제인지를 실제로 구동해보면서 알 수 없었는데도 불구하고 코드만 보고 여기는 안봐도 사용자경험이 매우 나쁘다고 생각했던 부분이 있었는데, 바로 네비게이션 부분이었다.
 이전 개발자분이 왜그러셨는지는 모르겠지만 모든 스크린들을 전부 하나의 stack navigator에 담은 코드를 보았다.
 <img src="https://i.imgur.com/e6XE73C.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">
@@ -38,29 +245,7 @@ n개의 정수로 이루어진 임의의 수열이 주어진다. 우리는 이 �
 일단 우리에게 주어지는 것은 n의 정보와 수열의 정보이다. 이를 가지고 연속된 수 중에 가장 최대한 큰 수를 계속 기록하기 위해서는 수열이 배열이라는 가정 하에 생각해보면 된다.
 배열을 처음부터 끝까지 돌면서 우리는 연속된 수들을 만날 것이다. 이 연속된 수에서 우리는 기존의 누적된 값을 현재 보고 있는 값과 비교해야 한다.
 여기서 중요한 점은 무조건 음수라고 해서 거기서 끊어야 하는게 아닌, 음수라고 하더라도 그 뒤에 연속되는 값을 더했을 때 가장 큰 수가 된다면 음수라도 포함할 수 있는 경우를 생각해야 한다.
-그렇다면 점화식은 이전까지 누적된 값과 현재 보고 있는 값을 더했을 때와 현재 값 중에 더 큰 값을 골라야 한다. dp[n] = max(dp[n-1] + arr[n], arr[n])]]></description><link>https://alsgud8311.github.io/알고리즘/백준-1912-연속합.html</link><guid isPermaLink="false">알고리즘/백준 1912 연속합.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 09 Feb 2025 07:13:27 GMT</pubDate></item><item><title><![CDATA[알고리즘]]></title><description><![CDATA[<a data-href="[백준 1004] 어린왕자" href="https://alsgud8311.github.io/알고리즘/[백준-1004]-어린왕자.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 1004] 어린왕자</a><br>
-<a data-href="[프로그래머스] 방금그곡" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-방금그곡.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 방금그곡</a><br>
-<a data-href="[프로그래머스] 두 원 사이의 정수 쌍" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-두-원-사이의-정수-쌍.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 두 원 사이의 정수 쌍</a><br>
-<a data-href="[프로그래머스] 행렬 테두리 회전하기" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-행렬-테두리-회전하기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 행렬 테두리 회전하기</a><br>
-<a data-href="[프로그래머스] 주차 요금 계산" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-주차-요금-계산.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 주차 요금 계산</a><br>
-<a data-href="[백준 12865] 평범한 배낭" href="https://alsgud8311.github.io/알고리즘/[백준-12865]-평범한-배낭.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 12865] 평범한 배낭</a><br>
-<a data-href="[백준 7576] 토마토" href="https://alsgud8311.github.io/알고리즘/[백준-7576]-토마토.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 7576] 토마토</a><br>
-<a data-href="[프로그래머스] 석유 시추" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-석유-시추.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 석유 시추</a><br>
-<a data-href="[프로그래머스] 요격 시스템" href="https://alsgud8311.github.io/알고리즘/[프로그래머스]-요격-시스템.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[프로그래머스] 요격 시스템</a><br>
-<a data-href="[백준 9251] LCS" href="https://alsgud8311.github.io/알고리즘/[백준-9251]-lcs.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 9251] LCS</a><br>
-<a data-href="백준 1912 연속합" href="https://alsgud8311.github.io/알고리즘/백준-1912-연속합.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 1912 연속합</a><br>
-<a data-href="백준11631 ASCII Addition" href="https://alsgud8311.github.io/알고리즘/백준11631-ascii-addition.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준11631 ASCII Addition</a><br>
-<a data-href="백준 14596 Quilting(smaill)" href="https://alsgud8311.github.io/알고리즘/백준-14596-quilting(smaill).html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 14596 Quilting(smaill)</a><br>
-<a data-href="백준 17123 배열 놀이" href="https://alsgud8311.github.io/알고리즘/백준-17123-배열-놀이.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 17123 배열 놀이</a><br>
-<a data-href="백준 31784 포닉스의 문단속" href="https://alsgud8311.github.io/알고리즘/백준-31784-포닉스의-문단속.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 31784 포닉스의 문단속</a><br>
-<a data-href="백준 6064 카잉 달력" href="https://alsgud8311.github.io/알고리즘/백준-6064-카잉-달력.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 6064 카잉 달력</a><br>
-<a data-href="백준 10597 순열장난" href="https://alsgud8311.github.io/알고리즘/백준-10597-순열장난.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 10597 순열장난</a><br>
-<a data-href="[백준 31836] 피보나치 기념품" href="https://alsgud8311.github.io/알고리즘/[백준-31836]-피보나치-기념품.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 31836] 피보나치 기념품</a> - 미완성<br>
-<a data-href="백준 26091 현대모비스 소프트웨어 아카데미" href="https://alsgud8311.github.io/알고리즘/백준-26091-현대모비스-소프트웨어-아카데미.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 26091 현대모비스 소프트웨어 아카데미</a><br>
-<a data-href="[백준 23307] 드디어 시작한 화석 발굴 이벤트" href="https://alsgud8311.github.io/알고리즘/[백준-23307]-드디어-시작한-화석-발굴-이벤트.html#_0" class="internal-link" target="_self" rel="noopener nofollow">[백준 23307] 드디어 시작한 화석 발굴 이벤트</a><br>
-<a data-href="백준 12891 DNA 비밀번호" href="https://alsgud8311.github.io/알고리즘/백준-12891-dna-비밀번호.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 12891 DNA 비밀번호</a><br>
-<a data-href="백준 18113 그르다 김가놈" href="https://alsgud8311.github.io/알고리즘/백준-18113-그르다-김가놈.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 18113 그르다 김가놈</a><br>
-<a data-href="백준 9466 텀 프로젝트" href="https://alsgud8311.github.io/알고리즘/백준-9466-텀-프로젝트.html#_0" class="internal-link" target="_self" rel="noopener nofollow">백준 9466 텀 프로젝트</a>]]></description><link>https://alsgud8311.github.io/알고리즘/알고리즘.html</link><guid isPermaLink="false">알고리즘/알고리즘.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 09 Feb 2025 07:13:20 GMT</pubDate></item><item><title><![CDATA[백준11631 ASCII Addition]]></title><description><![CDATA[아.. 이거 전에 모 코테에서 본 문제와 비슷한 문제
+그렇다면 점화식은 이전까지 누적된 값과 현재 보고 있는 값을 더했을 때와 현재 값 중에 더 큰 값을 골라야 한다. dp[n] = max(dp[n-1] + arr[n], arr[n])]]></description><link>https://alsgud8311.github.io/알고리즘/백준-1912-연속합.html</link><guid isPermaLink="false">알고리즘/백준 1912 연속합.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Sun, 09 Feb 2025 07:13:27 GMT</pubDate></item><item><title><![CDATA[백준11631 ASCII Addition]]></title><description><![CDATA[아.. 이거 전에 모 코테에서 본 문제와 비슷한 문제
 그 때 제대로 풀지 못해서 멘붕 왔었는데 이번엔 제대로 풀어본다.<img src="https://i.imgur.com/xQr9x8I.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">아스키 아트는 칠해지는 부분이 x로 되어 있고, 총 7개의 row와 5개의 column으로 되어 있다.
 a+b의 형태로 아스키 아트가 주어지면 이를 인식하고 이에 대한 두 수의 합을 다시 아스키 코드로 나타내야 한다.const fs = require("fs"); const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
 const input = fs.readFileSync(INPUT_FILE).toString().trim().split("\n"); const asciiPatterns = [ `xxxxx\nx...x\nx...x\nx...x\nx...x\nx...x\nxxxxx`, `....x\n....x\n....x\n....x\n....x\n....x\n....x`, `xxxxx\n....x\n....x\nxxxxx\nx....\nx....\nxxxxx`, `xxxxx\n....x\n....x\nxxxxx\n....x\n....x\nxxxxx`, `x...x\nx...x\nx...x\nxxxxx\n....x\n....x\n....x`, `xxxxx\nx....\nx....\nxxxxx\n....x\n....x\nxxxxx`, `xxxxx\nx....\nx....\nxxxxx\nx...x\nx...x\nxxxxx`, `xxxxx\n....x\n....x\n....x\n....x\n....x\n....x`, `xxxxx\nx...x\nx...x\nxxxxx\nx...x\nx...x\nxxxxx`, `xxxxx\nx...x\nx...x\nxxxxx\n....x\n....x\nxxxxx`, `.....\n..x..\n..x..\nxxxxx\n..x..\n..x..\n.....`,
@@ -233,8 +418,7 @@ const inputs = require("fs") .readFileSync(INPUT_FILE) .toString() .trim() .spli
 useEffect(() =&gt; { const intervalId = setInterval(() =&gt; { if (timer &gt; 0) { setTimer(timer - 1) } }, 1000) return () =&gt; clearInterval(intervalId)
 }, [timer])
 타이머에서 유효성 검증 상태 안바꿀거면 장식용으로 둔건가 ```tsx const gotoBeforeScreen = () =&gt; { navigation.navigate('EmailDuplicateCheck' as never) } const gotoNextScreen = () =&gt; { navigation.navigate('SetPassword' as never) }
-navigate의 타입제네릭을 써주지 않아서 never로 타입]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora_트러블슈팅.html</link><guid isPermaLink="false">프로젝트/forA/forA_트러블슈팅.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 07 Feb 2025 15:38:37 GMT</pubDate><enclosure url="https://i.imgur.com/DJXqyXM.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/DJXqyXM.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[forA]]></title><description><![CDATA[<a data-href="forA_트러블슈팅" href="https://alsgud8311.github.io/프로젝트/fora/fora_트러블슈팅.html#_0" class="internal-link" target="_self" rel="noopener nofollow">forA_트러블슈팅</a><br>
-<a data-href="forA_리팩토링_Navigation 추상화하기" href="https://alsgud8311.github.io/fora_리팩토링_navigation-추상화하기.html" class="internal-link" target="_self" rel="noopener nofollow">forA_리팩토링_Navigation 추상화하기</a>]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora.html</link><guid isPermaLink="false">프로젝트/forA/forA.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 07 Feb 2025 15:38:21 GMT</pubDate></item><item><title><![CDATA[화면 기록 2025-02-07 오후 11.20.09]]></title><description><![CDATA[<img src="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif" target="_self">]]></description><link>https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.html</link><guid isPermaLink="false">프로젝트/forA/화면 기록 2025-02-07 오후 11.20.09.gif</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 07 Feb 2025 14:24:09 GMT</pubDate><enclosure url="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 12891] DNA 비밀번호]]></title><description><![CDATA[<img src="https://i.imgur.com/j2BxAFf.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">DNA 문자열을 가지고 만들 수 있는 비밀번호의 종류의 수를 구하는 문제이다.
+navigate의 타입제네릭을 써주지 않아서 never로 타입]]></description><link>https://alsgud8311.github.io/프로젝트/fora/fora_트러블슈팅.html</link><guid isPermaLink="false">프로젝트/forA/forA_트러블슈팅.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 07 Feb 2025 15:38:37 GMT</pubDate><enclosure url="https://i.imgur.com/DJXqyXM.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/DJXqyXM.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[화면 기록 2025-02-07 오후 11.20.09]]></title><description><![CDATA[<img src="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif" target="_self">]]></description><link>https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.html</link><guid isPermaLink="false">프로젝트/forA/화면 기록 2025-02-07 오후 11.20.09.gif</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Fri, 07 Feb 2025 14:24:09 GMT</pubDate><enclosure url="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif" length="0" type="image/gif"/><content:encoded>&lt;figure&gt;&lt;img src="https://alsgud8311.github.io/프로젝트/fora/화면-기록-2025-02-07-오후-11.20.09.gif"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 12891] DNA 비밀번호]]></title><description><![CDATA[<img src="https://i.imgur.com/j2BxAFf.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">DNA 문자열을 가지고 만들 수 있는 비밀번호의 종류의 수를 구하는 문제이다.
 DNA 문자열은 모든 문자열에 등장하는 문자가 A, C, G, T인 문자열을 의미한다.
 또한 일정 길이의 DNA 문자열과 A, C, G, T가 각각 가져야 하는 문자열의 개수를 세봤을 때 이보다 이상이어야 성립한다.
 어차피 비밀번호로 사용할 부분문자열의 길이는 주어져있고, 문자열에서 임의로 뽑아내는 것이 아닌 이어져 있는 문자열이기 때문에 슬라이딩 윈도우를 통해 풀면 될 것 같다.const INPUT_FILE = process.platform === "linux" ? "/dev/stdin" : "./inputs.txt";
@@ -346,14 +530,7 @@ url은 비단 링크 정도의 기능만을 하는 것이 아니다. 각각의 �
 또한 loginForm을 나누고, 이 form에서 가지고 있는 hook까지 커스텀 훅으로 빼게 되니 코드의 수가 더 늘어났다.물론 이게 나와 협업하는 다른 개발자들이 보기에 조금 더 편할 수 있다면 LOC가 늘어나는 것은 괜찮다고 생각하지만 문제는 평탄하게 뿌려진 폴더 구조였다.
 나는 어찌보면 route 하나하나가 각 도메인을 의미한다고 생각했기에 여기에 필요한 훅, 컴포넌트, 스키마 등을 나누었다.<br><img src="https://i.imgur.com/9xqqng5.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">원래대로라면 page.tsx가 하나만 있어야 할텐데 너무 늘어나 이에 대한 배경지식이 없다면 코드의 가독성이 더 떨어져 보이는 듯한 효과를 주는 것을 느끼게 되었다.또한 Login쪽에서 관리하는 Hook을 보자export function useLogin() { const { supabase } = useAuth(); const router = useRouter(); const { open: openErrorModal, switchModal, setMessage: setErrorMessage, message: errorMessage, } = useModal(); const form = useForm&lt;loginFormSchemaType&gt;({ resolver: zodResolver(loginFormSchema), defaultValues: { email: "", password: "", }, }); const { mutate, isPending } = useMutation({ mutationFn: handleEmailLogin, onSuccess: () =&gt; router.push("/"), onError: (error) =&gt; { if (error instanceof Error) { setErrorMessage(error.message); switchModal(); } else { setErrorMessage( "서버 상의 이유로 실패하였습니다.\n 잠시 후 다시 시도해 주세요." ); switchModal(); } }, }); function submit(values: loginFormSchemaType) { const { email, password } = values; mutate({ email, password, supabase }); } return { form, submit, openErrorModal, switchModal, setErrorMessage, isPending, errorMessage, };
 } useLoginForm이라는 비즈니스 로직을 추상화한 하나의 커스텀 훅에 너무 많은 역할들이 혼재하고 있다.
-서버 상태 관리, 에러 상태 관리, 폼 관리를 하나의 훅으로 추상화하면서 어찌보면 이렇게 많은 역할들을 한번에 이해하기란 쉽지 않을 것 같다고 다시 코드를 봤을 때 느끼게 되었다.이번 코드 리뷰를 통해 '추상화' 라는 것이 무조건 내 코드의 품질을 높여주는 silver bullet이 아닌, '잘' 추상화 해야지만 추상화의 이점을 가질 수 있음을 깨달았다. 따라서 이번에 조금 더 추상화를 어떻게 더 '좋은 코드' 로 만들 수 있을까에 대해서 계속해서 고민하고 시도해가면서 감을 익혀나가야겠다. ]]></description><link>https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html</link><guid isPermaLink="false">프로젝트/Neo/구현의 상세 추상화.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 16:06:04 GMT</pubDate><enclosure url="https://i.imgur.com/NyroIXU.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/NyroIXU.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[Neo]]></title><description><![CDATA[Neo는 생성형 ai를 활용한 개인별 웹소설 창작 서비스입니다.
-Neo를 통해서는
-개인별 생성형 ai를 통한 맞춤 소설 제작
-Neo에 존재하는 웹소설을 내 마음대로 다시쓰기
-등의 서비스를 제공합니다.
-<a data-href="axios를 떠나보내기" href="https://alsgud8311.github.io/프로젝트/neo/axios를-떠나보내기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">axios를 떠나보내기</a><br>
-<a data-href="반응형을 자바스크립트로 해보기" href="https://alsgud8311.github.io/프로젝트/neo/반응형을-자바스크립트로-해보기.html#_0" class="internal-link" target="_self" rel="noopener nofollow">반응형을 자바스크립트로 해보기</a><br>
-<a data-href="구현의 상세 추상화" href="https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html#_0" class="internal-link" target="_self" rel="noopener nofollow">구현의 상세 추상화</a>]]></description><link>https://alsgud8311.github.io/프로젝트/neo/neo.html</link><guid isPermaLink="false">프로젝트/Neo/Neo.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 15:24:33 GMT</pubDate></item><item><title><![CDATA[[백준 6064] 카잉 달력]]></title><description><![CDATA[<img src="https://i.imgur.com/HAeNjXs.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">카잉 제국의 달력은 각 년도를 &lt;x:y&gt;와 같은 형식으로 표현한다
+서버 상태 관리, 에러 상태 관리, 폼 관리를 하나의 훅으로 추상화하면서 어찌보면 이렇게 많은 역할들을 한번에 이해하기란 쉽지 않을 것 같다고 다시 코드를 봤을 때 느끼게 되었다.이번 코드 리뷰를 통해 '추상화' 라는 것이 무조건 내 코드의 품질을 높여주는 silver bullet이 아닌, '잘' 추상화 해야지만 추상화의 이점을 가질 수 있음을 깨달았다. 따라서 이번에 조금 더 추상화를 어떻게 더 '좋은 코드' 로 만들 수 있을까에 대해서 계속해서 고민하고 시도해가면서 감을 익혀나가야겠다. ]]></description><link>https://alsgud8311.github.io/프로젝트/neo/구현의-상세-추상화.html</link><guid isPermaLink="false">프로젝트/Neo/구현의 상세 추상화.md</guid><dc:creator><![CDATA[Cho Minhyung]]></dc:creator><pubDate>Mon, 03 Feb 2025 16:06:04 GMT</pubDate><enclosure url="https://i.imgur.com/NyroIXU.png" length="0" type="image/png"/><content:encoded>&lt;figure&gt;&lt;img src="https://i.imgur.com/NyroIXU.png"&gt;&lt;/figure&gt;</content:encoded></item><item><title><![CDATA[[백준 6064] 카잉 달력]]></title><description><![CDATA[<img src="https://i.imgur.com/HAeNjXs.png" referrerpolicy="no-referrer" target="_self" class="is-unresolved">카잉 제국의 달력은 각 년도를 &lt;x:y&gt;와 같은 형식으로 표현한다
 시초에 해당하는 첫번째 해를 &lt;1:1&gt;로 표현하고
 두번째 해를 &lt;2:2&gt;로 표현한다.&lt;x:y&gt;의 다음 해는 &lt;x':y'&gt;로, x&lt;M이면 x' = x+1, x=M이면 x'=1이다. 이는 y도 N과 비교했을 때 똑같이 작용한다.
 M=10, N=12일 때
