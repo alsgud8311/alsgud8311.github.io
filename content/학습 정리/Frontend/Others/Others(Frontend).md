@@ -1,0 +1,5 @@
+- [[Tailwind 설정하기]]
+- [[Prettier 설정하기]]
+- [[aws 배포]]
+- [[firebase functions]]
+- [[NOSQL 맛보기]]

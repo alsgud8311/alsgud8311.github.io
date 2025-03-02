@@ -1,0 +1,4 @@
+- [[fsd 패턴]]
+- [[MVC패턴]]
+- [[Observer 패턴]]
+- [[Pub-Sub 패턴]]
