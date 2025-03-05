@@ -87,6 +87,7 @@ const config: QuartzConfig = {
         enableRSS: true,
         rssFullHtml: true,
         includeEmptyFiles: true,
+        enableRobots: true,
       }),
       Plugin.Assets(),
       Plugin.Static(),
