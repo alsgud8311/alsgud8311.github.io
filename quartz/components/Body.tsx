@@ -9,7 +9,7 @@ const Body: QuartzComponent = ({ children }: QuartzComponentProps) => {
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-2L3L15EQJJ"></script>
       <script>
         window.dataLayer = window.dataLayer || []; function gtag(...args: any[])
-        {dataLayer.push(args)}
+        {window.dataLayer.push(args)}
         gtag('js', new Date()); gtag('config', 'G-2L3L15EQJJ');
       </script>
       {children}
