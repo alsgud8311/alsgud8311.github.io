@@ -102,5 +102,3 @@ await supabase.auth.refreshSession();
 ✅ `refresh_token`이 만료되면 사용자가 다시 로그인해야 함
 
 ---
-
-더 궁금한 점 있으면 질문 주세요! 😊
