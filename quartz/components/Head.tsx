@@ -196,6 +196,10 @@ export default (() => {
         )}
         <link rel="icon" href={iconPath} />
         <meta name="description" content={description} />
+        <meta
+          name="google-site-verification"
+          content="g4OfdzDbi_pq3Hp6iu4P1jhTmYc7Khb0vsjmeHXQDO8"
+        />
         <meta name="generator" content="Quartz" />
         {css.map((resource) => CSSResourceToStyleElement(resource, true))}
         {js
