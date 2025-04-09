@@ -13,6 +13,10 @@ UX를 고려한 서비스 제작, 추상화를 활용한 컴포넌트와 프로�
 
 합리적이고 논리적인 근거를 가진 코드를 작성하기 위해 노력중입니다 💪
 
+### Contact
+- Github : [Profile](https://github.com/alsgud8311)
+- Email : alsgud8311@naver.com
+
 ### Tech skill
 ![React Native](https://img.shields.io/badge/React%20Native-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white) ![styled-components](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white)
