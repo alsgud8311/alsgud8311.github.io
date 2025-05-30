@@ -65,7 +65,7 @@ socket.on("details", (...args) => {
 
 이러한 Msw환경에서는 socket 또한 지원하는데, 문제는 websocket은 지원하지만 socket.io는 아직 레퍼런스가 없는 경우가 많아 애를 먹었다.
 
-하지만 최근에 
+
 
 ```js
 /**
