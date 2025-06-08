@@ -49,16 +49,99 @@ CI의 기본적인 도구로는 깃허브같이 소스코드 관리 시스템이
 
 CI는 이러한 이점들을 통해 소프트웨어 개발 팀이 더 빠르고 안정적으로 코드를 작성할 수 있도록 해준다.
 
+### 프론트엔드에서 CI는 어떻게 나눠야 좋을까?
+Github actions 기준으로 프론트엔드에서의 CI는 어떻게 나눠야 좋을까?
+일단 크게 나눠보면
+
+#### 모든 브랜치에서 -> 린팅과 유닛테스트
+린팅의 경우 정적 코드 분석을 통해 다양한 코드 스타일을 하나로 통일할 수 있도록 해주고, 잠재적인 오류에 대해서도 warning을 띄워주어 기존의 부족한 로직을 보완할 수 있다.
+그렇기 때문에 웬만해서는 린팅과 유닛테스트와 같이 배포까지 가기 전 단계에서 한번 검증을 돌린 다음에, 규칙에 어긋나는 코드를 미리 거르는 것이 좋을 것 같다.
+```yaml
+name: Validate Code
+
+on: [push, pull_request]
+
+jobs:
+  lint-and-unit-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # npm 의존성 캐싱
+
+      - name: Install dependencies
+        run: npm ci # package-lock.json 기반으로 설치하여 일관성 유지
+
+      - name: Run Lint
+        run: npm run lint
+
+      - name: Run Unit Tests
+        run: npm run test:unit
+```
+
+
 ## Continuous Deployment(CD)
 CD는 CI/CD 파이프라인에서 CI 이후에 이루어지는 단계이다. CI로 자동화된 테스트가 끝났다면 **모든 코드 변경 사항을 자동으로 프로덕션 환경에 배포**해주는 것이다.
 
 사실 더 잘 알려진 거로는 Continuous delivery가 있다.
 ### Continuous Delivery
-Continuous Delivery는 배포 환경으로의 빠른 배포에 포커스를 두기 때문에 효율적인 배포코드로 전환하기 위해 사용된다. 각 단계는 코드 -> 빌드 후 배포가능한 코드로 변환하는 과정을 거친다.
+Continuous Delivery는 배포 환경으로의 빠른 배포에 포커스를 두기 때문에 효율적인 배포코드로 전환하기 위해 사용된다. 각 단계는 코드 -> 빌드 후 배포가능한 코드로 변환하는 과정을 거친다. Continuous Delivery(지속적 전달)이라는 이름에 걸맞게 언제든 마치 전달은 되었고, 언제든지 이 전달된 배포버전을 그대로 배포로 올려놓기 직전까지 해주는 것이다.
 
 소프트웨어가 되었다면 다음 논리적 단계는 그걸 프로덕션 환경에 바로 배포하는 것인데, 그 전에 프로덕션 환경에서 제대로 돌아가는지 많은 테스트를 거친다. 주로 `QA(Quality Assurance)`, `Performance`,  `Staging` 이라고 하는데, 배포 전 환경을 의미한다. 이 단계에서 배포에 준비됐는지 확인하기 위한 여러 테스트를 거치는 것이다.
 
 `continuous delivery`에서 가장 중요한 관점은 언제라도 배포가 가능할 수 있음을 보장하는 것이다. 그렇기에 한번 delivery 프로세스가 끝나고 나면, 코드는 어떤 필요한 환경에서도 배포가 가능하게끔 되어 있어야 한다. 이를 위해 빌드부터 테스트, 패키징, 배포까지 `end-to-end`의 프로세스를 포함하는 것이다.
+#### 테스트는 CI에서 하는게 아닌가?
+CI 단계에서 테스트를 하는건 맞다. 하지만 CI단계와 CD 단계에서의 테스트가 지향하는 목적이 다르다.
+CI단계에서의 목적은 주로 코드쪽에서 나오는 문제들을 검출하는 단계이다. 새로운 코드가 기존의 코드와 잘 머지되고 코드 자체에 결함이 없는지 빠르게 검증하기 위해 CI라는 단계를 둔 것이다.
+반면 CD단계에서 하는 테스트의 경우, 이 **서비스가 제대로 동작하는가?** 를 검증하기 위한 목적의 테스트이다. 즉, CI단계와 다르게 코드 단위로 보기보다는 하나의 서비스 단위로 각 서비스의 기능들에 대해서 다시금 전체적인 테스트를 통해 서비스가 원활하게 돌아가는지 검증하는 단계인 것이다.
+
+이 단계에서는 주로 테스트하는 것은
+- **통합 테스트 (Integration Tests):** 여러 개의 유닛(모듈, 컴포넌트)을 결합했을 때 서로 상호작용이 잘 되는지 검증
+- **E2E 테스트 (End-to-End Tests, E2E):** 실제 사용자 시나리오를 처음부터 끝까지 시뮬레이션
+- **스모크 테스트 (Smoke Tests):** 프로덕션 환경에 배포된 직후, 서버가 정상적으로 켜졌는지, 가장 핵심적인 기능(로그인, 메인 페이지 로딩 등)이 동작하는지 가볍게 확인하는 테스트이다. "불이 나서 연기가 나는 곳은 없는지" 빠르게 훑어보는 개념이다
+이 있다.
+
+이를 workflow 파일로 보면 다음과 같이 구성할 수 있다
+```yaml
+# .github/workflows/deploy-dev.yml
+name: Deploy to Development
+
+on:
+  push:
+    branches:
+      - development # development 브랜치에 push될 때만 실행
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: dev # GitHub Environment 'dev'를 사용
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ... (Node.js 설치, 의존성 설치, 빌드 과정) ...
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build
+
+      - name: Deploy to Dev Server
+        run: |
+          echo "🚀 Deploying latest changes to the dev server..."
+          # 개발 서버 배포 스크립트 실행 (예: AWS S3, Vercel 등)
+          # ./scripts/deploy-dev.sh
+```
+주로 여기에서 dev용 서버를 하나 두고, 이 서버에서 실제로 qa를 하면서 서비스를 직접 열어서 스모크테스트도 해보고 테스트도 더 큰 단위로 돌려본다고 생각하면 된다.
 
 ### 배포 자동화
 `Continuous Deployment`의 경우에는 모든 빌드, 테스트등을 거친 뒤 마지막 단계에서 인간의 개입 없이 배포까지 혼자 돌아갈 수 있도록 자동화해놓은 것을 의미한다.
@@ -83,6 +166,7 @@ Continuous Delivery는 배포 환경으로의 빠른 배포에 포커스를 두�
 - 지속적인 품질 개선
 	- 프로덕트 품질 측면에서 계속해서 개선될 수 있음
 	- 자주 점진적인 개선을 이룰 수 있음.
+
 ## 배포 전략
 실제 사용자가 사용하고 있는 서비스에 대해서 배포를 할 때, 배포 과정에서 업데이트가 불가능하다면 그거 나름대로 사용자 경험을 저해할 수 있는 요인이 된다. 그렇기에 이를 해결하기 위한 여러 배포 전략들이 있다.
 
