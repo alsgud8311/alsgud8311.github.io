@@ -75,32 +75,29 @@ export const Textarea = ({
   border,
   ref,
   autoAdjust = false,
+  onChange,
   ...props
 }: TextareaProps): JSX.Element => {
-  const textareaRef = useRef<HTMLTextAreaElement | null>(null);
-  const currentRef = ref || textareaRef;
-
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
-      if (autoAdjust && currentRef.current) {
-        const textarea = currentRef.current;
-        textarea.style.height = "auto";
-        textarea.style.height = `${textarea.scrollHeight > 400 ? 400 : textarea.scrollHeight}px`;
+      if (autoAdjust) {
+        e.target.style.height = "auto";
+        e.target.style.height = `${e.target.scrollHeight > 400 ? 400 : e.target.scrollHeight}px`;
       }
-      if (props.onChange) {
-        props.onChange(e);
+      if (onChange) {
+        onChange(e);
       }
     },
-    [currentRef, autoAdjust, props.onChange]
+    [autoAdjust, onChange]
   );
 
   return (
     <textarea
       className={cn(textareaVariants({ variant, size, border }), className)}
       ref={ref}
-      onChange={handleChange}
       placeholder="Type your text here..."
-      {...props}
+      {...props} 
+      onChange={handleChange}
     />
   );
 };

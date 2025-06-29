@@ -35,7 +35,12 @@ services:
   nginx:
 		...
 ```
+
 Compose할 때 필요한 yaml파일의 설정에서 `build`의 `args` 설정으로 환경변수를 두었고, 이를 `Dockerfile` 에서 선언한 후에 compose에서 전해준 args로 사용할 수 있도록 하였다.
+
+사실 다 환경변수로 github에서 안 보이게 처리해줄 수도 있는데, 결국 브라우저에 노출되는 정보이기 때문에 따로 이 부분은 그냥 Dockerfile에 작성해줬다.
+정말 보안적으로 위험한 부분은 꼭 환경변수 설정하기를(근데 클라이언트에서 설정하는 대부분의 환경변수는 결국 노출되는 종류가 대다수이긴 한 것 같다.)
+
 ```yaml
 ...
 
@@ -97,3 +102,4 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 // 브라우저의 개발자 도구에서도 확인 가능
 console.log(process.env.NEXT_PUBLIC_API_URL);
 ```
+
