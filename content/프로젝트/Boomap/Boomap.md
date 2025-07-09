@@ -19,7 +19,6 @@
 > - 시각화된 캔버스에서 **수정과 삭제**가 가능해요.
 > - 만들어진 마인드맵을 팀원들과 **쉽게 공유**할 수 있어요.
 
-<br>
 
 <div align="center"><a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fboostcampwm-2024%2Fweb32-BooMap&count_bg=%2360AEEF&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a></div>
  

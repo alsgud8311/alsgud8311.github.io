@@ -1,5 +1,5 @@
 - [[Concurrent mode]]
-- [[Error boundary와 Suspense]]
+- [[Error boundary에 관한 고찰]]
 - [[JSX에 관한 고찰]]
 - [[React 19 베타에서 새롭게 추가된 것들]]
 - [[React Fiber에 관한 고찰]]

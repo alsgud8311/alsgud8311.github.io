@@ -1,31 +1,32 @@
-Supabase Auth는 **JWT(JSON Web Token) 기반 인증 시스템**을 사용하여 로그인 유지를 관리한다.
-
+---
+title: supabase의 세션 분석하기
+created: 2025-03-13 16:27
+updated: 2025-03-13 16:27
+tags:
+  - 개발
+  - 프로젝트
+  - supabase
+categories:
+  - 알고리즘
+aliases: 
+description: ""
+status: draft
 ---
 
-### 🔹 Supabase 로그인 유지 방식
+## Supabase의 세션 관리 방식은 뭔가 이상하다?
+`supabase`로 프로젝트를 하다 보면  supabase의 세션이 어떻게 돌아가는지 궁금해지는 지점이 온다. 왜냐하면 supabase의 session은 JWT(JSON Web Token)을 이용하기 때문에 일반적으로 우리가 알고 있는 세션의 개념과는 조금 상이하기 때문이다.
 
-1. **액세스 토큰(Access Token)과 리프레시 토큰(Refresh Token) 발급**
-    
-    - 사용자가 로그인하면 Supabase는 `access_token`과 `refresh_token`을 발급합니다.
-    - `access_token`은 인증된 요청을 보낼 때 사용되며, 기본적으로 **1시간 후 만료**됩니다.
-    - `refresh_token`은 `access_token`이 만료되었을 때 새 `access_token`을 받아오기 위해 사용됩니다. 기본적으로 **1개월 동안 유효**합니다.
-2. **로컬 저장 방식**  
-    Supabase 클라이언트(SDK)는 `refresh_token`을 **브라우저의 `IndexedDB`**에 저장하고 관리합니다.
-    
-    - `localStorage` 또는 `sessionStorage`에 직접 저장하지 않고 `IndexedDB`를 활용해 보안성을 높입니다.
-3. **자동 로그인 유지 (세션 복구)**
-    
-    - 사용자가 페이지를 새로고침하거나 다시 방문하면, Supabase는 `refresh_token`을 이용해 자동으로 새로운 `access_token`을 발급받아 로그인 상태를 유지합니다.
-    - Supabase 클라이언트는 `auth.onAuthStateChange`를 사용해 로그인 상태 변화를 감지하고 자동으로 토큰을 갱신합니다.
-4. **백그라운드 자동 토큰 갱신**
-    
-    - Supabase는 `access_token`이 만료되기 약 **30초 전**에 자동으로 `refresh_token`을 사용해 새 `access_token`을 요청합니다.
-    - 이를 통해 사용자가 활동 중이라면 로그인 유지가 끊기지 않습니다.
+대표적인 세션은 일정 시간 동안 같은 사용자(브라우저)로부터 들어오는 일련의 요구를 하나의 상태로 보고, 그 상태를 유지시키는 기술이다.  
+
+> 여기서 일정 시간은 방문자가 웹 브라우저를 통해 웹 서버에 접속한 시점부터 웹 브라우저를 종료하여 연결을 끝내는 시점을 말한다.  
+
+즉, 브라우저가 종료되기 전까지 클라이언트의 요청을 유지하게 해주는 기술을 세션이라고 한다. 이 과정에서 세션을 유지하기 위해 서버는 유저의 정보를 **서버에서 저장하고 있다.** 서버가 돌아가는 동안 연결이 된 유저들을 직접 관리하며, 클라이언트 측에서는 세션 id를 쿠키로 보내주어 해당 id를 받아 유저와의 인증을 구현한다.
+
+하지만 supabase에서 제공하는 세션은 일반적인 세션 유지 방식이 아닌 JWT 방식으로 클라이언트가 정보를 들고 있는 방식인 데다가 추가적으로 sessionId까지 들고 있다. 일반적인 세션과는 사뭇 다른 느낌을 받기 때문에 이에 대해서 이해할 필요성이 있다고 느꼈다.
+
 
 ---
-
-### 🔹 로그인 유지 흐름 예시
-
+## Supabase 로그인 유지 방식
 ```mermaid
 sequenceDiagram
     participant User as 사용자
@@ -44,10 +45,17 @@ sequenceDiagram
 
     Note right of Client: 자동 로그인 유지됨
 ```
+supabase를 이용하여 로그인을 구현하면 supabase 서버에서는 로그인 정보를 확인하고 일치하는 정보가 있으면 **리프레시 토큰과 액세스 토큰**을 발급한다. 
 
----
+`access_token`은 인증된 요청을 보낼 때 사용되며, 기본적으로 **5분 ~ 1시간 후 만료**된다. 액세스 토큰의 경우 너무 길게 유효기간을 잡으면 보안상에 위험이 될 수 있으므로 짧게 두고 리프레시 토큰을 통해 새롭게 발급할 수 있도록 한다.
 
-### 🔹 Supabase에서 로그인 상태 확인하는 방법
+`refresh_token`은 `access_token`이 만료되었을 때 새 `access_token`을 받아오기 위해 사용된다.
+ 이렇게 토큰을 발급받는 동시에 로그인 시 쿠키에 관련 로그인과 관련된 값들을 쿠키에 저장한다. 서버는 이러한 쿠키에 있는 문자열을 해석하여 토큰을 알아내고, 이를 기반으로 새로고침이 일어나거나 하면 리프레시 토큰으로 새 토큰을 재발급 받아 로그인 상태를 유지시킨다.
+ 
+이 과정에서 Supabase 클라이언트는 `auth.onAuthStateChange`를 사용해 로그인 상태 변화를 감지하고 자동으로 토큰을 갱신하거나, 새로고침을 하는 등의 이벤트를 미리 등록하여 사용할 수도 있다.
+
+
+### Supabase에서 로그인 상태 확인하는 방법
 
 ```ts
 import { createClient } from "@supabase/supabase-js";
@@ -68,39 +76,13 @@ if (session) {
 
 ---
 
-### 🔹 자동 로그인 유지가 안 되는 경우
-
-1. **리프레시 토큰 만료 (기본 1개월)**
-    
-    - `refresh_token`의 기본 유효기간은 1개월이므로, 이 기간이 지나면 자동 로그인 유지가 되지 않음.
-    - 해결 방법: 사용자가 직접 재로그인하도록 유도해야 함.
-2. **토큰이 삭제되거나 IndexedDB가 비워짐**
-    
-    - 사용자가 브라우저 데이터를 삭제하면 로그인이 해제됨.
-    - 시크릿 모드(Incognito)에서는 `IndexedDB` 저장이 제한될 수도 있음.
-3. **서버에서 세션이 만료됨**
-    
-    - Supabase의 보안 정책에 따라 특정 상황에서는 `refresh_token`이 만료될 수도 있음.
-
----
-
-### 🔹 수동으로 세션 갱신하는 방법
+### 수동으로 세션 갱신하는 방법
 
 ```ts
 await supabase.auth.refreshSession();
 ```
 
-이 코드를 실행하면 `refresh_token`을 이용해 새로운 `access_token`을 받아올 수 있습니다.
+이 코드를 실행하면 `refresh_token`을 이용해 새로운 `access_token`을 받아올 수 있다
 
 ---
 
-### 🔹 요약
-
-✅ Supabase는 `access_token`(1시간)과 `refresh_token`(1개월)을 활용해 로그인 유지  
-✅ `refresh_token`은 `IndexedDB`에 저장됨  
-✅ 자동으로 만료 전에 `access_token`을 갱신해 로그인 유지  
-✅ `refresh_token`이 만료되면 사용자가 다시 로그인해야 함
-
----
-
-더 궁금한 점 있으면 질문 주세요! 😊
