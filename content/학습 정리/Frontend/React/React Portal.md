@@ -32,8 +32,7 @@ import { createPortal } from 'react-dom';
 ```
 포탈을 사용하기 위해서는 **createPortal**을 실행하여 포탈을 생성해야 한다.
 -  children: JSX 조각 (예: `<div />` 나 `<SomeComponent />`), Fragment (`<>...</>`), 문자열이나 숫자, 또는 이들의 배열과 같이 React로 렌더링할 수 있는 모든 것.
-- domNode: `document.getElementById()`가 반환하는 것과 같은 일부 DOM 노드이다
-	- 노드는 이미 존재하고 있어야 한다. 업데이트 중에 다른 DOM 노드를 전달하면 포털 콘텐츠가 다시 생성된다
+- domNode: `document.getElementById()`가 반환하는 것과 같은 일부 DOM 노드. 노드는 이미 존재하고 있어야 한다. 업데이트 중에 다른 DOM 노드를 전달하면 포털 콘텐츠가 다시 생성된다
 - **선택적** `key`: 포털의 키로 사용할 고유 문자열 또는 숫자
 이렇게 포탈을 생성하면 반환값으로 React node를 반환한다. 리액트는 렌더링 중에 이 포탈로 만들어진 React node를 보면 제공된 `children`을 설정한 `domNode` 안에 배치한다.
 
