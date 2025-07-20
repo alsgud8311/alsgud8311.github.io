@@ -1,5 +1,5 @@
 ---
-title: Nextjs Build시 메모리 누수(javascript heap out of memory) 고치기
+title: Nextjs Build시 js heap out of memory 고치기
 created: 2025-06-28 12:01
 updated: 2025-06-28 12:01
 tags:
@@ -13,7 +13,7 @@ description: ""
 status: 작성중
 ---
 ## 문제
-Nextjs 빌드를 하다가 메모리 누수 에러로 cd가 제대로 돌아가지 않았다.
+Nextjs 빌드를 하다가 힙 메모리 초과의 에러로 cd가 제대로 돌아가지 않았다.
 ![](https://i.imgur.com/uyoBqY3.png)
 ```
 #11 167.9    Creating an optimized production build ...
