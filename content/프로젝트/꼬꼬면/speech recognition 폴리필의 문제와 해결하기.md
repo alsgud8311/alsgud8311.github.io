@@ -12,10 +12,12 @@ status: draft
 ---
 
 
-## 개요
-`Speech Recognition Web API`를 사용해서 꼬꼬면의 웹은 마이크를 통해 인터뷰를 진행할 수 있게끔 하여 실제 음성으로도 정리해서 말할 수 있는 연습을 할 수 있도록 구현하였다.
+## 문제
+꼬꼬면의 웹버전은 `Speech Recognition Web API`를 사용해서 마이크를 통해 인터뷰를 진행할 수 있게끔 하여 실제 음성으로도 정리해서 말할 수 있는 연습을 할 수 있도록 구현하였다.
 
-하지만 이를 웹뷰로 다시금 만드는 과정에서 브라우저의 버전을 고려할 필요가 있었는데, 대부분의 브라우저 버전에서는 최신이 아닌 이상 `Speech Recognition Web API` 가 지원을 제대로 안한 상태이기 때문에 폴리필을 통해서 구현을 하던지, 아니면 다른 방법을 찾아야 했다. 
+하지만 이를 웹뷰로 다시금 만드는 과정에서 브라우저의 버전을 고려할 필요가 있었는데, 내가 지원 대상 기기로 삼은 IOS 13버전 이상에서는 `Speech Recognition Web API` 가 지원을 제대로 안한 상태였다.
+최대한 사용할 수 있는 범위를 늘리려 IOS 13까지 지원범위로 하긴 했지만, 사실 14.5버전부터 Speech Recognition을 지원했기 때문에 14.5 버전 이상으로 `build target` 을 잡고 빌드하더라도 13버전의 점유율이 거의 없기 때문에 문제 될 것은 없다고 생각했다.
+하지만 그럼에도 따로 대안이 필요하다고 느꼈던 이유는 `Speech Recognition Web API` 일부는 네트워크를 통해 서버에서 음성 인식 결과를 받는 경우도 있기 때문에, 네트워크가 유실되면 그대로 진행할 수 없는 상태가 됐었다. 이에 온디바이스 모듈을 사용하여 받을 수도 있기 때문에 이러한 네트워크 유실에 대한 위험성이 더 떨어져 네이티브 모듈을 활용하여 각 웹뷰에서 조작하기보다는 네이티브 모듈을 통해 조작하는 방식으로 개선을 결정했다. 
 ## 브라우저 버전을 고려해야 하는 이유
 그렇다면 왜 브라우저 버전을 고려해야 할까? 그리고 왜 이런 고민을 웹에서는 많이 하지 않았을까?
 
@@ -47,7 +49,7 @@ Expo Docs에서는 보이지 않는 것으로 보아, 정식으로 채택된 라
 ## 네이티브 <-> 웹뷰 사이에서 음성인식 처리하기
 네이티브와 웹뷰 사이에서 음성인식한 결과를 전해주고 처리하기 위해서는 양쪽에서의 처리가 필요하다
 
-### RN
+### RN에서의 처리
 리액트 네이티브에서는 각 Speech Recognition을 실행하고 이에 따라 처리할 수 있는 로직을 받을 수 있도록 커스텀 훅을 만들어 주었다.
 
 ```ts
@@ -136,16 +138,6 @@ export default function useSpeechRecognition({
 
 그리고 사용할 때는 
 ```tsx
-import useSpeechRecognition from "@/hooks/useSpeechRecognition";
-import { useRef } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  SafeAreaView,
-  View,
-} from "react-native";
-import WebView, { WebViewMessageEvent } from "react-native-webview";
-
 export default function InterviewMainScreen() {
   const webviewRef = useRef<WebView>(null);
   const runFirst = `
@@ -203,17 +195,15 @@ export default function InterviewMainScreen() {
 }
 
 ```
-이런 식으로 interimResult 옵션을 넣어주면 음성인식 중에서도 인식된 결과를 받아서 브릿지를 통해 네이티브에서 웹뷰로 전송할 수 있다.
+이런 식으로 이벤트 기반으로 메시지를 받고 이에 대해 분기처리를 해줌으로써 각 이벤트 타입에 맞춰 처리할 수 있다.
 
 주의할 점은 처음 웹뷰가 로드됐을 때 `injectJavascript` 로 `isNativeApp = true` 를 주입시키지 않으면 제대로 웹뷰 인식이 되지 않아 브릿지를 통해 메시지를 주고받을 수 있는 메소드가 웹뷰쪽에서 주입되지 않기 때문에 주의해야 한다(나도 이거때문에 한참 헤맸었다).
 
-### 웹뷰
+### 웹뷰에의 처리
 웹뷰에서도 음성인식 버튼을 눌렀을 때와 정지를 눌렀을 때, 네이티브에서 해당 상태를 감지하고 이에 따라 음성 인식을 활성화해야 했고, 또 음성 인식에 대한 결과를 받아와서 렌더링시켜줘야 했으므로 이에 대해 처리를 해줘야 했다.
 따라서 웹뷰도 웹뷰를 위한 커스텀 훅을 만들어주었다.
-```tsx
-import { WebviewMessage } from "@kokomen/types";
-import { useEffect, useState } from "react";
 
+```tsx
 export default function useSpeechRecognition(
   // eslint-disable-next-line no-unused-vars
   callback: (result: string) => void
@@ -253,6 +243,7 @@ export default function useSpeechRecognition(
 
 //네이티브로부터 받은 메시지를 제대로 처리할 수 있도록 이벤트를 등록한다
   useEffect(() => {
+  // MessageMessage 타입은 따로 정의한 타입이다.
     const handleMessage = (event: MessageEvent): void => {
       const data = JSON.parse(event.data) as WebviewMessage;
       if (data.type === "speechRecognitionResult" && data.result)
@@ -274,6 +265,10 @@ export default function useSpeechRecognition(
 }
 
 ```
-이런 식으로 이벤트 리스너를 등록하고 이에 따라 웹뷰에서 처리하도록 함으로써 네이티브 <-> 웹뷰 간의 통신이 원할하게 이루어질 수 있었다.
 
-또한 네이티브가 보내거나 웹뷰가 보내는 각 메시지에 대해서 따로 타입을 정의해놔 
+이런 식으로 이벤트 리스너를 등록하고 이에 따라 웹뷰에서 처리하도록 함으로써 네이티브 <-> 웹뷰 간의 통신이 원할하게 이루어질 수 있도록 하였다.
+
+![](https://i.imgur.com/4PCB2O8.png)
+
+하지만 이런 메시지 교환 구조를 만드는 과정에서 React Native 자체의 환경과 브라우저의 환경이 서로 다르기 때문에 직렬화를 시켜서 보내야 하는데,  `JSON.stringify` 를 해서 보내고 다시 파싱하는 과정에서 여러 가지 이벤트가 하나의 message 이벤트로 오기 때문에 타입에 대해서 안전하게 처리를 할 필요성을 느꼈다. 그렇지 않으면 휴먼 에러가 나올 가능성이 높기 때문임과 동시에 이벤트가 많아질수록 관리하기 어려워지기 때문이다. 따라서 파싱한 JSON에 대해서도 타입 단언을 통해 타입을 고정하고 이에 대해서 분기처리로 각 메시지 타입에 대해서 type-safe하게 관리할 수 있도록 했다.
+
