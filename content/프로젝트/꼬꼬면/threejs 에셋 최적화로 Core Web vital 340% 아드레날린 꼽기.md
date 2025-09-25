@@ -126,11 +126,3 @@ GLTF로 변환된 모델 데이터를 다시금 GLB로 blender에서 export 하�
 ![](https://i.imgur.com/uwluz1k.png)
 
 만약 여러분들도 threejs와 같은 3d 에셋을 사용할 때, 가장 크게 신경쓰는 부분이 이러한 에셋들의 크기일 것이라고 생각합니다. 저와 같은 방법으로 최적화를 진행해보고 많이 성능 개선을 이루셨으면 하는 마음으로 글을 마칩니다.
-
-#### 3D 에셋 최적화 스팀팩으로 340% performance 개선하기
-
-꼬꼬면의 랜딩페이지 개선 과정에서 lighthouse performance가 25까지 급격하게 떨어진 상황에서 3D 모델 최적화를 통해 84까지 개선시킨 경험을 담습니다.
-
-
-
-](https://velog.io/@alsgud8311/3D-%EC%97%90%EC%85%8B-%EC%B5%9C%EC%A0%81%ED%99%94-%EC%8A%A4%ED%8C%80%ED%8C%A9%EC%9C%BC%EB%A1%9C-340-performance-%EA%B0%9C%EC%84%A0%ED%95%98%EA%B8%B0)
