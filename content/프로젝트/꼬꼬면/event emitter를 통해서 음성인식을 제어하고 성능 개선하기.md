@@ -1,12 +1,12 @@
 ---
-title: useImperativeHandle을 통해서 성능 개선하기
+title: event emitter를 통해서 음성인식을 제어하고 성능 개선하기
 created: 2025-08-21 01:09
 updated: 2025-08-21 01:09
 tags: []
 categories: []
 aliases: []
 description: ""
-status: "draft" # draft, in-progress, completed
+status: draft
 ---
 
 ## 개요

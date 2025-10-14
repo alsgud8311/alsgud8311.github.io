@@ -65,6 +65,8 @@
 ### 네트워크
 - [[bytebytego_A Crash Course in Networking]]
 - [[네트워크 스터디 2주차]]
+- [[네트워크_1주차]]
+- 
 
 ## 정보보안
 [[정보보안_1주차]]
