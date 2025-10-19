@@ -1,12 +1,12 @@
 ---
 title: speech recognition 폴리필의 문제와 해결하기
-created: 2025-07-31 16:25
-updated: 2025-07-31 16:25
+created: <% tp.date.now("YYYY-MM-DD HH:mm") %>
+updated: <% tp.date.now("YYYY-MM-DD HH:mm") %>
 tags:
   - 개발
   - 작성중
-categories: 
-aliases: 
+categories:
+aliases:
 description: ""
 status: draft
 ---
