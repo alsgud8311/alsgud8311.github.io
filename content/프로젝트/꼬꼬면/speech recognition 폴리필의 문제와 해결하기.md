@@ -89,6 +89,7 @@ export default function useSpeechRecognition({
 }) {
   const [isListening, setIsListening] = useState(false);
 
+ // 커스텀 훅에서는 인자 중 받은 콜백을 각 이벤트에 따라 실행시킨다
   useSpeechRecognitionEvent("start", () => {
     setIsListening(true);
     onStart?.();
@@ -98,48 +99,12 @@ export default function useSpeechRecognition({
     onEnd?.();
   });
 
-  useSpeechRecognitionEvent("result", (event) => {
-    onResult?.(event.results[0]?.transcript);
-  });
-  useSpeechRecognitionEvent("error", (event) => {
-    onError?.(event.error);
-    if (abortOnError) {
-      ExpoSpeechRecognitionModule.abort();
-    }
-  });
+...
 
-  const handleStart = async () => {
-    const microphonePermissions =
-      await ExpoSpeechRecognitionModule.requestMicrophonePermissionsAsync();
-    if (!microphonePermissions.granted) {
-      alert("마이크 허용을 해야 인터뷰 내 마이크 인식이 가능합니다.");
-      return;
-    }
-
-    if (Platform.OS === "ios") {
-      const speechRecognizerPermissions =
-        await ExpoSpeechRecognitionModule.requestSpeechRecognizerPermissionsAsync();
-      if (!speechRecognizerPermissions.granted) {
-        if (speechRecognizerPermissions.restricted) {
-          alert("음성 인식 권한이 제한되었습니다.");
-        } else {
-          alert("음성 인식 권한이 없습니다.");
-        }
-        return;
-      }
-    }
-    // Start speech recognition
-    ExpoSpeechRecognitionModule.start({
-      lang: "ko-KR",
-      interimResults: true,
-      continuous: true,
-      requiresOnDeviceRecognition: Platform.OS === "ios",
-    });
-  };
-
+  // 음성 인식 모듈을 조작하는 메서드
+  const handleStart = async () => {...}
   const handleStop = async () => {
-    setIsListening(false);
-    ExpoSpeechRecognitionModule.stop();
+    ...
   };
 
   return {
@@ -152,61 +117,16 @@ export default function useSpeechRecognition({
 
 그리고 사용할 때는 
 ```tsx
-export default function InterviewMainScreen() {
-  const webviewRef = useRef<WebView>(null);
-  const runFirst = `
-      window.isNativeApp = true;
-      true;
-    `;
-
-  const { handleStart, handleStop } = useSpeechRecognition({
-    onResult: (transcript) => {
-      webviewRef.current?.postMessage(
-        JSON.stringify({
-          type: "speechRecognitionResult",
-          data: transcript,
-        }),
-      );
-    },
-  });
+  // 웹뷰 핸들러로 주입하는 함수
+  // 웹뷰로부터 받은 이벤트를 처리한다.  
   const handleMessage = (event: WebViewMessageEvent) => {
     const data = JSON.parse(event.nativeEvent.data);
     if (data.type === "startListening") {
-      console.log("startListening");
       handleStart();
     } else if (data.type === "stopListening") {
-      console.log("stopListening");
       handleStop();
     }
   };
-
-  return (
-    <View style={{ flex: 1, backgroundColor: "#fff" }}>
-      <SafeAreaView style={{ flex: 1 }}>
-        <KeyboardAvoidingView
-          behavior={Platform.select({ ios: "position", android: undefined })}
-          enabled
-          keyboardVerticalOffset={-300}
-          contentContainerStyle={{ flex: 1 }}
-          style={{ flex: 1 }}
-        >
-          <WebView
-            ref={webviewRef as any}
-            source={{ uri: `uri 입력` }}
-            javaScriptEnabled={true}
-            injectedJavaScriptBeforeContentLoaded={runFirst}
-            webviewDebuggingEnabled
-            onMessage={handleMessage}
-            style={{ flex: 1 }}
-            setBuiltInZoomControls={false}
-            domStorageEnabled={true}
-            setDisplayZoomControls={false}
-          />
-        </KeyboardAvoidingView>
-      </SafeAreaView>
-    </View>
-  );
-}
 
 ```
 이런 식으로 이벤트 기반으로 메시지를 받고 이에 대해 분기처리를 해줌으로써 각 이벤트 타입에 맞춰 처리할 수 있다.
@@ -218,17 +138,7 @@ export default function InterviewMainScreen() {
 따라서 웹뷰도 웹뷰를 위한 커스텀 훅을 만들어주었다.
 
 ```tsx
-export default function useSpeechRecognition(
-  // eslint-disable-next-line no-unused-vars
-  callback: (result: string) => void
-): {
-  startListening: () => void;
-  stopListening: () => void;
-  isListening: boolean;
-  isSupported: boolean;
-} {
-  const [isListening, setIsListening] = useState<boolean>(false);
-  const [isSupported, setIsSupported] = useState<boolean>(false);
+
 
 // 처음에 해당 웹뷰에서 ReactNativeWebview가 있는지를 검사하여 브릿지가 제대로 연결되었는지를 확인한다.
   useEffect(() => {
@@ -237,6 +147,7 @@ export default function useSpeechRecognition(
     }
   }, []);
 
+  // 웹뷰에서는 단순 메시지만 네이티브 쪽으로 보내어 네이티브 쪽에서 처리할 수 있도록 한다
   const startListening = (): void => {
     window.ReactNativeWebView?.postMessage(
       JSON.stringify({
@@ -245,23 +156,14 @@ export default function useSpeechRecognition(
     );
     setIsListening(true);
   };
-
-  const stopListening = (): void => {
-    window.ReactNativeWebView?.postMessage(
-      JSON.stringify({
-        type: "stopListening"
-      })
-    );
-    setIsListening(false);
-  };
-
+  
 //네이티브로부터 받은 메시지를 제대로 처리할 수 있도록 이벤트를 등록한다
   useEffect(() => {
   // MessageMessage 타입은 따로 정의한 타입이다.
     const handleMessage = (event: MessageEvent): void => {
       const data = JSON.parse(event.data) as WebviewMessage;
       if (data.type === "speechRecognitionResult" && data.result)
-        callback(data.result);
+        ...
     };
     window.addEventListener("message", handleMessage);
 
@@ -269,14 +171,6 @@ export default function useSpeechRecognition(
       window.removeEventListener("message", handleMessage);
     };
   }, [callback]);
-
-  return {
-    startListening,
-    stopListening,
-    isListening,
-    isSupported
-  };
-}
 
 ```
 
