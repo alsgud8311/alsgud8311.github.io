@@ -131,6 +131,8 @@ export default function useSpeechRecognition({
 ```
 이런 식으로 이벤트 기반으로 메시지를 받고 이에 대해 분기처리를 해줌으로써 각 이벤트 타입에 맞춰 처리할 수 있다.
 
+AmazonBedrockExecutionRoleForFlows_HQ6ESTWH21
+
 주의할 점은 처음 웹뷰가 로드됐을 때 `injectJavascript` 로 `isNativeApp = true` 를 주입시키지 않으면 제대로 웹뷰 인식이 되지 않아 브릿지를 통해 메시지를 주고받을 수 있는 메소드가 웹뷰쪽에서 주입되지 않기 때문에 주의해야 한다(나도 이거때문에 한참 헤맸었다).
 
 ### 웹뷰에의 처리
