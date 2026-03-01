@@ -23,6 +23,11 @@ UX를 고려한 서비스 제작, 추상화를 활용한 컴포넌트와 프로�
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Zustand](https://img.shields.io/badge/Zustand-FF8800?style=for-the-badge&logo=zustand&logoColor=white)
 
+### Career
+- Searchdoc(2025.12 ~ )
+	- 문서 인덱싱 파이프라인 설계
+	- GPT Realtime API 기반 애플리케이션 POC 설계
+	- B2B PoC 프로젝트를 위한 플랫폼 구축
 ### Education
 - 한국외국어대학교 영미문학문화학과/ai융합전공(sw&ai) - 재학중
 ### Activity
